@@ -21,8 +21,9 @@
 
 <script>
 import LoginPart from '../components/LoginPart.vue';
+import RegisterPart from '../components/RegisterPart.vue';
 export default {
-  components: { LoginPart },
+  components: { LoginPart, RegisterPart },
     name: 'LandingView',
     data() {
         return {
@@ -44,6 +45,11 @@ export default {
     created(){
       if(this.loggedIn){
         this.$router.push('/profile');
+      }
+    },
+    computed: {
+      loggedIn() {
+        return this.$store.getters.isLoggedIn;
       }
     }
 }

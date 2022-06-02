@@ -37,6 +37,7 @@ export default {
     name: 'LandingView',
     data() {
         return {
+            isLoading: false,
             email: '',
             password: '',
             emailRules: [
@@ -51,17 +52,29 @@ export default {
     },
     methods: {
         login() {
+          this.isLoading = true;
             if (this.$refs.form.validate()) {
-                this.$store.dispatch('login', {
-                    email: this.email,
-                    password: this.password
-                }).then(() => {
-                    this.$router.push('/');
+              this.$store.dispatch("auth/login", {
+                email: this.email,
+                password: this.password
+              }).then(() => {
+                this.$router.push('/profile');
                 }).catch(() => {
+                  this.isLoading = false;
                     this.$refs.form.validate();
                 });
             }
         }
+    },
+    computed: {
+      loggedIn() {
+        return this.$store.state.auth.status.loggedIn;
+      },
+    },
+    created(){
+      if(this.loggedIn){
+        this.$router.push('/profile');
+      }
     }
 }
 </script>

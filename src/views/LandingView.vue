@@ -3,16 +3,18 @@
     <div class="loginField">
       <login-part v-if="isLogin"></login-part>
       <register-part v-if="isRegister"></register-part>
-      <v-card v-if="!isLogin && !isRegister">
+      <v-card v-if="!isLogin && !isRegister" style="height: 250px">
         <v-card-title>
-          <span class="headline">Wilkommen</span>
+          <span class="headline">Willkommen</span>
         </v-card-title>
-        <v-card-text>
-          Wilkommen auf unserer Seite
+        <v-card-text id="wilkommen_txt">
+          Willkommen bei VuetEvent.
+          Hier können Sie alle anstehenden Events in Ihrem persönlichen Kalender organisieren und verwalten. 
+          Die Nostalgiker unter euch können auch die vergangenen Events einsehen und in Erinnerungen schwelgen. 
         </v-card-text>
         <v-card-actions class="loginButtons">
-          <v-btn color="primary" @click="login">Login</v-btn>
-          <v-btn color="primary" @click="register">Register</v-btn>
+          <v-btn color="#000080" style="color:white; min-width: 140px; text-transform: none; font-family:Arial, Helvetica, sans-serif;" @click="login">Login</v-btn>
+          <v-btn color="#000080" style="color:white; min-width: 140px; text-transform: none; font-family:Arial, Helvetica, sans-serif;" @click="register">Registrieren</v-btn>
         </v-card-actions>
       </v-card>
     </div>
@@ -56,6 +58,14 @@ export default {
 </script>
 
 <style>
+.headline {
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
+.wilkommen_txt {
+  text-align: left;
+}
 .body-of-landingpage {
   position: fixed;
   background-color: #123456;
@@ -66,7 +76,7 @@ export default {
   bottom: 0;
   padding: 0;
   margin: 0;
-  background-image: url("../assets/disco_party_berlin.jpg");
+  background-image: url("../assets/WebProg4.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -76,12 +86,14 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30%;
-  height: 30%;
-  text-align: center;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .loginButtons {
   display: ce;
   justify-content: space-around;
+  padding-top: 25px;
+  
 }
 </style>

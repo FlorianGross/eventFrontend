@@ -24,14 +24,17 @@
             <span class="mr-2">Events</span>
             <v-icon>mdi-balloon</v-icon>
           </v-btn>
-          <v-btn href="/login" text>
+          <v-btn href="/calendar" text>
             <span class="mr-2">Kalender</span>
             <v-icon>mdi-account</v-icon>
           </v-btn>
         </div>
 
         <v-spacer></v-spacer>
-
+        <v-btn href="/logout" text>
+          <span class="mr-2">Logout</span>
+          <v-icon>mdi-logout</v-icon>
+        </v-btn>
         <v-btn href="/profile" text>
           <span class="mr-2">Profil</span>
           <v-icon>mdi-account</v-icon>

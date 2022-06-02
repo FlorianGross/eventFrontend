@@ -40,6 +40,11 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: () => import('../views/ProfileView.vue')
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('../components/LogoutComponent.vue')
   }
 ]
 

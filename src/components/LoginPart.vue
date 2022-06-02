@@ -6,10 +6,10 @@
         <v-card-text>
         <v-form ref="form">
             <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="Email"
-            type="email"
+            v-model="username"
+            :rules="usernameRules"
+            label="Username"
+            type="username"
             required
             ></v-text-field>
             <v-text-field
@@ -33,11 +33,11 @@ export default {
  name: 'LandingView',
 data() {
         return {
-            email: '',
+            username: '',
             password: '',
-            emailRules: [
-                v => !!v || 'Email is required',
-                v => /.+@.+\..+/.test(v) || 'Email must be valid'
+            usernameRules: [
+                v => !!v || 'Username is required',
+                v => v.length >= 3 || 'Username must be at least 3 characters'
             ],
             passwordRules: [
                 v => !!v || 'Password is required',
@@ -49,7 +49,7 @@ data() {
         login() {
             if (this.$refs.form.validate()) {
             this.$store.dispatch("auth/login", {
-                email: this.email,
+                username: this.username,
                 password: this.password
             }).then(() => {
                 this.$router.push('/profile');
@@ -58,6 +58,9 @@ data() {
                     this.$refs.form.validate();
                 });
             }
+        },
+        register(){
+            this.$router.push('/register');
         }
     },
     computed: {

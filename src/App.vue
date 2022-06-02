@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div v-if="loggedIn">
-      <v-app-bar app color="primary" dark>
+      <v-app-bar app color="#000000" dark>
         <div class="d-flex align-center">
           <v-img
             alt="Vuetify Logo"
@@ -27,6 +27,10 @@
           <v-btn href="/calendar" text>
             <span class="mr-2">Kalender</span>
             <v-icon>mdi-account</v-icon>
+          </v-btn>
+          <v-btn href="/admin" text>
+            <span class="mr-2">Admin</span>
+            <v-icon>mdi-shield-crown-outline</v-icon>
           </v-btn>
         </div>
 

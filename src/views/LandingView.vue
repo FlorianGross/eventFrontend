@@ -13,8 +13,24 @@
           Die Nostalgiker unter euch können auch die vergangenen Events einsehen und in Erinnerungen schwelgen. 
         </v-card-text>
         <v-card-actions class="loginButtons">
-          <v-btn color="#000080" style="color:white; min-width: 140px; text-transform: none; font-family:Arial, Helvetica, sans-serif;" @click="login">Login</v-btn>
-          <v-btn color="#000080" style="color:white; min-width: 140px; text-transform: none; font-family:Arial, Helvetica, sans-serif;" @click="register">Registrieren</v-btn>
+          <v-btn 
+          color="#000080" 
+          style="
+            color:white; 
+            min-width: 140px; 
+            text-transform: none; 
+            font-family:Arial, Helvetica, sans-serif;
+            " 
+            @click="login">Login</v-btn>
+          <v-btn 
+          color="#000080" 
+          style="
+            color:white; 
+            min-width: 140px; 
+            text-transform: none; 
+            font-family:Arial, Helvetica, sans-serif;
+          " 
+          @click="register">Registrieren</v-btn>
         </v-card-actions>
       </v-card>
     </div>

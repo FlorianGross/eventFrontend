@@ -30,9 +30,9 @@
           text-transform: none;
           font-family: Arial, Helvetica, sans-serif;
           margin-bottom: 10px;
+          font-size: 14px;
         "
-        @click="login"
-        >Login</v-btn
+        @click="login">Login</v-btn
       >
       <v-btn
         color="#000080"

@@ -30,7 +30,17 @@
       </v-form>
     </v-card-text>
     <v-card-actions class="loginButtons">
-      <v-btn color="primary" @click="register">Register</v-btn>
+      <v-btn         
+      color="#000080"
+        style="
+          color: white;
+          min-width: 140px;
+          text-transform: none;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 14px;
+          margin-bottom: 10px;
+        "
+        @click="register">Register</v-btn>
     </v-card-actions>
   </v-card>
 </template>

@@ -94,6 +94,5 @@ export default {
   display: ce;
   justify-content: space-around;
   padding-top: 25px;
-  
 }
 </style>

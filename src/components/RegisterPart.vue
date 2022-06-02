@@ -68,6 +68,7 @@ export default {
           })
           .then(() => {
             this.$router.push("/profile");
+            this.$forceUpdate();
           })
           .catch(() => {
             this.$refs.form.validate();

@@ -28,7 +28,7 @@
             <span class="mr-2">Kalender</span>
             <v-icon>mdi-account</v-icon>
           </v-btn>
-          <v-btn href="/admin" text>
+          <v-btn v-if="isAdmin" href="/admin" text>
             <span class="mr-2">Admin</span>
             <v-icon>mdi-shield-crown-outline</v-icon>
           </v-btn>
@@ -90,7 +90,18 @@ export default {
   data() {
     return {
       loggedIn: loggedIn,
+      isAmdin: false,
     };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+  },
+  mounted() {
+    if (this.currentUser || this.currentUser.roles.includes("ROLE_ADMIN")) {
+      this.isAmdin = true;
+    }
   },
 };
 </script>

@@ -1,27 +1,14 @@
 <template>
   <div class="body-of-landingpage">
     <div class="loginField">
-      <v-card>
+      <login-part v-if="isLogin"></login-part>
+      <register-part v-if="isRegister"></register-part>
+      <v-card v-if="!isLogin && !isRegister">
         <v-card-title>
-          <span class="headline">Login</span>
+          <span class="headline">Wilkommen</span>
         </v-card-title>
         <v-card-text>
-          <v-form ref="form">
-            <v-text-field
-              v-model="email"
-              :rules="emailRules"
-              label="Email"
-              type="email"
-              required
-            ></v-text-field>
-            <v-text-field
-              v-model="password"
-              :rules="passwordRules"
-              label="Password"
-              type="password"
-              required
-            ></v-text-field>
-          </v-form>
+          Wilkommen auf unserer Seite
         </v-card-text>
         <v-card-actions class="loginButtons">
           <v-btn color="primary" @click="login">Login</v-btn>
@@ -33,43 +20,26 @@
 </template>
 
 <script>
+import LoginPart from '../components/LoginPart.vue';
 export default {
+  components: { LoginPart },
     name: 'LandingView',
     data() {
         return {
             isLoading: false,
-            email: '',
-            password: '',
-            emailRules: [
-                v => !!v || 'Email is required',
-                v => /.+@.+\..+/.test(v) || 'Email must be valid'
-            ],
-            passwordRules: [
-                v => !!v || 'Password is required',
-                v => v.length >= 6 || 'Password must be at least 6 characters'
-            ]
+            isLogin: false,
+            isRegister: false,
         }
     },
     methods: {
         login() {
-          this.isLoading = true;
-            if (this.$refs.form.validate()) {
-              this.$store.dispatch("auth/login", {
-                email: this.email,
-                password: this.password
-              }).then(() => {
-                this.$router.push('/profile');
-                }).catch(() => {
-                  this.isLoading = false;
-                    this.$refs.form.validate();
-                });
-            }
-        }
-    },
-    computed: {
-      loggedIn() {
-        return this.$store.state.auth.status.loggedIn;
-      },
+            this.isLogin = true;
+            this.isRegister = false;
+        },
+        register() {
+            this.isLogin = false;
+            this.isRegister = true;
+        },
     },
     created(){
       if(this.loggedIn){

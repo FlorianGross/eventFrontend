@@ -2,58 +2,87 @@
   <div class="body-of-profil">
     <div class="containerField">
       <v-card style="height: 800px">
-        <v-card-title><span class="headline">Profil</span></v-card-title>
+        <v-card-title>
+          <span class="headline">Profil</span>
+        </v-card-title>
         <v-card style="height: 10px"></v-card>
         <v-card-text class="profilText"></v-card-text>
-        <div class="grid-containerRwu" style="margin-top: 40px;">
-          <img class="profilBild" src="../assets/bild3.jpg">
-          <div class="text" style="margin-left: 250px;">
-            <div style="margin-bottom: 1%;">Vorname</div>
-            <div style="margin-bottom: 1%;">Nachname</div>
-            <div style="margin-bottom: 1%;">E-Mail</div>
-            <div>Telefonnummer</div>
-            <div style="margin-top: 20px; margin-bottom: 1%;">Straße</div>
-            <div style="margin-bottom: 1%;">Hausnummer</div>
-            <div style="margin-bottom: 1%;">Stadt</div>
-            <div>Postleitzahl</div>
-          </div>
-          <div class="text">
-            <div style="margin-bottom: 0,5%;">Sven</div>
-            <div style="margin-bottom: 0%;">Herz</div>
-            <div style="margin-bottom: 1%;">s.herz@gmx.de</div>
-            <div>0123456789</div>
-            <div style="margin-top: 20px; margin-bottom: 1%;">Heimweg</div>
-            <div style="margin-bottom: 1%;">14</div>
-            <div style="margin-bottom: 1%;">Heimheim</div>
-            <div>86842</div>
-          </div>
-        </div>
-      </v-card>
-      <header class="jumbotron">
-        <h3>
-          <strong>{{ currentUser.username }}</strong> Profile
-        </h3>
-      </header>
-      <p>
-        <strong>Token:</strong>
-        {{ currentUser.accessToken.substring(0, 20) }} ...
-        {{
-          currentUser.accessToken.substr(currentUser.accessToken.length - 20)
-        }}
-      </p>
-      <p>
-        <strong>Id:</strong>
-        {{ currentUser.id }}
-      </p>
-      <p>
-        <strong>Email:</strong>
-        {{ currentUser.email }}
-      </p>
-      <strong>Authorities:</strong>
-      <ul>
-        <li v-for="role in currentUser.roles" :key="role">{{ role }}</li>
-      </ul>
+        <div
+          class="grid-containerRwu"
+          style="margin-top: 40px;"
+        >
+          <img
+            class="profilBild"
+            src="../assets/bild3.jpg"
+          >
+            <div
+              class="text"
+              style="margin-left: 250px;"
+            >
+              <v-card style="height: 15%">
+                <v-card-title>
+                  <span class="headline">Profil</span>
+                </v-card-title>
+                <div class="text">
+                  <div style="margin-bottom: 1%;">Vorname</div>
+                  <div style="margin-bottom: 1%;">Nachname</div>
+                  <div style="margin-bottom: 1%;">E-Mail</div>
+                  <div>Telefonnummer</div>
+                </div>
+              </v-card>
+              <v-card style="height: 15%; margin-top: 5%;">
+                <v-card-title>
+                  <span class="headline">Adresse</span>
+                </v-card-title>
+                <div class="text">
+                  <div style="margin-bottom: 1%;">Straße</div>
+                  <div style="margin-bottom: 1%;">Hausnummer</div>
+                  <div style="margin-bottom: 1%;">Stadt</div>
+                  <div>Postleitzahl</div>
+                </div>
+              </v-card>
+              <v-btn
+                class="setting_btn"
+                rounded
+                color="#000080"
+                style="
+            color:white; 
+            min-width: 140px; 
+            text-transform: none; 
+            font-family:Arial, Helvetica, sans-serif;
+            "
+              >Setting</v-btn>
     </div>
+    <div class="text">
+
+    </div>
+  </div>
+  </v-card>
+  <header class="jumbotron">
+    <h3>
+      <strong>{{ currentUser.username }}</strong> Profile
+    </h3>
+  </header>
+  <p>
+    <strong>Token:</strong>
+    {{ currentUser.accessToken.substring(0, 20) }} ... {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+  </p>
+  <p>
+    <strong>Id:</strong>
+    {{ currentUser.id }}
+  </p>
+  <p>
+    <strong>Email:</strong>
+    {{ currentUser.email }}
+  </p>
+  <strong>Authorities:</strong>
+  <ul>
+    <li
+      v-for="role in currentUser.roles"
+      :key="role"
+    >{{ role }}</li>
+  </ul>
+  </div>
   </div>
 </template>
 
@@ -109,6 +138,14 @@ export default {
   margin-top: 20px;
   margin-left: 20px;
   display: grid;
-  grid-template-columns: 200px 500px 500px;
+  grid-template-columns: 200px 700px 900px;
+}
+.setting_btn {
+  margin-top: 5%;
+  width: 453px;
+}
+.text {
+  margin-left: 5%;
+  font-size: 95%;
 }
 </style>

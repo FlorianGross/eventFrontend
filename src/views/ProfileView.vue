@@ -1,19 +1,35 @@
 <template>
   <div class="body-of-profil">
     <div class="containerField">
-      <v-card style="height: 800px;">
+      <v-card style="height: 800px">
         <v-card-title><span class="headline">Profil</span></v-card-title>
         <v-card style="height: 10px"></v-card>
         <v-card-text class="profilText"></v-card-text>
-        <v-avatar 
-          class="avatarBild" 
-          color="primary" 
-          size="150">
-          <img src="../assets/bild3.jpg" alt="" />
-        </v-avatar>
+        <div class="grid-containerRwu" style="margin-top: 40px;">
+          <img class="profilBild" src="../assets/bild3.jpg">
+          <div class="text" style="margin-left: 250px;">
+            <div style="margin-bottom: 1%;">Vorname</div>
+            <div style="margin-bottom: 1%;">Nachname</div>
+            <div style="margin-bottom: 1%;">E-Mail</div>
+            <div>Telefonnummer</div>
+            <div style="margin-top: 20px; margin-bottom: 1%;">Straße</div>
+            <div style="margin-bottom: 1%;">Hausnummer</div>
+            <div style="margin-bottom: 1%;">Stadt</div>
+            <div>Postleitzahl</div>
+          </div>
+          <div class="text">
+            <div style="margin-bottom: 0,5%;">Sven</div>
+            <div style="margin-bottom: 0%;">Herz</div>
+            <div style="margin-bottom: 1%;">s.herz@gmx.de</div>
+            <div>0123456789</div>
+            <div style="margin-top: 20px; margin-bottom: 1%;">Heimweg</div>
+            <div style="margin-bottom: 1%;">14</div>
+            <div style="margin-bottom: 1%;">Türkheim</div>
+            <div>86842</div>
+          </div>
+        </div>
       </v-card>
       <header class="jumbotron">
-        
         <h3>
           <strong>{{ currentUser.username }}</strong> Profile
         </h3>
@@ -82,9 +98,17 @@ export default {
   width: 1500px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%
+  margin-top: 5%;
 }
-.avatarBild {
-  margin-left: 5%;
+.profilBild {
+  margin-left: 10%;
+  margin-bottom: 8%;
+  max-height: 35%;
+}
+.grid-containerRwu {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: 200px 500px 500px;
 }
 </style>

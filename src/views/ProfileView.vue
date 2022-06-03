@@ -3,7 +3,7 @@
     <div class="containerField">
       <v-card style="height: 800px">
         <v-card-title>
-          <span class="headline">Profil</span>
+          <span class="headline">Profildaten</span>
         </v-card-title>
         <v-card style="height: 10px"></v-card>
         <v-card-text class="profilText"></v-card-text>
@@ -12,7 +12,7 @@
           <div class="text" style="margin-left: 250px">
             <v-card style="height: 15%">
               <v-card-title>
-                <span class="headline">Profil</span>
+                <span class="headline">Anrede</span>
               </v-card-title>
               <div class="text">
                 <div style="margin-bottom: 1%">Vorname</div>
@@ -96,7 +96,7 @@
                       </v-menu>
                     </v-toolbar>
                   </v-sheet>
-                  <v-sheet height="500">
+                  <v-sheet height="549">
                     <v-calendar
                       ref="calendar"
                       v-model="focus"
@@ -195,7 +195,7 @@ export default {
   },
   data: () => ({
     focus: "",
-    type: "month",
+    type: "week",
     typeToLabel: {
       month: "Month",
       week: "Week",
@@ -344,13 +344,9 @@ export default {
   font-size: 95%;
 }
 .calendar {
-<<<<<<< HEAD
-  width: 60%;
-  height: 800px;
-=======
-  width: 50%;
+  width: 58%;
   height: 30%;
-  margin-left: 5%
->>>>>>> 2142437 (Profil)
+  margin-left: 5%;
+  margin-top: 1.5%;
 }
 </style>

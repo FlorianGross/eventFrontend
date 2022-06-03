@@ -7,82 +7,74 @@
         </v-card-title>
         <v-card style="height: 10px"></v-card>
         <v-card-text class="profilText"></v-card-text>
-        <div
-          class="grid-containerRwu"
-          style="margin-top: 40px;"
-        >
-          <img
-            class="profilBild"
-            src="../assets/bild3.jpg"
-          >
-            <div
-              class="text"
-              style="margin-left: 250px;"
+        <div class="grid-containerRwu" style="margin-top: 40px">
+          <img class="profilBild" src="../assets/bild3.jpg" />
+          <div class="text" style="margin-left: 250px">
+            <v-card style="height: 15%">
+              <v-card-title>
+                <span class="headline">Profil</span>
+              </v-card-title>
+              <div class="text">
+                <div style="margin-bottom: 1%">Vorname</div>
+                <div style="margin-bottom: 1%">Nachname</div>
+                <div style="margin-bottom: 1%">E-Mail</div>
+                <div>Telefonnummer</div>
+              </div>
+            </v-card>
+            <v-card style="height: 15%; margin-top: 5%">
+              <v-card-title>
+                <span class="headline">Adresse</span>
+              </v-card-title>
+              <div class="text">
+                <div style="margin-bottom: 1%">Straße</div>
+                <div style="margin-bottom: 1%">Hausnummer</div>
+                <div style="margin-bottom: 1%">Stadt</div>
+                <div>Postleitzahl</div>
+              </div>
+            </v-card>
+            <v-btn
+              class="setting_btn"
+              rounded
+              color="#000080"
+              style="
+                color: white;
+                min-width: 140px;
+                text-transform: none;
+                font-family: Arial, Helvetica, sans-serif;
+              "
+              >Setting</v-btn
             >
-              <v-card style="height: 15%">
-                <v-card-title>
-                  <span class="headline">Profil</span>
-                </v-card-title>
-                <div class="text">
-                  <div style="margin-bottom: 1%;">Vorname</div>
-                  <div style="margin-bottom: 1%;">Nachname</div>
-                  <div style="margin-bottom: 1%;">E-Mail</div>
-                  <div>Telefonnummer</div>
-                </div>
-              </v-card>
-              <v-card style="height: 15%; margin-top: 5%;">
-                <v-card-title>
-                  <span class="headline">Adresse</span>
-                </v-card-title>
-                <div class="text">
-                  <div style="margin-bottom: 1%;">Straße</div>
-                  <div style="margin-bottom: 1%;">Hausnummer</div>
-                  <div style="margin-bottom: 1%;">Stadt</div>
-                  <div>Postleitzahl</div>
-                </div>
-              </v-card>
-              <v-btn
-                class="setting_btn"
-                rounded
-                color="#000080"
-                style="
-            color:white; 
-            min-width: 140px; 
-            text-transform: none; 
-            font-family:Arial, Helvetica, sans-serif;
-            "
-              >Setting</v-btn>
+          </div>
+          <div class="calendar">
+            <v-card><v-calendar></v-calendar></v-card>
+          </div>
+        </div>
+      </v-card>
+      <header class="jumbotron">
+        <h3>
+          <strong>{{ currentUser.username }}</strong> Profile
+        </h3>
+      </header>
+      <p>
+        <strong>Token:</strong>
+        {{ currentUser.accessToken.substring(0, 20) }} ...
+        {{
+          currentUser.accessToken.substr(currentUser.accessToken.length - 20)
+        }}
+      </p>
+      <p>
+        <strong>Id:</strong>
+        {{ currentUser.id }}
+      </p>
+      <p>
+        <strong>Email:</strong>
+        {{ currentUser.email }}
+      </p>
+      <strong>Authorities:</strong>
+      <ul>
+        <li v-for="role in currentUser.roles" :key="role">{{ role }}</li>
+      </ul>
     </div>
-    <div class="text">
-
-    </div>
-  </div>
-  </v-card>
-  <header class="jumbotron">
-    <h3>
-      <strong>{{ currentUser.username }}</strong> Profile
-    </h3>
-  </header>
-  <p>
-    <strong>Token:</strong>
-    {{ currentUser.accessToken.substring(0, 20) }} ... {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-  </p>
-  <p>
-    <strong>Id:</strong>
-    {{ currentUser.id }}
-  </p>
-  <p>
-    <strong>Email:</strong>
-    {{ currentUser.email }}
-  </p>
-  <strong>Authorities:</strong>
-  <ul>
-    <li
-      v-for="role in currentUser.roles"
-      :key="role"
-    >{{ role }}</li>
-  </ul>
-  </div>
   </div>
 </template>
 
@@ -147,5 +139,9 @@ export default {
 .text {
   margin-left: 5%;
   font-size: 95%;
+}
+.calendar {
+  width: 60%;
+  height: 30%;
 }
 </style>

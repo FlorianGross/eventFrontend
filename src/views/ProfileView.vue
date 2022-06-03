@@ -1,18 +1,18 @@
 <template>
   <div class="body-of-profil">
     <div class="containerField">
-      <v-card style="height: 800px">
+      <v-card style="height: 850px">
         <v-card-title>
           <span class="headline">Profildaten</span>
         </v-card-title>
-        <v-card style="height: 10px"></v-card>
+        <v-card style="height: 1px"></v-card>
         <v-card-text class="profilText"></v-card-text>
         <div class="grid-containerRwu" style="margin-top: 40px">
           <img class="profilBild" src="../assets/bild3.jpg" />
           <div class="text" style="margin-left: 250px">
             <v-card style="height: 15%">
               <v-card-title>
-                <span class="headline">Anrede</span>
+                <span class="headline2">Anrede</span>
               </v-card-title>
               <div class="text">
                 <div style="margin-bottom: 1%">Vorname</div>
@@ -23,7 +23,7 @@
             </v-card>
             <v-card style="height: 15%; margin-top: 5%">
               <v-card-title>
-                <span class="headline">Adresse</span>
+                <span class="headline2">Adresse</span>
               </v-card-title>
               <div class="text">
                 <div style="margin-bottom: 1%">Straße</div>
@@ -96,7 +96,7 @@
                       </v-menu>
                     </v-toolbar>
                   </v-sheet>
-                  <v-sheet height="549">
+                  <v-sheet height="667">
                     <v-calendar
                       ref="calendar"
                       v-model="focus"
@@ -309,7 +309,6 @@ export default {
   padding: 0;
   margin: 0;
   background-image: url("../assets/WebProg4.jpg");
-  background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -319,10 +318,10 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1500px;
+  width: 1850px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5%;
+  margin-top: 6.31%;
 }
 .profilBild {
   margin-left: 10%;
@@ -343,10 +342,14 @@ export default {
   margin-left: 5%;
   font-size: 95%;
 }
+.headline {
+  margin-left: auto;
+  margin-right: auto;
+}
 .calendar {
-  width: 58%;
+  width: 97%;
   height: 30%;
   margin-left: 5%;
-  margin-top: 1.5%;
+  margin-top: -6%;
 }
 </style>

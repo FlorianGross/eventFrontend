@@ -17,6 +17,11 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/events',
+    name: 'home',
+    component: HomeView
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('../views/AboutView.vue')

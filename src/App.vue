@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <div v-if="loggedIn">
       <v-app-bar app color="#000000" dark>
         <div class="d-flex align-center">
@@ -138,3 +138,14 @@ export default {
   },
 };
 </script>
+
+<style>
+#app {
+  background: url('./assets/WebProg4.jpg');
+  background-size: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  
+}
+</style>

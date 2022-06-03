@@ -3,6 +3,7 @@
     <div v-if="loggedIn">
       <v-app-bar app color="#000000" dark>
         <div class="d-flex align-center">
+          <div class="d-flex align-center" @click="openHome">
           <v-img
             alt="Vuetify Logo"
             class="shrink mr-2"
@@ -11,7 +12,6 @@
             transition="scale-transition"
             width="40"
           />
-
           <v-img
             alt="Vuetify Name"
             class="shrink mt-1 hidden-sm-and-down"
@@ -20,15 +20,16 @@
             src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
             width="100"
           />
-          <v-btn href="/events" text>
+          </div>
+          <v-btn @click="openEvents" text>
             <span class="mr-2">Events</span>
             <v-icon>mdi-balloon</v-icon>
           </v-btn>
-          <v-btn href="/calendar" text>
+          <v-btn @click="openCalendar" text>
             <span class="mr-2">Kalender</span>
             <v-icon>mdi-account</v-icon>
           </v-btn>
-          <v-btn v-if="isAdmin" href="/admin" text>
+          <v-btn v-if="isAdmin" @click="openAdmin" text>
             <span class="mr-2">Admin</span>
             <v-icon>mdi-shield-crown-outline</v-icon>
           </v-btn>
@@ -39,7 +40,7 @@
           <span class="mr-2">Logout</span>
           <v-icon>mdi-logout</v-icon>
         </v-btn>
-        <v-btn href="/profile" text>
+        <v-btn @click="openProfile" text>
           <span class="mr-2">Profil</span>
           <v-icon>mdi-account</v-icon>
         </v-btn>
@@ -47,7 +48,7 @@
     </div>
     <div v-if="!loggedIn">
       <v-app-bar app color="#000000" dark>
-        <div class="d-flex align-center">
+        <div class="d-flex align-center" @click="openHome">
           <v-img
             alt="Vuetify Logo"
             class="shrink mr-2"
@@ -56,7 +57,6 @@
             transition="scale-transition"
             width="40"
           />
-
           <v-img
             alt="Vuetify Name"
             class="shrink mt-1 hidden-sm-and-down"
@@ -67,11 +67,11 @@
           />
         </div>
         <v-spacer></v-spacer>
-        <v-btn href="/datenschutz" text>
+        <v-btn @click="openDatenschutz" text>
           <span class="mr-2">Datenschutz</span>
           <v-icon>mdi-account-lock</v-icon>
         </v-btn>
-        <v-btn href="/impressum" text>
+        <v-btn @click="openImpressum" text>
           <span class="mr-2">Impressum</span>
           <v-icon>mdi-security</v-icon>
         </v-btn>
@@ -98,10 +98,39 @@ export default {
       return this.$store.state.auth.user;
     },
   },
+  watch: {
+    currentUser() {
+      this.loggedIn = this.$store.state.auth.user;
+      this.isAdmin = this.$store.state.auth.user.isAdmin;
+    },
+  },
   mounted() {
     if (this.currentUser || this.currentUser.roles.includes("ROLE_ADMIN")) {
       this.isAmdin = true;
     }
+  },
+  methods: {
+    openEvents() {
+      this.$router.push("/events");
+    },
+    openCalendar() {
+      this.$router.push("/calendar");
+    },
+    openAdmin() {
+      this.$router.push("/admin");
+    },
+    openProfile() {
+      this.$router.push("/profile");
+    },
+    openDatenschutz() {
+      this.$router.push("/datenschutz");
+    },
+    openImpressum() {
+      this.$router.push("/impressum");
+    },
+    openHome() {
+      this.$router.push("/");
+    },
   },
 };
 </script>

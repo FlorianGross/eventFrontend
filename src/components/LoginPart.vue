@@ -76,7 +76,6 @@ export default {
             password: this.password,
           })
           .then(() => {
-            window.location.reload();
             this.$router.push("/profile");
           })
           .catch(() => {

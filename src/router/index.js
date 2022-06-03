@@ -50,6 +50,16 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: () => import('../views/AdminView.vue')
+  },
+  {
+    path: '/event/:id',
+    name: 'event',
+    component: () => import('../views/DetailView.vue')
+  },
+  {
+    path: '/:catchall(.*)*',
+    name: "PageNotFound",
+    component: () => import('../views/PageNotFoundView.vue')
   }
 ]
 

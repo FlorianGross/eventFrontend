@@ -8,8 +8,7 @@ export default {
   mounted() {
     console.log("logout");
     this.$store.dispatch("auth/logout");
-    window.location.reload();
-    this.$router.push("/login");
+    this.$router.push("/");
   },
 };
 </script>

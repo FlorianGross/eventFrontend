@@ -90,7 +90,7 @@ export default {
   data() {
     return {
       loggedIn: loggedIn,
-      isAmdin: false,
+      isAdmin: false,
     };
   },
   computed: {
@@ -105,7 +105,7 @@ export default {
     },
   },
   mounted() {
-    if (this.currentUser || this.currentUser.roles.includes("ROLE_ADMIN")) {
+    if (this.currentUser && this.currentUser.roles.includes("ROLE_ADMIN")) {
       this.isAmdin = true;
     }
   },

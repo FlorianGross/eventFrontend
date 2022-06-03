@@ -24,6 +24,7 @@
     <v-card-actions class="loginButtons">
       <v-btn
         color="#000080"
+        :disabled="isLoading"
         style="
           color: white;
           min-width: 140px;
@@ -36,6 +37,7 @@
       >
       <v-btn
         color="#000080"
+        :disabled="isLoading"
         style="
           color: white;
           min-width: 140px;
@@ -55,6 +57,7 @@ export default {
   name: "LandingView",
   data() {
     return {
+      isLoading: false,
       username: "",
       password: "",
       usernameRules: [
@@ -69,6 +72,7 @@ export default {
   },
   methods: {
     login() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.$store
           .dispatch("auth/login", {

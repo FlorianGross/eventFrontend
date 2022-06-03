@@ -32,6 +32,7 @@
     <v-card-actions class="loginButtons">
       <v-btn         
       color="#000080"
+      :disabled="isLoading"
         style="
           color: white;
           min-width: 140px;
@@ -50,6 +51,7 @@ export default {
   name: "RegisterPart",
   data() {
     return {
+      isLoading: false,
       username: "",
       email: "",
       password: "",
@@ -69,6 +71,7 @@ export default {
   },
   methods: {
     register() {
+      this.isLoading = true;
       if (this.$refs.form.validate()) {
         this.$store
           .dispatch("auth/register", {
@@ -77,11 +80,18 @@ export default {
             password: this.password,
           })
           .then(() => {
+            this.$store
+          .dispatch("auth/login", {
+            username: this.username,
+            password: this.password,
+          })
+          .then(() => {
             this.$router.push("/profile");
-            this.$forceUpdate();
+          })
           })
           .catch(() => {
             this.$refs.form.validate();
+            this.isLoading = false;
           });
       }
     },

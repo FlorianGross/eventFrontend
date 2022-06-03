@@ -1,6 +1,6 @@
 <template>
-<div class="body">
-   <v-card width="95%">
+<div class="body" >
+   <v-card width="96%">
      <v-container>
       <v-layout row wrap>
               <v-flex
@@ -17,7 +17,6 @@
           </v-card>
           </div>
         </v-flex>
-
       </v-layout>
     </v-container>
     </v-card>

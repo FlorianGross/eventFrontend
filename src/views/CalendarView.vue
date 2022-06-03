@@ -1,5 +1,4 @@
 <template>
-<v-app>
   <v-row class="fill-height">
       <v-col>
         <v-sheet height="64">
@@ -131,7 +130,6 @@
         </v-sheet>
       </v-col>
     </v-row>
-  </v-app>
 </template>
 
 <script>
@@ -223,19 +221,5 @@ export default {
 </script>
 
 <style>
-.body {
-  position: fixed;
-  background-color: #123456;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  padding: 0;
-  margin: 0;
-  background-image: url("../assets/WebProg4.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
+
 </style>

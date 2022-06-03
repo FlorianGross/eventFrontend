@@ -146,6 +146,5 @@ export default {
   background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  
 }
 </style>

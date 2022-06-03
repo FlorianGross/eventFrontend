@@ -1,7 +1,7 @@
 <template>
   <div class="body-of-impressum">
     <div class="impressumField">
-      <v-card style="height: 800px; padding-top: 15px;">
+      <v-card style="height: 800px;">
         <v-card-title><span class="headline">Impressum</span></v-card-title>
         <v-card style="height: 350px">
         <v-card-text class="impressumText"></v-card-text>
@@ -89,7 +89,7 @@ export default {
 }
 .rwu {
     max-width: 100% !important;
-    height: 82% !important;
+    height: 80% !important;
     display: block;
 }
 .text {

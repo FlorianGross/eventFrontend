@@ -41,9 +41,7 @@
                 min-width: 140px;
                 text-transform: none;
                 font-family: Arial, Helvetica, sans-serif;
-              "
-              >Setting</v-btn
-            >
+              ">Setting</v-btn>
           </div>
           <div class="calendar">
             <v-card
@@ -346,7 +344,13 @@ export default {
   font-size: 95%;
 }
 .calendar {
+<<<<<<< HEAD
   width: 60%;
   height: 800px;
+=======
+  width: 50%;
+  height: 30%;
+  margin-left: 5%
+>>>>>>> 2142437 (Profil)
 }
 </style>

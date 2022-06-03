@@ -24,7 +24,7 @@
             <div>0123456789</div>
             <div style="margin-top: 20px; margin-bottom: 1%;">Heimweg</div>
             <div style="margin-bottom: 1%;">14</div>
-            <div style="margin-bottom: 1%;">Türkheim</div>
+            <div style="margin-bottom: 1%;">Heimheim</div>
             <div>86842</div>
           </div>
         </div>

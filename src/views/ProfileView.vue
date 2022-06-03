@@ -12,6 +12,7 @@
           <div class="text" style="margin-left: 250px">
             <v-card style="height: 15%">
               <v-card-title>
+                
                 <span class="headline2">Anrede</span>
               </v-card-title>
               <div class="text">

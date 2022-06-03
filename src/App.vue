@@ -111,25 +111,29 @@ export default {
   },
   methods: {
     openEvents() {
-      this.$router.push("/events");
+      this.$router.push("/events").catch(() => {});
     },
     openCalendar() {
-      this.$router.push("/calendar");
+      this.$router.push("/calendar").catch(() => {});
     },
     openAdmin() {
-      this.$router.push("/admin");
+      this.$router.push("/admin").catch(() => {});
     },
     openProfile() {
-      this.$router.push("/profile");
+      this.$router.push("/profile").catch(() => {});
     },
     openDatenschutz() {
-      this.$router.push("/datenschutz");
+      this.$router.push("/datenschutz").catch(() => {});
     },
     openImpressum() {
-      this.$router.push("/impressum");
+      this.$router.push("/impressum").catch(() => {});
     },
     openHome() {
-      this.$router.push("/");
+      if(this.loggedIn) {
+        this.$router.push("/home").catch(() => {});
+      } else {
+        this.$router.push("/").catch(() => {});
+      }
     },
   },
 };

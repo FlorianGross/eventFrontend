@@ -6,6 +6,13 @@ class UserService {
   getAllUsers() {
     return axios.get(API_URL + 'users', { headers: authHeader() })
   }
+
+  updateUser(user, roles) {
+    return axios.put(API_URL + 'updateUser', {
+      id: user.username,
+      roles: roles
+    }, { headers: authHeader() });
+  }
 }
 
 export default new UserService()

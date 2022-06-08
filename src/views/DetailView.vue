@@ -1,29 +1,25 @@
 <template>
-  <div class="id_Holder">
-      {{ getId()}}
-  </div>
+  <div></div>
 </template>
 
-<script> 
+<script>
 export default {
-    name: "DetailView",
-    setup(){
-        const route = this.$route.params.id;
-        console.log(route);
-        return {
-            getId: function(){
-                return route;
-            }
-        }
-    }
-
-}
+  name: "DetailView",
+  data() {
+    return {
+      id: "",
+    };
+  },
+  created() {
+    this.id = this.$route.params.id;
+  },
+};
 </script>
 
 <style>
 .id_Holder {
-    font-size: 50px;
-    text-align: center;
-    margin-top: 50px;
+  font-size: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
 </style>

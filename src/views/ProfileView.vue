@@ -8,41 +8,116 @@
         <v-card style="height: 1px"></v-card>
         <v-card-text class="profilText"></v-card-text>
         <div class="grid-containerRwu" style="margin-top: 40px">
-          <img class="profilBild" src="../assets/bild3.jpg" />
+          <div>
+            <img class="profilBild" src="../assets/bild3.jpg" />
+            <v-file-input
+              label="File input"
+              prepend-icon="mdi-camera"
+            ></v-file-input>
+          </div>
           <div class="text" style="margin-left: 250px">
-            <v-card style="height: 15%">
+            <v-card>
               <v-card-title>
-                
                 <span class="headline2">Anrede</span>
               </v-card-title>
               <div class="text">
-                <div style="margin-bottom: 1%">Vorname</div>
-                <div style="margin-bottom: 1%">Nachname</div>
-                <div style="margin-bottom: 1%">E-Mail</div>
-                <div>Telefonnummer</div>
+                <div style="margin-bottom: 1%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="firstName ? 'mdi-check' : 'mdi-pen'"
+                    clearable
+                    v-model="firstName"
+                    class="textField"
+                    label="Vorname"
+                    @click:append="updateUser(firstName)"
+                  ></v-text-field>
+                </div>
+                <div style="margin-bottom: 1%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="lastName ? 'mdi-check' : 'mdi-pen'"
+                    v-model="lastName"
+                    clearable
+                    class="textField"
+                    label="Nachname"
+                    @click:append="updateUser(lastName)"
+                  ></v-text-field>
+                </div>
+                <div style="margin-bottom: 1%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="email ? 'mdi-check' : 'mdi-pen'"
+                    clearable
+                    v-model="email"
+                    class="textField"
+                    label="Email"
+                    @click:append="updateUser(email)"
+                  ></v-text-field>
+                </div>
+                <div style="padding-bottom: 2%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="phoneNumber ? 'mdi-check' : 'mdi-pen'"
+                    clearable
+                    v-model="phoneNumber"
+                    class="textField"
+                    label="Telefonnummer"
+                    @click:append="updateUser(phoneNumber)"
+                  ></v-text-field>
+                </div>
               </div>
             </v-card>
-            <v-card style="height: 15%; margin-top: 5%">
+            <v-card style="margin-top: 5%">
               <v-card-title>
                 <span class="headline2">Adresse</span>
               </v-card-title>
               <div class="text">
-                <div style="margin-bottom: 1%">Straße</div>
-                <div style="margin-bottom: 1%">Hausnummer</div>
-                <div style="margin-bottom: 1%">Stadt</div>
-                <div>Postleitzahl</div>
+                <div style="margin-bottom: 1%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="street ? 'mdi-check' : 'mdi-pen'"
+                    clearable
+                    class="textField"
+                    v-model="street"
+                    label="Straße"
+                    @click:append="updateUser(street)"
+                  ></v-text-field>
+                </div>
+                <div style="margin-bottom: 1%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="streetNumber ? 'mdi-check' : 'mdi-pen'"
+                    clearable
+                    class="textField"
+                    v-model="streetNumber"
+                    label="Hausnummer"
+                    @click:append="updateUser(streetNumber)"
+                  ></v-text-field>
+                </div>
+                <div style="margin-bottom: 1%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="city ? 'mdi-check' : 'mdi-pen'"
+                    clearable
+                    v-model="city"
+                    class="textField"
+                    label="Stadt"
+                    @click:append="updateUser(city)"
+                  ></v-text-field>
+                </div>
+                <div style="padding-bottom: 2%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="zipCode ? 'mdi-check' : 'mdi-pen'"
+                    clearable
+                    v-model="zipCode"
+                    class="textField"
+                    label="PLZ"
+                    @click:append="updateUser(zipCode)"
+                  ></v-text-field>
+                </div>
               </div>
             </v-card>
-            <v-btn
-              class="setting_btn"
-              rounded
-              color="#000080"
-              style="
-                color: white;
-                min-width: 140px;
-                text-transform: none;
-                font-family: Arial, Helvetica, sans-serif;
-              ">Setting</v-btn>
           </div>
           <div class="calendar">
             <v-card
@@ -108,7 +183,6 @@
                       @click:event="showEvent"
                       @click:more="viewDay"
                       @click:date="viewDay"
-                      @change="updateRange"
                     ></v-calendar>
                     <v-menu
                       v-model="selectedOpen"
@@ -195,6 +269,14 @@ export default {
     }
   },
   data: () => ({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    city: "",
+    street: "",
+    zipCode: "",
+    streetNumber: "",
     focus: "",
     type: "week",
     typeToLabel: {
@@ -227,10 +309,10 @@ export default {
       "Party",
     ],
   }),
-  mounted() {
-    this.$refs.calendar.checkChange();
-  },
   methods: {
+    updateUser(event) {
+      console.log(event);
+    },
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
@@ -264,35 +346,6 @@ export default {
       }
 
       nativeEvent.stopPropagation();
-    },
-    updateRange({ start, end }) {
-      const events = [];
-
-      const min = new Date(`${start.date}T00:00:00`);
-      const max = new Date(`${end.date}T23:59:59`);
-      const days = (max.getTime() - min.getTime()) / 86400000;
-      const eventCount = this.rnd(days, days + 20);
-
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0;
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime());
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000));
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000;
-        const second = new Date(first.getTime() + secondTimestamp);
-
-        events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay,
-        });
-      }
-
-      this.events = events;
-    },
-    rnd(a, b) {
-      return Math.floor((b - a + 1) * Math.random()) + a;
     },
   },
 };
@@ -352,5 +405,9 @@ export default {
   height: 30%;
   margin-left: 5%;
   margin-top: -6%;
+}
+.textField {
+  height: 50px;
+  width: 400px;
 }
 </style>

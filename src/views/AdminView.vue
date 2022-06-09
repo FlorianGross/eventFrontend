@@ -32,74 +32,141 @@
           <v-card width="500px" style="padding-left: 20px">
             <v-form>
               <v-text-field label="Event Name"> </v-text-field>
-              <v-textarea label="Beschreibung">
-              </v-textarea>
-              <v-dialog v-model="dialog" width="auto">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
-                    Anfangszeit
-                  </v-btn>
-                </template>
-                <v-card>
-                  <v-card-title class="text-h5 grey lighten-2">
-                    Anfangszeit
-                  </v-card-title>
-                  <v-card-text>
-                    <v-date-picker
-                      v-model="date"
-                      scrollable
-                      no-title
-                      landscape
-                      format="dd.MM.yyyy"
-                    ></v-date-picker>
+              <v-textarea label="Beschreibung"> </v-textarea>
+              <v-row>
+                Ende:
+                <v-col cols="11" sm="5">
+                  <v-menu
+                    ref="menu"
+                    v-model="menu2"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="time"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="time"
+                        label="Picker in menu"
+                        prepend-icon="mdi-clock-time-four-outline"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
                     <v-time-picker
+                      v-if="menu2"
                       v-model="time"
-                      no-title
-                      landscape
-                      format="HH:mm"></v-time-picker>
-                  </v-card-text>
-                  <v-divider></v-divider>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="dialog = false">
-                      Annehmen
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-              <v-dialog v-model="dialog" width="auto">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn color="red lighten-2" dark v-bind="attrs" v-on="on">
-                    Endzeit
-                  </v-btn>
-                </template>
-
-                <v-card>
-                  <v-card-title class="text-h5 grey lighten-2">
-                    Endzeit
-                  </v-card-title>
-                    <v-date-picker
-                      v-model="date"
-                      scrollable
-                      no-title
-                      landscape
-                      format="dd.MM.yyyy"
-                    ></v-date-picker>
+                      full-width
+                      @click:minute="$refs.menu.save(time)"
+                    ></v-time-picker>
+                  </v-menu> </v-col
+                ><v-col cols="12" sm="6" md="4">
+                  <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="date"
+                        label="Picker in menu"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="date" no-title scrollable>
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menu.save(date)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+              </v-row>
+              <v-row>
+                Beginn:
+                <v-col cols="11" sm="5">
+                  <v-menu
+                    ref="menu"
+                    v-model="menu2"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync="time"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="time"
+                        label="Picker in menu"
+                        prepend-icon="mdi-clock-time-four-outline"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
                     <v-time-picker
+                      v-if="menu2"
                       v-model="time"
-                      no-title
-                      landscape
-                      format="HH:mm"></v-time-picker>
-                  <v-divider></v-divider>
-
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="dialog = false">
-                      I accept
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
+                      full-width
+                      @click:minute="$refs.menu.save(time)"
+                    ></v-time-picker>
+                  </v-menu> </v-col
+                ><v-col cols="12" sm="6" md="4">
+                  <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="date"
+                        label="Picker in menu"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="date" no-title scrollable>
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menu.save(date)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+              </v-row>
               <v-text-field label="Event Ort"> </v-text-field>
               <v-text-field label="Event Datum"> </v-text-field>
               <v-text-field label="Event Beschreibung"> </v-text-field>
@@ -123,6 +190,9 @@ export default {
   name: "AdminView",
   data() {
     return {
+      time: null,
+      menu2: false,
+      modal2: false,
       event: {
         creater: "",
         name: "",

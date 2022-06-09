@@ -4,7 +4,7 @@
       <v-card-title>
         <span class="headline">Events</span>
         <v-spacer></v-spacer>
-        <v-btn v-if="isAdmin">Event Bearbeiten</v-btn>
+        <v-btn v-if="isAdmin" @click="openAdminView()">Event Bearbeiten</v-btn>
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container>
@@ -289,7 +289,10 @@ export default {
       this.error = true;
       this.isLoading = false;
       this.notification = message
-    }
+    },
+    openAdminView(){
+      this.$router.push('/admin/' + this.$route.params.id);
+    },
   },
   computed: {
     currentUser() {

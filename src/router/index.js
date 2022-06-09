@@ -52,7 +52,12 @@ const routes = [
     component: () => import('../components/LogoutComponent.vue')
   },
   {
-    path: '/admin',
+    path: '/admin/',
+    name: 'admin',
+    component: () => import('../views/AdminView.vue')
+  },
+  {
+    path: '/admin/:id',
     name: 'admin',
     component: () => import('../views/AdminView.vue')
   },

@@ -25,45 +25,49 @@
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="user.firstName ? 'mdi-check' : 'mdi-pen'"
-                    clearable
+                    :append-icon="edit.firstName ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.firstName"
+                    :clearable="edit.firstName"
                     v-model="user.firstName"
                     class="textField"
                     label="Vorname"
-                    @click:append="updateUser()"
+                    @click:append="edit.firstName ? updateUser() : edit.firstName = !edit.firstName"
                   ></v-text-field>
                 </div>
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="user.lastName ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="edit.lastName ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.lastName"
+                    :clearable="edit.lastName"
                     v-model="user.lastName"
-                    clearable
                     class="textField"
                     label="Nachname"
-                    @click:append="updateUser()"
+                    @click:append="edit.lastName ? updateUser() : edit.lastName = !edit.lastName"
                   ></v-text-field>
                 </div>
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="user.email ? 'mdi-check' : 'mdi-pen'"
-                    clearable
+                    :append-icon="edit.email ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.email"
+                    :clearable="edit.email"
                     v-model="user.email"
                     class="textField"
                     label="Email"
-                    @click:append="updateUser()"
+                    @click:append="edit.email ? updateUser() : edit.email = !edit.email"
                   ></v-text-field>
                 </div>
                 <div style="padding-bottom: 2%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="user.phoneNumber ? 'mdi-check' : 'mdi-pen'"
-                    clearable
+                    :append-icon="edit.phoneNumber ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.phoneNumber"
+                    :clearable="edit.phoneNumber"
                     v-model="user.phoneNumber"
                     class="textField"
                     label="Telefonnummer"
-                    @click:append="updateUser()"
+                    @click:append="edit.phoneNumber ? updateUser() : edit.phoneNumber = !edit.phoneNumber"
                   ></v-text-field>
                 </div>
               </div>
@@ -76,45 +80,49 @@
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="user.street ? 'mdi-check' : 'mdi-pen'"
-                    clearable
-                    class="textField"
+                    :append-icon="edit.street ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.street"
+                    :clearable="edit.street"
                     v-model="user.street"
-                    label="Straße"
-                    @click:append="updateUser()"
-                  ></v-text-field>
-                </div>
-                <div style="margin-bottom: 1%">
-                  <v-text-field
-                    clear-icon="mdi-close-circle"
-                    :append-icon="user.streetNumber ? 'mdi-check' : 'mdi-pen'"
-                    clearable
                     class="textField"
-                    v-model="user.streetNumber"
-                    label="Hausnummer"
-                    @click:append="updateUser()"
+                    label="Straße"
+                    @click:append="edit.street ? updateUser() : edit.street = !edit.street"
                   ></v-text-field>
                 </div>
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="user.city ? 'mdi-check' : 'mdi-pen'"
-                    clearable
+                    :append-icon="edit.streetNumber ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.streetNumber"
+                    :clearable="edit.streetNumber"
+                    v-model="user.streetNumber"
+                    class="textField"
+                    label="Hausnummer"
+                    @click:append="edit.streetNumber ? updateUser() : edit.streetNumber = !edit.streetNumber"
+                  ></v-text-field>
+                </div>
+                <div style="margin-bottom: 1%">
+                  <v-text-field
+                    clear-icon="mdi-close-circle"
+                    :append-icon="edit.city ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.city"
+                    :clearable="edit.city"
                     v-model="user.city"
                     class="textField"
                     label="Stadt"
-                    @click:append="updateUser()"
+                    @click:append="edit.city ? updateUser() : edit.city = !edit.city"
                   ></v-text-field>
                 </div>
                 <div style="padding-bottom: 2%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="user.zip ? 'mdi-check' : 'mdi-pen'"
-                    clearable
+                    :append-icon="edit.zip ? 'mdi-check' : 'mdi-pen'"
+                    :readonly="!edit.zip"
+                    :clearable="edit.zip"
                     v-model="user.zip"
                     class="textField"
-                    label="PLZ"
-                    @click:append="updateUser()"
+                    label="Plz"
+                    @click:append="edit.zip ? updateUser() : edit.zip = !edit.zip"
                   ></v-text-field>
                 </div>
               </div>
@@ -286,6 +294,20 @@ export default {
       country: "",
       roles: [],
       },
+    edit: {
+      username: false,
+      password: false,
+      email: false,
+      firstName: false,
+      lastName: false,
+      phoneNumber: false,
+      address: false,
+      zip: false,
+      city: false,
+      street: false,
+      country: false,
+      roles: false,
+    },
     focus: "",
     type: "week",
     typeToLabel: {
@@ -320,6 +342,16 @@ export default {
       User.setUser(this.user).then(response => {
         console.log(response);
       });
+      edit.firstName = false;
+      edit.lastName = false;
+      edit.email = false;
+      edit.phoneNumber = false;
+      edit.address = false;
+      edit.street = false;
+      edit.streetNumber = false;
+      edit.zip = false;
+      edit.city = false;
+      edit.country = false;
     },
     viewDay({ date }) {
       this.focus = date;

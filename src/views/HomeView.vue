@@ -18,6 +18,9 @@
                   <div class="textEvent">
                     <div>
                       Hier können wir eine Beschreibung für die Events einfügen
+                      <v-divider></v-divider>
+                      
+
                     </div>
                   </div>
                 </div>

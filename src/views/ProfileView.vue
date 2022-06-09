@@ -12,8 +12,13 @@
           <div>
             <img class="profilBild" src="../assets/bild3.jpg" />
             <v-file-input
+              append-icon="mdi-send"
               label="File input"
+              accept="image/*"
+              placeholder="File input"
+              v-model="image"
               prepend-icon="mdi-camera"
+              @click:append="saveImage()"
             ></v-file-input>
           </div>
           <div class="text" style="margin-left: 250px">
@@ -280,6 +285,7 @@ export default {
     this.getUserData();
   },
   data: () => ({
+    image: null,
     user: {
       username: "",
       password: "",
@@ -292,6 +298,7 @@ export default {
       city: "",
       street: "",
       country: "",
+      image: "",
       roles: [],
       },
     edit: {
@@ -336,6 +343,12 @@ export default {
         this.user.zip = response.data.zip;
         this.user.city = response.data.city;
         this.user.country = response.data.country;
+        this.user.image = response.data.image;
+      });
+    },
+    saveImage(){
+      User.saveImage(this.currentUser.username, this.image).then(response => {
+        console.log(response);
       });
     },
     updateUser() {
@@ -387,7 +400,7 @@ export default {
 
       nativeEvent.stopPropagation();
     },
-  },
+  }
 };
 </script>
 

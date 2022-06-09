@@ -24,6 +24,21 @@ class UserService {
       user: user
     }, { headers: authHeader() });
   }
+  saveImage(username, image) {
+    console.log(image)
+    axios.post(API_URL + 'upload', image).then(function (response) {
+      console.log(response)
+    return axios.post(API_URL + 'saveimage', {
+      username: username,
+      image: response.file
+    }, { headers: authHeader() });
+  }); 
+  }
+  getImage(username) {
+    return axios.post(API_URL + 'getImage', {
+      username: username
+    }, { headers: authHeader() });
+  }
 }
 
 export default new UserService()

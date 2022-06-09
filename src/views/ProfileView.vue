@@ -4,6 +4,7 @@
       <v-card style="height: 850px">
         <v-card-title>
           <span class="headline">Profildaten</span>
+          <v-btn @click="getUserData()">Reload</v-btn>
         </v-card-title>
         <v-card style="height: 1px"></v-card>
         <v-card-text class="profilText"></v-card-text>
@@ -24,45 +25,45 @@
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="firstName ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="user.firstName ? 'mdi-check' : 'mdi-pen'"
                     clearable
-                    v-model="firstName"
+                    v-model="user.firstName"
                     class="textField"
                     label="Vorname"
-                    @click:append="updateUser(firstName)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="lastName ? 'mdi-check' : 'mdi-pen'"
-                    v-model="lastName"
+                    :append-icon="user.lastName ? 'mdi-check' : 'mdi-pen'"
+                    v-model="user.lastName"
                     clearable
                     class="textField"
                     label="Nachname"
-                    @click:append="updateUser(lastName)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="email ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="user.email ? 'mdi-check' : 'mdi-pen'"
                     clearable
-                    v-model="email"
+                    v-model="user.email"
                     class="textField"
                     label="Email"
-                    @click:append="updateUser(email)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
                 <div style="padding-bottom: 2%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="phoneNumber ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="user.phoneNumber ? 'mdi-check' : 'mdi-pen'"
                     clearable
-                    v-model="phoneNumber"
+                    v-model="user.phoneNumber"
                     class="textField"
                     label="Telefonnummer"
-                    @click:append="updateUser(phoneNumber)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
               </div>
@@ -75,45 +76,45 @@
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="street ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="user.street ? 'mdi-check' : 'mdi-pen'"
                     clearable
                     class="textField"
-                    v-model="street"
+                    v-model="user.street"
                     label="Straße"
-                    @click:append="updateUser(street)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="streetNumber ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="user.streetNumber ? 'mdi-check' : 'mdi-pen'"
                     clearable
                     class="textField"
-                    v-model="streetNumber"
+                    v-model="user.streetNumber"
                     label="Hausnummer"
-                    @click:append="updateUser(streetNumber)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
                 <div style="margin-bottom: 1%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="city ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="user.city ? 'mdi-check' : 'mdi-pen'"
                     clearable
-                    v-model="city"
+                    v-model="user.city"
                     class="textField"
                     label="Stadt"
-                    @click:append="updateUser(city)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
                 <div style="padding-bottom: 2%">
                   <v-text-field
                     clear-icon="mdi-close-circle"
-                    :append-icon="zipCode ? 'mdi-check' : 'mdi-pen'"
+                    :append-icon="user.zip ? 'mdi-check' : 'mdi-pen'"
                     clearable
-                    v-model="zipCode"
+                    v-model="user.zip"
                     class="textField"
                     label="PLZ"
-                    @click:append="updateUser(zipCode)"
+                    @click:append="updateUser()"
                   ></v-text-field>
                 </div>
               </div>
@@ -256,6 +257,7 @@
 </template>
 
 <script>
+import User from  "../services/user.service.js";
 export default {
   name: "ProfileView",
   computed: {
@@ -267,16 +269,23 @@ export default {
     if (!this.currentUser) {
       this.$router.push("/");
     }
+    this.getUserData();
   },
   data: () => ({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    city: "",
-    street: "",
-    zipCode: "",
-    streetNumber: "",
+    user: {
+      username: "",
+      password: "",
+      email: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      address: "",
+      zip: "",
+      city: "",
+      street: "",
+      country: "",
+      roles: [],
+      },
     focus: "",
     type: "week",
     typeToLabel: {
@@ -289,29 +298,28 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [],
-    colors: [
-      "blue",
-      "indigo",
-      "deep-purple",
-      "cyan",
-      "green",
-      "orange",
-      "grey darken-1",
-    ],
-    names: [
-      "Meeting",
-      "Holiday",
-      "PTO",
-      "Travel",
-      "Event",
-      "Birthday",
-      "Conference",
-      "Party",
-    ],
   }),
   methods: {
-    updateUser(event) {
-      console.log(event);
+    getUserData(){
+      User.getUser(this.currentUser.username).then(response => {
+        console.log(response);
+        this.user.username = response.data.username;
+        this.user.firstName = response.data.firstName;
+        this.user.lastName = response.data.lastName;
+        this.user.email = response.data.email;
+        this.user.phoneNumber = response.data.phoneNumber;
+        this.user.address = response.data.address;
+        this.user.street = response.data.street;
+        this.user.streetNumber = response.data.streetNumber;
+        this.user.zip = response.data.zip;
+        this.user.city = response.data.city;
+        this.user.country = response.data.country;
+      });
+    },
+    updateUser() {
+      User.setUser(this.user).then(response => {
+        console.log(response);
+      });
     },
     viewDay({ date }) {
       this.focus = date;

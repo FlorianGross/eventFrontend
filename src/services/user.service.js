@@ -8,9 +8,20 @@ class UserService {
   }
 
   updateUser(user, roles) {
-    return axios.put(API_URL + 'updateUser', {
+    return axios.post(API_URL + 'updateUser', {
       id: user.username,
       roles: roles
+    }, { headers: authHeader() });
+  }
+
+  getUser(username) {
+    return axios.post(API_URL + 'getUserData', {
+      username: username
+    }, { headers: authHeader() });
+  }
+  setUser(user) {
+    return axios.post(API_URL + 'setUserData', {
+      user: user
     }, { headers: authHeader() });
   }
 }

@@ -1,21 +1,27 @@
 <template>
   <div>
     <v-card>
-      <v-card-title>User</v-card-title>
+      <v-card-title>Teilnehmer</v-card-title>
       <v-expansion-panels>
         <v-expansion-panel v-for="user in users" :key="user.username">
           <v-expansion-panel-header>
             {{ user.username }} {{ user.email }} {{ user.role }}
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            Rollen:<v-select
-              :items="roles"
-              v-model="rolesSelected"
-              hint="Rollen"
-            ></v-select>
-            <v-spacer></v-spacer>
-            <v-btn color="blue" @click="updateUser(user, roles)">Update</v-btn>
-            <v-btn color="red">Delete</v-btn>
+            <v-btn color="red">Entfernen</v-btn>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
+    </v-card>
+    <v-card>
+      <v-card-title>Vorangemeldete</v-card-title>
+      <v-expansion-panels>
+        <v-expansion-panel v-for="user in users" :key="user.username">
+          <v-expansion-panel-header>
+            {{ user.username }} {{ user.email }} {{ user.role }}
+          </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-btn color="red">Entfernen</v-btn>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -32,6 +38,7 @@ export default {
   data() {
     return {
       users: [],
+      presale: [],
       rolesSelected: "",
       roles: ["Admin", "User"],
     };
@@ -40,7 +47,6 @@ export default {
     getUsers() {
       user.getAllUsers().then((response) => {
         this.users = response.data;
-        console.log(response.data);
       });
     },
     updateUser(item) {

@@ -201,6 +201,7 @@
 </template>
 
 <script>
+import authService from '@/services/auth.service';
 export default {
   name: "DetailView",
   data() {
@@ -290,9 +291,15 @@ export default {
       this.notification = message
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },},
   created() {
     this.id = this.$route.params.id;
-    this.isAdmin = this.$store.user.isAdmin;
+    authService.getIsAdmin(this.currentUser.username).then((response) => {
+      this.isAdmin = response.data;
+    });
   },
 };
 </script>

@@ -84,6 +84,7 @@
 </template>
 
 <script>
+import authService from '@/services/auth.service';
 const loggedIn = localStorage.getItem("user");
 export default {
   name: "App",
@@ -101,13 +102,12 @@ export default {
   watch: {
     currentUser() {
       this.loggedIn = this.$store.state.auth.user;
-      this.isAdmin = this.$store.state.auth.user.isAdmin;
     },
   },
   mounted() {
-    if (this.currentUser && this.currentUser.roles.includes("ROLE_ADMIN")) {
-      this.isAmdin = true;
-    }
+    authService.getIsAdmin(this.currentUser.username).then((response) => {
+      this.isAdmin = response.data;
+    });
   },
   methods: {
     openEvents() {

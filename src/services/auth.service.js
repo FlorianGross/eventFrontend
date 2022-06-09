@@ -27,9 +27,9 @@ class AuthService {
       password: user.password
     })
   }
-  getIsAdmin(user){
+  getIsAdmin(username){
     return axios.post(API_URL + 'getIsAdmin', {
-      username: user.username,
+      username: username,
     })
   }
 }

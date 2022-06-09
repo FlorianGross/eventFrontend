@@ -3,6 +3,8 @@
     <v-card width="1850px">
       <v-card-title>
         <span class="headline">Events</span>
+        <v-spacer></v-spacer>
+        <v-btn v-if="isAdmin">Event Bearbeiten</v-btn>
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container>
@@ -203,6 +205,7 @@ export default {
   name: "DetailView",
   data() {
     return {
+      isAdmin: false,
       angemeldet: false,
       isLoading: false,
       showAlert: false,
@@ -289,6 +292,7 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
+    this.isAdmin = this.$store.user.isAdmin;
   },
 };
 </script>

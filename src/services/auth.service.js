@@ -27,5 +27,10 @@ class AuthService {
       password: user.password
     })
   }
+  getIsAdmin(user){
+    return axios.post(API_URL + 'getIsAdmin', {
+      username: user.username,
+    })
+  }
 }
 export default new AuthService()

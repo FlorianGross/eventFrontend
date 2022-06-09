@@ -1,48 +1,32 @@
 <template>
   <div class="body">
-    <v-card
-      width="1850px"
-    >
+    <v-card width="1850px">
       <v-card-title>
         <span class="headline">Events</span>
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container>
-        <v-layout
-          row
-          wrap
-        >
-          <v-flex
-            v-for="n in 9"
-            :key="n"
-            xs4
-          >
-            <div
-              class="item"
-              @click="eventClick(n)"
-            >
-              <v-card
-                class="cards"
-                height="400px"
-              >
-                <div
-                  class="grid-containerEvent"
-                  style="margin-top: 0px"
-                >
+        <v-layout row wrap>
+          <v-flex v-for="n in 9" :key="n" xl4 lg6 md7 sm9 xs12>
+            <div class="item" @click="eventClick(n)">
+              <v-card class="cards" height="400px">
+                <div class="grid-containerEvent" style="margin-top: 0px">
                   <img
                     class="profilBildEvent"
                     src="../assets/WelcomeBackParty _2022.jpg"
                   />
                   <div class="textEvent">
-                    <div>Hier können wir eine Beschreibung für die Events einfügen</div>
+                    <div>
+                      Hier können wir eine Beschreibung für die Events einfügen
+                    </div>
                   </div>
-  </div>
-  </v-card>
-  </div>
-  </v-flex>
-  </v-layout>
-  </v-container>
-  </v-card>
+                </div>
+              </v-card>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-card>
   </div>
 </template>
 

@@ -189,7 +189,7 @@
 </template>
 
 <script>
-import UserManagementPart from "@/components/UserManagementPart.vue";
+import UserManagementPart from "@/components/ParticipantsManagementPart.vue";
 export default {
   components: { UserManagementPart },
   name: "AdminView",

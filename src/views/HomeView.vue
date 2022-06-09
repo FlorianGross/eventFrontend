@@ -2,7 +2,6 @@
   <div class="body">
     <v-card
       width="1850px"
-      style="margin-top: 1.05%;"
     >
       <v-card-title>
         <span class="headline">Events</span>
@@ -68,6 +67,9 @@ export default {
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
 }
 
 .grid-containerEvent {

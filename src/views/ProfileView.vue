@@ -368,14 +368,11 @@ export default {
   background-attachment: fixed;
 }
 .containerField {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1850px;
+  top: 15%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 6.31%;
+  margin-top: 79px;
+  width: 1850px;
 }
 .profilBild {
   margin-left: 10%;

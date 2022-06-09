@@ -260,13 +260,9 @@ export default {
   background-attachment: fixed;
 }
 .containerFieldKalender {
-  position: absolute;
-  top: 41%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1850px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 6.3%;
+  margin-top: 79px;
+  width: 1850px;
 }
 </style>

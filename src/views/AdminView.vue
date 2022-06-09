@@ -38,16 +38,16 @@
                 <v-col cols="12" sm="6" md="4">
                   <v-menu
                     ref="menu"
-                    v-model="menu"
+                    v-model="menu1"
                     :close-on-content-click="false"
-                    :return-value.sync="date"
+                    :return-value.sync="beginDate"
                     transition="scale-transition"
                     offset-y
                     min-width="auto"
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="date"
+                        v-model="beginDate"
                         label="Datum"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -57,13 +57,13 @@
                     </template>
                     <v-date-picker v-model="date" no-title scrollable>
                       <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menu = false">
+                      <v-btn text color="primary" @click="menu1 = false">
                         Cancel
                       </v-btn>
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu.save(date)"
+                        @click="$refs.menu.save(beginDate)"
                       >
                         OK
                       </v-btn>
@@ -76,7 +76,7 @@
                     v-model="menu2"
                     :close-on-content-click="false"
                     :nudge-right="40"
-                    :return-value.sync="time"
+                    :return-value.sync="beginTime"
                     transition="scale-transition"
                     offset-y
                     max-width="290px"
@@ -84,7 +84,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="time"
+                        v-model="beginTime"
                         label="Uhrzeit"
                         prepend-icon="mdi-clock-time-four-outline"
                         readonly
@@ -94,9 +94,9 @@
                     </template>
                     <v-time-picker
                       v-if="menu2"
-                      v-model="time"
+                      v-model="beginTime"
                       full-width
-                      @click:minute="$refs.menu.save(time)"
+                      @click:minute="$refs.menu.save(beginTime)"
                     ></v-time-picker>
                   </v-menu> </v-col
                 >
@@ -106,16 +106,16 @@
                 <v-col cols="12" sm="6" md="4">
                   <v-menu
                     ref="menu"
-                    v-model="menu"
+                    v-model="menu3"
                     :close-on-content-click="false"
-                    :return-value.sync="date"
+                    :return-value.sync="endDate"
                     transition="scale-transition"
                     offset-y
                     min-width="auto"
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="date"
+                        v-model="endDate"
                         label="Datum"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -123,15 +123,15 @@
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker v-model="date" no-title scrollable>
+                    <v-date-picker v-model="endDate" no-title scrollable>
                       <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menu = false">
+                      <v-btn text color="primary" @click="menu3 = false">
                         Cancel
                       </v-btn>
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu.save(date)"
+                        @click="$refs.menu.save(endDate)"
                       >
                         OK
                       </v-btn>
@@ -141,10 +141,10 @@
                 <v-col cols="11" sm="5">
                   <v-menu
                     ref="menu"
-                    v-model="menu2"
+                    v-model="menu4"
                     :close-on-content-click="false"
                     :nudge-right="40"
-                    :return-value.sync="time"
+                    :return-value.sync="endTime"
                     transition="scale-transition"
                     offset-y
                     max-width="290px"
@@ -152,7 +152,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="time"
+                        v-model="endTime"
                         label="Uhrzeit"
                         prepend-icon="mdi-clock-time-four-outline"
                         readonly
@@ -161,14 +161,15 @@
                       ></v-text-field>
                     </template>
                     <v-time-picker
-                      v-if="menu2"
-                      v-model="time"
+                      v-if="menu4"
+                      v-model="endTime"
                       full-width
-                      @click:minute="$refs.menu.save(time)"
+                      @click:minute="$refs.menu.save(endTime)"
                     ></v-time-picker>
                   </v-menu> </v-col
                 >
               </v-row>
+              Begin: {{ beginDate }} {{ beginTime }} Ende: {{ endDate }} {{ endTime }}
               <v-text-field label="Event Ort"> </v-text-field>
               <v-text-field label="Event Datum"> </v-text-field>
               <v-text-field label="Event Beschreibung"> </v-text-field>
@@ -192,9 +193,14 @@ export default {
   name: "AdminView",
   data() {
     return {
-      time: null,
+      beginTime: null,
+      beginDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      endTime: null,
+      endDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      menu1: false,
       menu2: false,
-      modal2: false,
+      menu3: false,
+      menu4: false,
       event: {
         creater: "",
         name: "",

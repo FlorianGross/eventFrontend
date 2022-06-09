@@ -5,6 +5,12 @@
         <span class="headline">Events</span>
         <v-spacer></v-spacer>
         <v-btn
+          color="#000080"
+          style="
+            color:white; 
+            min-width: 140px; 
+            text-transform: none; 
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
           v-if="isAdmin"
           @click="openAdminView()"
         >Event Bearbeiten</v-btn>
@@ -179,6 +185,10 @@ export default {
       ],
       details: [
         {
+          name: "Name",
+          werte: "Welcome Back Party",
+        },
+        {
           name: "Datum",
           werte: "22.05 - 23.05.2022",
         },
@@ -191,7 +201,7 @@ export default {
           werte: "16:00 Uhr",
         },
         {
-          name: "Kosten",
+          name: "Eintritt",
           werte: "7 €",
         },
         {
@@ -215,7 +225,7 @@ export default {
           werte: "RWU ; B-Gebäude & NZ",
         },
         {
-          name: "Kosten",
+          name: "Eintritt",
           werte: "7 €",
         },
       ],

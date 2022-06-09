@@ -2,45 +2,65 @@
   <div class="body-of-impressum">
     <div class="impressumField">
       <v-card style="height: 800px;">
-        <v-card-title><span class="headline">Impressum</span></v-card-title>
+        <v-card-title>
+          <span class="headline">Impressum</span>
+        </v-card-title>
         <v-card style="height: 350px">
-        <v-card-text class="impressumText"></v-card-text>
-        <h3>Hochschule Ravensburg-Weingarten</h3>
-        <h3>University of Applied Sciences</h3>
-        <div class="grid-containerRwu" style="margin-top: 40px;">
-          <img class="rwu" src="../assets/rwu.png">
-          <div class="text" style="margin-left: 250px;">
-            <div>Doggenriedstraße</div>
-            <div>88250 Weingarten</div>
-            <div>Deutschland</div>
-            <div style="margin-top: 15px;">Telefon: +49 (0) 751/501-9344</div>
-            <div>Telefax: +49 (0) 751/501-9876</div>
-            <div>E-Mail: info@rwu.de</div>
-          </div>
-          <div class="text">
-            <div>Prüfungsfach:</div>
-            <div>Dozentin:</div>
-            <div>Semester:</div>
-            <div>Gruppe:</div>
-          </div>
-          <div class="text">
-            <div>Web-Programmierung</div>
-            <div>Bianca-Maria Braun</div>
-            <div>SoSe 2022</div>
-            <div>S</div>
-          </div>
-        </div>
-        </v-card>
-        <v-card style="height: 200px">
-        <v-card-text class="impressumText"></v-card-text>
-        <h4>Florian Groß</h4>
-        <div class="grid-containerPersonen" style="margin-top: 20px;">
-          <img class="rwu" src="../assets/cos.jpg">
-          <div class="text" style="margin-left: 250px;">
-            <div>Vorname:</div>
-            <div>Nachname:</div>
-            <div>E-Mail:</div>
-            <div>Semester:</div>
+          <v-card-text class="impressumText"></v-card-text>
+          <h3>Hochschule Ravensburg-Weingarten</h3>
+          <h3>University of Applied Sciences</h3>
+          <div
+            class="grid-containerRwu"
+            style="margin-top: 40px;"
+          >
+            <img
+              class="rwu"
+              src="../assets/rwu.png"
+            >
+              <div
+                class="text"
+                style="margin-left: 250px;"
+              >
+                <div>Doggenriedstraße</div>
+                <div>88250 Weingarten</div>
+                <div>Deutschland</div>
+                <div style="margin-top: 15px;">Telefon: +49 (0) 751/501-9344</div>
+                <div>Telefax: +49 (0) 751/501-9876</div>
+                <div>E-Mail: info@rwu.de</div>
+    </div>
+    <div class="text">
+      <div>Prüfungsfach:</div>
+      <div>Dozentin:</div>
+      <div>Semester:</div>
+      <div>Gruppe:</div>
+    </div>
+    <div class="text">
+      <div>Web-Programmierung</div>
+      <div>Bianca-Maria Braun</div>
+      <div>SoSe 2022</div>
+      <div>S</div>
+    </div>
+  </div>
+  </v-card>
+  <v-card style="height: 200px">
+    <v-card-text class="impressumText"></v-card-text>
+    <h4>Florian Groß</h4>
+    <div
+      class="grid-containerPersonen"
+      style="margin-top: 20px;"
+    >
+      <img
+        class="rwu"
+        src="../assets/cos.jpg"
+      >
+        <div
+          class="text"
+          style="margin-left: 250px;"
+        >
+          <div>Vorname:</div>
+          <div>Nachname:</div>
+          <div>E-Mail:</div>
+          <div>Semester:</div>
           </div>
           <div class="text">
             <div>Florian</div>
@@ -48,18 +68,27 @@
             <div>florian.gross@hs-weingarten.de</div>
             <div>4</div>
           </div>
-        </div>
-        </v-card>
-        <v-card style="height: 220px">
-        <v-card-text class="impressumText"></v-card-text>
-        <h4>Sven Herz</h4>
-        <div class="grid-containerPersonen" style="margin-top: 20px;">
-          <img class="rwu" src="../assets/bild3.jpg">
-          <div class="text" style="margin-left: 250px;">
-            <div>Vorname:</div>
-            <div>Nachname:</div>
-            <div>E-Mail:</div>
-            <div>Semester:</div>
+          </div>
+  </v-card>
+  <v-card style="height: 220px">
+    <v-card-text class="impressumText"></v-card-text>
+    <h4>Sven Herz</h4>
+    <div
+      class="grid-containerPersonen"
+      style="margin-top: 20px;"
+    >
+      <img
+        class="rwu"
+        src="../assets/bild3.jpg"
+      >
+        <div
+          class="text"
+          style="margin-left: 250px;"
+        >
+          <div>Vorname:</div>
+          <div>Nachname:</div>
+          <div>E-Mail:</div>
+          <div>Semester:</div>
           </div>
           <div class="text">
             <div>Sven</div>
@@ -67,17 +96,17 @@
             <div>sven.herz@hs-weingarten.de</div>
             <div>4</div>
           </div>
-        </div>
-        </v-card>
-      </v-card>
-    </div>
+          </div>
+  </v-card>
+  </v-card>
+  </div>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'ImpressumView'
-}   
+  name: "ImpressumView",
+};
 </script>
 
 <style>
@@ -88,9 +117,9 @@ export default {
   margin-bottom: 0px;
 }
 .rwu {
-    max-width: 100% !important;
-    height: 80% !important;
-    display: block;
+  max-width: 100% !important;
+  height: 80% !important;
+  display: block;
 }
 .text {
   color: #000000;
@@ -109,7 +138,6 @@ h4 {
   text-align: left;
   margin-left: 10px;
 }
-
 .body-of-impressum {
   position: fixed;
   background-color: #123456;

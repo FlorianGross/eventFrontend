@@ -6,14 +6,12 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
 .infoPart {
-    text-align: center;
-    margin-top: 400px;
+  text-align: center;
+  margin-top: 400px;
 }
 </style>

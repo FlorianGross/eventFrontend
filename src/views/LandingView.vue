@@ -3,74 +3,77 @@
     <div class="loginField">
       <login-part v-if="isLogin"></login-part>
       <register-part v-if="isRegister"></register-part>
-      <v-card v-if="!isLogin && !isRegister" style="height: 250px">
+      <v-card
+        v-if="!isLogin && !isRegister"
+        style="height: 250px"
+      >
         <v-card-title>
           <span class="headline">Willkommen</span>
         </v-card-title>
         <v-card-text id="wilkommen_txt">
-          Willkommen bei VuetEvent.
-          Hier können Sie alle anstehenden Events in Ihrem persönlichen Kalender organisieren und verwalten. 
-          Die Nostalgiker unter euch können auch die vergangenen Events einsehen und in Erinnerungen schwelgen. 
+          Willkommen bei VuetEvent. Hier können Sie alle anstehenden Events in Ihrem persönlichen Kalender organisieren und verwalten. Die Nostalgiker unter euch können auch die vergangenen Events einsehen und in Erinnerungen schwelgen.
         </v-card-text>
         <v-card-actions class="loginButtons">
-          <v-btn 
-          color="#000080" 
-          style="
+          <v-btn
+            color="#000080"
+            style="
             color:white; 
             min-width: 140px; 
             text-transform: none; 
-            font-family:Arial, Helvetica, sans-serif;
-            " 
-            @click="login">Login</v-btn>
-          <v-btn 
-          color="#000080" 
-          style="
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            "
+            @click="login"
+          >Login</v-btn>
+            <v-btn
+              color="#000080"
+              style="
             color:white; 
             min-width: 140px; 
             text-transform: none; 
-            font-family:Arial, Helvetica, sans-serif;
-          " 
-          @click="register">Registrieren</v-btn>
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          "
+              @click="register"
+            >Registrieren</v-btn>
         </v-card-actions>
-      </v-card>
+        </v-card>
     </div>
   </div>
 </template>
 
 <script>
-import LoginPart from '../components/LoginPart.vue';
-import RegisterPart from '../components/RegisterPart.vue';
+import LoginPart from "../components/LoginPart.vue";
+import RegisterPart from "../components/RegisterPart.vue";
 export default {
   components: { LoginPart, RegisterPart },
-    name: 'LandingView',
-    data() {
-        return {
-            isLoading: false,
-            isLogin: false,
-            isRegister: false,
-        }
+  name: "LandingView",
+  data() {
+    return {
+      isLoading: false,
+      isLogin: false,
+      isRegister: false,
+    };
+  },
+  methods: {
+    login() {
+      this.isLogin = true;
+      this.isRegister = false;
     },
-    methods: {
-        login() {
-            this.isLogin = true;
-            this.isRegister = false;
-        },
-        register() {
-            this.isLogin = false;
-            this.isRegister = true;
-        },
+    register() {
+      this.isLogin = false;
+      this.isRegister = true;
     },
-    created(){
-      if(this.loggedIn){
-        this.$router.push('/profile');
-      }
+  },
+  created() {
+    if (this.loggedIn) {
+      this.$router.push("/profile");
+    }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters.isLoggedIn;
     },
-    computed: {
-      loggedIn() {
-        return this.$store.getters.isLoggedIn;
-      }
-    },
-}
+  },
+};
 </script>
 
 <style>

@@ -4,13 +4,27 @@
       <v-card style="height: 850px">
         <v-card-title>
           <span class="headline">Profildaten</span>
-          <v-btn @click="getUserData()">Reload</v-btn>
+          <v-btn
+            color="#000080"
+            style="
+            color:white; 
+            min-width: 140px; 
+            text-transform: none; 
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+            @click="getUserData()"
+          >Reload</v-btn>
         </v-card-title>
         <v-card style="height: 1px"></v-card>
         <v-card-text class="profilText"></v-card-text>
-        <div class="grid-containerRwu" style="margin-top: 40px">
+        <div
+          class="grid-containerRwu"
+          style="margin-top: 40px"
+        >
           <div>
-            <img class="profilBild" src="../assets/bild3.jpg" />
+            <img
+              class="profilBild"
+              src="../assets/bild3.jpg"
+            />
             <v-file-input
               append-icon="mdi-send"
               label="File input"
@@ -21,7 +35,10 @@
               @click:append="saveImage()"
             ></v-file-input>
           </div>
-          <div class="text" style="margin-left: 250px">
+          <div
+            class="text"
+            style="margin-left: 250px"
+          >
             <v-card>
               <v-card-title>
                 <span class="headline2">Anrede</span>
@@ -132,32 +149,47 @@
                 </div>
               </div>
             </v-card>
-          </div>
-          <div class="calendar">
-            <v-card
-              ><v-row class="fill-height">
-                <v-col>
-                  <v-sheet height="64">
-                    <v-toolbar flat>
-                      <v-btn
-                        outlined
-                        class="mr-4"
-                        color="grey darken-2"
-                        @click="setToday"
-                      >
-                        Today
-                      </v-btn>
-                      <v-btn fab text small color="grey darken-2" @click="prev">
-                        <v-icon small> mdi-chevron-left </v-icon>
-                      </v-btn>
-                      <v-btn fab text small color="grey darken-2" @click="next">
-                        <v-icon small> mdi-chevron-right </v-icon>
+    </div>
+    <div class="calendar">
+      <v-card>
+        <v-row class="fill-height">
+          <v-col>
+            <v-sheet height="64">
+              <v-toolbar flat>
+                <v-btn
+                  outlined
+                  class="mr-4"
+                  color="grey darken-2"
+                  @click="setToday"
+                >
+                  Today
+                  </v-btn>
+                  <v-btn
+                    fab
+                    text
+                    small
+                    color="grey darken-2"
+                    @click="prev"
+                  >
+                    <v-icon small> mdi-chevron-left </v-icon>
+                    </v-btn>
+                    <v-btn
+                      fab
+                      text
+                      small
+                      color="grey darken-2"
+                      @click="next"
+                    >
+                      <v-icon small> mdi-chevron-right </v-icon>
                       </v-btn>
                       <v-toolbar-title v-if="$refs.calendar">
                         {{ $refs.calendar.title }}
                       </v-toolbar-title>
                       <v-spacer></v-spacer>
-                      <v-menu bottom right>
+                      <v-menu
+                        bottom
+                        right
+                      >
                         <template v-slot:activator="{ on, attrs }">
                           <v-btn
                             outlined
@@ -167,7 +199,7 @@
                           >
                             <span>{{ typeToLabel[type] }}</span>
                             <v-icon right> mdi-menu-down </v-icon>
-                          </v-btn>
+                            </v-btn>
                         </template>
                         <v-list>
                           <v-list-item @click="type = 'day'">
@@ -183,94 +215,99 @@
                             <v-list-item-title>4 days</v-list-item-title>
                           </v-list-item>
                         </v-list>
-                      </v-menu>
-                    </v-toolbar>
-                  </v-sheet>
-                  <v-sheet height="667">
-                    <v-calendar
-                      ref="calendar"
-                      v-model="focus"
-                      color="primary"
-                      :events="events"
-                      :event-color="getEventColor"
-                      :type="type"
-                      @click:event="showEvent"
-                      @click:more="viewDay"
-                      @click:date="viewDay"
-                    ></v-calendar>
-                    <v-menu
-                      v-model="selectedOpen"
-                      :close-on-content-click="false"
-                      :activator="selectedElement"
-                      offset-x
+                        </v-menu>
+              </v-toolbar>
+            </v-sheet>
+            <v-sheet height="667">
+              <v-calendar
+                ref="calendar"
+                v-model="focus"
+                color="primary"
+                :events="events"
+                :event-color="getEventColor"
+                :type="type"
+                @click:event="showEvent"
+                @click:more="viewDay"
+                @click:date="viewDay"
+              ></v-calendar>
+                <v-menu
+                  v-model="selectedOpen"
+                  :close-on-content-click="false"
+                  :activator="selectedElement"
+                  offset-x
+                >
+                  <v-card
+                    color="grey lighten-4"
+                    min-width="350px"
+                    flat
+                  >
+                    <v-toolbar
+                      :color="selectedEvent.color"
+                      dark
                     >
-                      <v-card color="grey lighten-4" min-width="350px" flat>
-                        <v-toolbar :color="selectedEvent.color" dark>
-                          <v-btn icon>
-                            <v-icon>mdi-pencil</v-icon>
+                      <v-btn icon>
+                        <v-icon>mdi-pencil</v-icon>
+                      </v-btn>
+                      <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn icon>
+                        <v-icon>mdi-heart</v-icon>
+                      </v-btn>
+                      <v-btn icon>
+                        <v-icon>mdi-dots-vertical</v-icon>
+                      </v-btn>
+                      </v-toolbar>
+                      <v-card-text>
+                        <span v-html="selectedEvent.details"></span>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-btn
+                          text
+                          color="secondary"
+                          @click="selectedOpen = false"
+                        >
+                          Cancel
                           </v-btn>
-                          <v-toolbar-title
-                            v-html="selectedEvent.name"
-                          ></v-toolbar-title>
-                          <v-spacer></v-spacer>
-                          <v-btn icon>
-                            <v-icon>mdi-heart</v-icon>
-                          </v-btn>
-                          <v-btn icon>
-                            <v-icon>mdi-dots-vertical</v-icon>
-                          </v-btn>
-                        </v-toolbar>
-                        <v-card-text>
-                          <span v-html="selectedEvent.details"></span>
-                        </v-card-text>
-                        <v-card-actions>
-                          <v-btn
-                            text
-                            color="secondary"
-                            @click="selectedOpen = false"
-                          >
-                            Cancel
-                          </v-btn>
-                        </v-card-actions>
-                      </v-card>
-                    </v-menu>
-                  </v-sheet>
-                </v-col>
-              </v-row></v-card
-            >
-          </div>
-        </div>
+                      </v-card-actions>
       </v-card>
-      <header class="jumbotron">
-        <h3>
-          <strong>{{ currentUser.username }}</strong> Profile
-        </h3>
-      </header>
-      <p>
-        <strong>Token:</strong>
-        {{ currentUser.accessToken.substring(0, 20) }} ...
-        {{
-          currentUser.accessToken.substr(currentUser.accessToken.length - 20)
-        }}
-      </p>
-      <p>
-        <strong>Id:</strong>
-        {{ currentUser.id }}
-      </p>
-      <p>
-        <strong>Email:</strong>
-        {{ currentUser.email }}
-      </p>
-      <strong>Authorities:</strong>
-      <ul>
-        <li v-for="role in currentUser.roles" :key="role">{{ role }}</li>
-      </ul>
+      </v-menu>
+      </v-sheet>
+      </v-col>
+      </v-row>
+      </v-card>
     </div>
+  </div>
+  </v-card>
+  <header class="jumbotron">
+    <h3>
+      <strong>{{ currentUser.username }}</strong> Profile
+    </h3>
+  </header>
+  <p>
+    <strong>Token:</strong>
+    {{ currentUser.accessToken.substring(0, 20) }} ... {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+  </p>
+  <p>
+    <strong>Id:</strong>
+    {{ currentUser.id }}
+  </p>
+  <p>
+    <strong>Email:</strong>
+    {{ currentUser.email }}
+  </p>
+  <strong>Authorities:</strong>
+  <ul>
+    <li
+      v-for="role in currentUser.roles"
+      :key="role"
+    >{{ role }}</li>
+  </ul>
+  </div>
   </div>
 </template>
 
 <script>
-import User from  "../services/user.service.js";
+import User from "../services/user.service.js";
 export default {
   name: "ProfileView",
   computed: {
@@ -300,7 +337,7 @@ export default {
       country: "",
       image: "",
       roles: [],
-      },
+    },
     edit: {
       username: false,
       password: false,
@@ -329,7 +366,7 @@ export default {
     events: [],
   }),
   methods: {
-    getUserData(){
+    getUserData() {
       User.getUser(this.currentUser.username).then(response => {
         console.log(response);
         this.user.username = response.data.username;
@@ -346,7 +383,7 @@ export default {
         this.user.image = response.data.image;
       });
     },
-    saveImage(){
+    saveImage() {
       User.saveImage(this.currentUser.username, this.image).then(response => {
         console.log(response);
       });
@@ -400,7 +437,7 @@ export default {
 
       nativeEvent.stopPropagation();
     },
-  }
+  },
 };
 </script>
 

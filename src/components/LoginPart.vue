@@ -29,7 +29,7 @@
           color: white;
           min-width: 140px;
           text-transform: none;
-          font-family: Arial, Helvetica, sans-serif;
+          font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           margin-bottom: 10px;
           font-size: 14px;
         "
@@ -42,7 +42,7 @@
           color: white;
           min-width: 140px;
           text-transform: none;
-          font-family: Arial, Helvetica, sans-serif;
+          font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           margin-bottom: 10px;
         "
         @click="register"

@@ -4,8 +4,24 @@
       <v-card-title>
         <span class="headline">Events</span>
         <v-spacer></v-spacer>
-        <v-btn> Event Speichern</v-btn>
-        <v-btn> Event veröffentlichen</v-btn>
+        <v-btn
+          color="#000080"
+          style="
+            color:white; 
+            min-width: 191px; 
+            text-transform: none; 
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+        >Event Speichern</v-btn>
+          <v-btn
+            color="#000080"
+            style="
+            color:white; 
+            min-width: 191px; 
+            text-transform: none; 
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-left: 2%;
+            "
+          > Event veröffentlichen</v-btn>
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container>

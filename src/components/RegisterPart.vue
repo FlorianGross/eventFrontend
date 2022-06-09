@@ -12,36 +12,37 @@
           type="text"
           required
         >
-        </v-text-field>
-        <v-text-field
-          v-model="email"
-          :rules="emailRules"
-          label="Email"
-          type="email"
-          required
-        ></v-text-field>
-        <v-text-field
-          v-model="password"
-          :rules="passwordRules"
-          label="Password"
-          type="password"
-          required
-        ></v-text-field>
+          </v-text-field>
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="Email"
+            type="email"
+            required
+          ></v-text-field>
+            <v-text-field
+              v-model="password"
+              :rules="passwordRules"
+              label="Password"
+              type="password"
+              required
+            ></v-text-field>
       </v-form>
     </v-card-text>
     <v-card-actions class="loginButtons">
-      <v-btn         
-      color="#000080"
-      :disabled="isLoading"
+      <v-btn
+        color="#000080"
+        :disabled="isLoading"
         style="
           color: white;
           min-width: 140px;
           text-transform: none;
-          font-family: Arial, Helvetica, sans-serif;
+          font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           font-size: 14px;
           margin-bottom: 10px;
         "
-        @click="register">Register</v-btn>
+        @click="register"
+      >Register</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -56,16 +57,16 @@ export default {
       email: "",
       password: "",
       emailRules: [
-        (v) => !!v || "Email is required",
-        (v) => /.+@.+\..+/.test(v) || "Email must be valid",
+        v => !!v || "Email is required",
+        v => /.+@.+\..+/.test(v) || "Email must be valid",
       ],
       passwordRules: [
-        (v) => !!v || "Password is required",
-        (v) => v.length >= 6 || "Password must be at least 6 characters",
+        v => !!v || "Password is required",
+        v => v.length >= 6 || "Password must be at least 6 characters",
       ],
       usernameRules: [
-        (v) => !!v || "Username is required",
-        (v) => v.length >= 3 || "Username must be at least 3 characters",
+        v => !!v || "Username is required",
+        v => v.length >= 3 || "Username must be at least 3 characters",
       ],
     };
   },
@@ -81,13 +82,13 @@ export default {
           })
           .then(() => {
             this.$store
-          .dispatch("auth/login", {
-            username: this.username,
-            password: this.password,
-          })
-          .then(() => {
-            this.$router.push("/profile");
-          })
+              .dispatch("auth/login", {
+                username: this.username,
+                password: this.password,
+              })
+              .then(() => {
+                this.$router.push("/profile");
+              });
           })
           .catch(() => {
             this.$refs.form.validate();

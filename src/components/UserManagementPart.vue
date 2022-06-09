@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>User</v-card-title>
       <v-expansion-panels>
-        <v-expansion-panel v-for="user in users" :key="user">
+        <v-expansion-panel v-for="user in users" :key="user.username">
           <v-expansion-panel-header>
             {{ user.username }} {{ user.email }} {{ user.role }}
           </v-expansion-panel-header>

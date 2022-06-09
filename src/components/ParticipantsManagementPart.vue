@@ -14,7 +14,7 @@
       </v-expansion-panels>
     </v-card>
     <v-card>
-      <v-card-title>Vorangemeldete</v-card-title>
+      <v-card-title style="margin-top: 20px;">Vorangemeldete</v-card-title>
       <v-expansion-panels>
         <v-expansion-panel v-for="user in users" :key="user.username">
           <v-expansion-panel-header>

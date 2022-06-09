@@ -72,7 +72,7 @@
                       </v-menu>
             </v-toolbar>
           </v-sheet>
-          <v-sheet height="600">
+          <v-sheet class="calendar1" height="600" width="98%">
             <v-calendar
               ref="calendar"
               v-model="focus"
@@ -264,5 +264,9 @@ export default {
   margin-right: auto;
   margin-top: 79px;
   width: 1850px;
+}
+.calendar1 {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

@@ -37,7 +37,7 @@
                 Beginn:
                 <v-col cols="12" sm="6" md="4">
                   <v-menu
-                    ref="menu"
+                    ref="menu1"
                     v-model="menu1"
                     :close-on-content-click="false"
                     :return-value.sync="beginDate"
@@ -63,7 +63,7 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu.save(beginDate)"
+                        @click="$refs.menu1.save(beginDate)"
                       >
                         OK
                       </v-btn>
@@ -72,7 +72,7 @@
                 </v-col>
                 <v-col cols="11" sm="5">
                   <v-menu
-                    ref="menu"
+                    ref="menu2"
                     v-model="menu2"
                     :close-on-content-click="false"
                     :nudge-right="40"
@@ -96,7 +96,8 @@
                       v-if="menu2"
                       v-model="beginTime"
                       full-width
-                      @click:minute="$refs.menu.save(beginTime)"
+                      format="24hr"
+                      @click:minute="$refs.menu2.save(beginTime)"
                     ></v-time-picker>
                   </v-menu> </v-col
                 >
@@ -105,7 +106,7 @@
                 Ende:
                 <v-col cols="12" sm="6" md="4">
                   <v-menu
-                    ref="menu"
+                    ref="menu3"
                     v-model="menu3"
                     :close-on-content-click="false"
                     :return-value.sync="endDate"
@@ -131,7 +132,7 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu.save(endDate)"
+                        @click="$refs.menu3.save(endDate)"
                       >
                         OK
                       </v-btn>
@@ -140,7 +141,7 @@
                 </v-col>
                 <v-col cols="11" sm="5">
                   <v-menu
-                    ref="menu"
+                    ref="menu4"
                     v-model="menu4"
                     :close-on-content-click="false"
                     :nudge-right="40"
@@ -164,7 +165,8 @@
                       v-if="menu4"
                       v-model="endTime"
                       full-width
-                      @click:minute="$refs.menu.save(endTime)"
+                      format="24hr"
+                      @click:minute="$refs.menu4.save(endTime)"
                     ></v-time-picker>
                   </v-menu> </v-col
                 >

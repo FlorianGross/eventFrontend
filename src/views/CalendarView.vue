@@ -5,7 +5,7 @@
         <v-card-title>
           <span class="headline">Kalender</span>
         </v-card-title>
-        <v-card style="height: 1%"></v-card>
+        <v-card style="height: 1px"></v-card>
         <v-row class="fill-height">
           <v-col>
             <v-sheet height="64">

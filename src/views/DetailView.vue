@@ -1,6 +1,6 @@
 <template>
   <div class="bodyDetails">
-    <v-card width="1850px">
+    <v-card width="96.4%">
       <v-card-title>
         <span class="headline">Events</span>
         <v-spacer></v-spacer>
@@ -8,7 +8,7 @@
           color="#000080"
           style="
             color:white; 
-            min-width: 140px; 
+            min-width: 10%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
           v-if="isAdmin"
@@ -27,17 +27,16 @@
           >
             <v-card
               class="cards"
-              min-height="400px"
+              min-height="100%"
             >
               <div
                 class="grid-containerDetails"
-                style="margin-top: 0px"
               >
                 <div id="app">
                   <v-app id="inspire">
                     <v-card
                       max-width="375"
-                      height="1100px"
+                      height="100%"
                       class="mx-auto"
                     >
                       <v-img
@@ -48,8 +47,8 @@
                         dark
                       >
                         </v-img>
-                        <v-divider style="margin-top: 30px;"></v-divider>
-                        <v-card-title style="margin-top: 10px;">
+                        <v-divider style="margin-top: 10%;"></v-divider>
+                        <v-card-title style="margin-top: 5%;">
                           <span>Kontakt</span>
                         </v-card-title>
 
@@ -57,7 +56,7 @@
                           :headers="headers"
                           :items="organizer"
                           class="detailsInhalt-1"
-                          style="margin-top: -40px;"
+                          style="margin-top: -7%;"
                         >
                           </v-data-table>
     </v-card>
@@ -135,13 +134,13 @@
                           >
                             <v-icon dark> mdi-calendar </v-icon>
                             </v-btn>
-                            <div style="margin-left: -20px">
-                              <v-card-title>
+                            <div>
+                              <v-card-title style="margin-left: -10%;">
                                 <span>Anmelden</span>
                               </v-card-title>
                             </div>
-                            <div style="margin-left: -23px">
-                              <v-card-title>
+                            <div>
+                              <v-card-title style="margin-left: -11%;">
                                 <span>Vormerken</span>
                               </v-card-title>
                             </div>
@@ -296,24 +295,22 @@ export default {
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
 }
 .grid-containerDetails {
   height: auto;
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 0.5%;
   display: grid;
   grid-template-columns: auto auto auto;
 }
 .grid-buchungDetails {
   height: auto;
-  margin-top: 100px;
-  margin-left: 120px;
+  margin-top: 20%;
+  margin-left: 25%;
   display: grid;
   grid-template-columns: auto auto;
 }
 .textDetails {
-  margin-left: 100px;
+  margin-left: 20%;
 }
 
 .profilBildDetails {
@@ -325,7 +322,7 @@ export default {
 }
 .detailsVCardBeschreibung {
   margin-top: 8%;
-  min-height: 150px;
-  min-width: 400px;
+  min-height: 20%;
+  min-width: 100%;
 }
 </style>

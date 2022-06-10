@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <v-card width="1850px">
+    <v-card   width="96.4%">
       <v-card-title>
         <span class="headline">Events</span>
       </v-card-title>
@@ -10,7 +10,7 @@
           <v-flex v-for="event in events" :key="event._id" xl4 lg6 md7 sm9 xs12>
             <div class="item" @click="eventClick(event._id)">
               <v-card class="cards" height="400px">
-                <div class="grid-containerEvent" style="margin-top: 0px">
+                <div class="grid-containerEvent">
                   <img
                     class="profilBildEvent"
                     src="../assets/WelcomeBackParty _2022.jpg"
@@ -18,7 +18,7 @@
                   <div class="textEvent">
                     <div>
                       <v-card class="eventVCardBeschreibung">
-                        {{ event }}
+                        <div class="eventText">{{ event }}</div>
                       </v-card>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ export default {
 </script>
 <style>
 .item {
-  margin: 20px;
+  margin: 5%;
 }
 .body {
   align-content: center;
@@ -69,14 +69,14 @@ export default {
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 0.8%;
 }
 
 .grid-containerEvent {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 4.1%;
+  margin-left: 2%;
   display: grid;
-  grid-template-columns: 250px 700px;
+  grid-template-columns: 45% 130%;
 }
 .profilBildEvent {
   width: 100%;
@@ -89,8 +89,13 @@ export default {
   margin-left: 5%;
 }
 .eventVCardBeschreibung {
-  margin-top: 0%;
   min-height: 350px;
-  min-width: 50px;
+  min-width: 100%;
+  overflow:auto;
+}
+.eventText {
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 2%;
 }
 </style>

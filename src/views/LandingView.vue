@@ -5,7 +5,7 @@
       <register-part v-if="isRegister"></register-part>
       <v-card
         v-if="!isLogin && !isRegister"
-        style="height: 250px"
+        style="height: 50%"
       >
         <v-card-title>
           <span class="headline">Willkommen</span>
@@ -18,7 +18,7 @@
             color="#000080"
             style="
             color:white; 
-            min-width: 140px; 
+            min-width: 30%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             "
@@ -28,7 +28,7 @@
               color="#000080"
               style="
             color:white; 
-            min-width: 140px; 
+            min-width: 30%;  
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           "
@@ -105,13 +105,13 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 28%;
   margin-left: auto;
   margin-right: auto;
 }
 .loginButtons {
   display: ce;
   justify-content: space-around;
-  padding-top: 25px;
+  padding-top: 7%;
 }
 </style>

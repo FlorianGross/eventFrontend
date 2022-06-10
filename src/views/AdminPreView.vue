@@ -1,6 +1,6 @@
 <template>
   <div class="bodyDetails">
-    <v-card width="1850px">
+    <v-card width= 96.4%>
       <v-card-title>
         <span class="headline">Admin </span>
       </v-card-title>
@@ -77,6 +77,6 @@ export default {
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 15px;
+  margin-top: 0.8%;
 }
 </style>

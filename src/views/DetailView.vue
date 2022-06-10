@@ -358,9 +358,10 @@ export default {
   height: 100%;
 }
 .grid-containerDetails {
+  margin-top: 1%;
   display: grid;
   padding: 0;
-  grid-template-columns: 35% 50% 50%;
+  grid-template-columns: 35% 75% 75%;
 }
 .grid-buchungDetails {
   display: grid;

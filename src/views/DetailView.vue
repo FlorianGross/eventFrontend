@@ -37,14 +37,18 @@
                       <v-card-title style="margin-top: 5%">
                         <span>Kontakt</span>
                       </v-card-title>
-
-                      <v-data-table
-                        :headers="headers"
-                        :items="organizer"
-                        class="detailsInhalt-1"
-                        style="margin-top: -7%"
-                      >
-                      </v-data-table>
+                      <v-card-text>
+                        <v-simple-table class="detailsInhalt-1">
+                          <tbody>
+                            <v-divider></v-divider>
+                            <tr v-for="item in organizer" :key="item.name">
+                              <td>{{ item.name }}</td>
+                              <td>{{ item.werte }}</td>
+                            </tr>
+                            <v-divider></v-divider>
+                          </tbody>
+                        </v-simple-table>
+                      </v-card-text>
                     </v-card>
                   </v-app>
                 </div>
@@ -55,12 +59,16 @@
                   <div>
                     <v-app id="inspire">
                       <v-card class="detailsVCardBeschreibung"> </v-card>
-                      <v-data-table
-                        :headers="headers"
-                        :items="details"
-                        class="detailsInhalt-1"
-                      >
-                      </v-data-table>
+                      <v-simple-table class="detailsInhalt-1">
+                        <tbody>
+                          <v-divider></v-divider>
+                          <tr v-for="item in details" :key="item.name">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.werte }}</td>
+                          </tr>
+                          <v-divider></v-divider>
+                        </tbody>
+                      </v-simple-table>
                     </v-app>
                   </div>
                 </div>
@@ -70,12 +78,16 @@
                   </v-card-title>
                   <div>
                     <v-app id="inspire">
-                      <v-data-table
-                        :headers="headers"
-                        :items="buchung"
-                        class="detailsInhalt-1"
-                      >
-                      </v-data-table>
+                      <v-simple-table class="detailsInhalt-1">
+                        <tbody>
+                          <v-divider></v-divider>
+                          <tr v-for="item in buchung" :key="item.name">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.werte }}</td>
+                          </tr>
+                          <v-divider></v-divider>
+                        </tbody>
+                      </v-simple-table>
                       <div class="detailsInhalt-2">
                         <v-card class="detailsVCardBuchung">
                           <v-alert

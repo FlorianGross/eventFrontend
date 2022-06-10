@@ -18,38 +18,13 @@
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container>
-<<<<<<< HEAD
         <v-layout row wrap>
           <div class="item">
-            <v-card class="cards" min-height="400px">
-              <div class="grid-containerDetails" style="margin-top: 0px">
-                <div id="app" style="width: 400px">
-                  <v-app id="inspire">
-                    <v-card max-width="375" height="1100px" class="mx-auto">
-=======
-        <v-layout
-          row
-          wrap
-        >
-          <div
-            class="item"
-            @click="eventClick(n)"
-          >
-            <v-card
-              class="cards"
-              min-height="100%"
-            >
-              <div
-                class="grid-containerDetails"
-              >
+            <v-card class="cards" min-height="100%">
+              <div class="grid-containerDetails">
                 <div id="app">
                   <v-app id="inspire">
-                    <v-card
-                      max-width="375"
-                      height="100%"
-                      class="mx-auto"
-                    >
->>>>>>> 5bac4d1710b0b276405c772b863ed5c2a4dd93d3
+                    <v-card max-width="375" height="100%" class="mx-auto">
                       <v-img
                         class="profilBildEvent"
                         src="../assets/WelcomeBackParty _2022.jpg"
@@ -57,159 +32,60 @@
                         weight="auto"
                         dark
                       >
-<<<<<<< HEAD
                       </v-img>
-                      <v-divider style="margin-top: 30px"></v-divider>
-                      <v-card-title style="margin-top: 10px">
+                      <v-divider style="margin-top: 10%"></v-divider>
+                      <v-card-title style="margin-top: 5%">
                         <span>Kontakt</span>
                       </v-card-title>
-                      <v-card-text>
-                        <v-simple-table class="detailsInhalt-1">
-                          <tbody>
-                            <v-divider></v-divider>
-                            <tr v-for="item in organizer" :key="item.name">
-                              <td>{{ item.name }}</td>
-                              <td>{{ item.werte }}</td>
-                            </tr>
-                            <v-divider></v-divider>
-                          </tbody>
-                        </v-simple-table>
-                      </v-card-text>
+
+                      <v-data-table
+                        :headers="headers"
+                        :items="organizer"
+                        class="detailsInhalt-1"
+                        style="margin-top: -7%"
+                      >
+                      </v-data-table>
                     </v-card>
                   </v-app>
                 </div>
-                <div class="textDetails" style="width: 500px">
+                <div class="textDetails">
                   <v-card-title>
                     <span>Details</span>
                   </v-card-title>
                   <div>
                     <v-app id="inspire">
                       <v-card class="detailsVCardBeschreibung"> </v-card>
-                      <v-simple-table class="detailsInhalt-1">
-                        <tbody>
-                          <v-divider></v-divider>
-                          <tr v-for="item in details" :key="item.name">
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.werte }}</td>
-                          </tr>
-                          <v-divider></v-divider>
-                        </tbody>
-                      </v-simple-table>
+                      <v-data-table
+                        :headers="headers"
+                        :items="details"
+                        class="detailsInhalt-1"
+                      >
+                      </v-data-table>
                     </v-app>
                   </div>
                 </div>
-                <div class="textDetails" style="width: 600px">
+                <div class="textDetails">
                   <v-card-title>
                     <span>Buchung</span>
                   </v-card-title>
                   <div>
                     <v-app id="inspire">
-                      <v-simple-table class="detailsInhalt-1">
-                        <tbody>
-                          <v-divider></v-divider>
-                          <tr v-for="item in buchung" :key="item.name">
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.werte }}</td>
-                          </tr>
-                          <v-divider></v-divider>
-                        </tbody>
-                      </v-simple-table>
+                      <v-data-table
+                        :headers="headers"
+                        :items="buchung"
+                        class="detailsInhalt-1"
+                      >
+                      </v-data-table>
                       <div class="detailsInhalt-2">
                         <v-card class="detailsVCardBuchung">
                           <v-alert
                             v-if="showAlert"
                             :type="error ? 'error' : 'success'"
                             :color="error ? 'red' : 'green'"
-=======
-                        </v-img>
-                        <v-divider style="margin-top: 10%;"></v-divider>
-                        <v-card-title style="margin-top: 5%;">
-                          <span>Kontakt</span>
-                        </v-card-title>
-
-                        <v-data-table
-                          :headers="headers"
-                          :items="organizer"
-                          class="detailsInhalt-1"
-                          style="margin-top: -7%;"
-                        >
-                          </v-data-table>
-    </v-card>
-    </v-app>
-    </div>
-    <div class="textDetails">
-      <v-card-title>
-        <span>Details</span>
-      </v-card-title>
-      <div>
-        <v-app id="inspire">
-          <v-card class="detailsVCardBeschreibung">
-          </v-card>
-          <v-data-table
-            :headers="headers"
-            :items="details"
-            class="detailsInhalt-1"
-          >
-            </v-data-table>
-        </v-app>
-      </div>
-    </div>
-    <div class="textDetails">
-      <v-card-title>
-        <span>Buchung</span>
-      </v-card-title>
-      <div>
-        <v-app id="inspire">
-          <v-data-table
-            :headers="headers"
-            :items="buchung"
-            class="detailsInhalt-1"
-          >
-            </v-data-table>
-            <div class="detailsInhalt-2">
-              <v-card class="detailsVCardBuchung">
-                <v-alert
-                  v-if="showAlert"
-                  :type="error ? 'error' : 'success'"
-                  :color="error ? 'red' : 'green'"
-                >
-                  {{notification}}
-                  </v-alert>
-                  <div class="grid-buchungDetails">
-                    <v-btn
-                      class="mx-1"
-                      fab
-                      dark
-                      large
-                      @click="
-                              isLoading = true;
-                              angemeldet = false;
-                              showAlert = false;
-                              "
-                      :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
-                    >
-                      <v-icon
-                        dark
-                        v-if="!isLoading"
-                      >
-                        mdi-check
-                        </v-icon>
-                        <v-progress-circular
-                          v-if="isLoading"
-                          color="white"
-                          indeterminate
-                        ></v-progress-circular>
-                          </v-btn>
-                          <v-btn
-                            class="mx-1"
-                            fab
-                            dark
-                            large
-                            color="blue"
->>>>>>> 5bac4d1710b0b276405c772b863ed5c2a4dd93d3
                           >
                             {{ notification }}
                           </v-alert>
+
                           <div class="grid-buchungDetails">
                             <v-btn
                               class="mx-1"
@@ -238,12 +114,12 @@
                               <v-icon dark> mdi-calendar </v-icon>
                             </v-btn>
                             <div>
-                              <v-card-title style="margin-left: -10%;">
+                              <v-card-title style="margin-left: -10%">
                                 <span>Anmelden</span>
                               </v-card-title>
                             </div>
                             <div>
-                              <v-card-title style="margin-left: -11%;">
+                              <v-card-title style="margin-left: -11%">
                                 <span>Vormerken</span>
                               </v-card-title>
                             </div>

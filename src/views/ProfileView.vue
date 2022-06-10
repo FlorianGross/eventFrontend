@@ -1,14 +1,14 @@
 <template>
   <div class="body-of-profil">
     <div class="containerField">
-      <v-card style="height: 850px">
+      <v-card style="height: 100%">
         <v-card-title>
           <span class="headline">Profildaten</span>
           <v-btn
             color="#000080"
             style="
             color:white; 
-            min-width: 140px; 
+            min-width: 10%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
             @click="getUserData()"
@@ -18,12 +18,13 @@
         <v-card-text class="profilText"></v-card-text>
         <div
           class="grid-containerRwu"
-          style="margin-top: 40px"
+          style="margin-top: 3%"
         >
           <div>
             <img
               class="profilBild"
               src="../assets/bild3.jpg"
+              style="margin-top: -35%;"
             />
             <v-file-input
               append-icon="mdi-send"
@@ -37,7 +38,7 @@
           </div>
           <div
             class="text"
-            style="margin-left: 250px"
+            style="margin-left: 38%; margin-top: -9.8%;"
           >
             <v-card>
               <v-card-title>
@@ -238,7 +239,6 @@
                 >
                   <v-card
                     color="grey lighten-4"
-                    min-width="350px"
                     flat
                   >
                     <v-toolbar
@@ -456,13 +456,14 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  overflow:auto;
 }
 .containerField {
   top: 15%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 79px;
-  width: 1850px;
+  margin-top: 4.1%;
+  width: 96.4%;
 }
 .profilBild {
   margin-left: 10%;
@@ -470,14 +471,9 @@ export default {
   max-height: 35%;
 }
 .grid-containerRwu {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 0.5%;
   display: grid;
-  grid-template-columns: 200px 700px 900px;
-}
-.setting_btn {
-  margin-top: 5%;
-  width: 453px;
+  grid-template-columns: 10.5% 38% 49.5%;
 }
 .text {
   margin-left: 5%;
@@ -494,7 +490,6 @@ export default {
   margin-top: -6%;
 }
 .textField {
-  height: 50px;
-  width: 400px;
+  width: 95%;
 }
 </style>

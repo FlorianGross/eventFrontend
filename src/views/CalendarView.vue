@@ -1,11 +1,11 @@
 <template>
   <div class="body-kalender">
     <div class="containerFieldKalender">
-      <v-card style="height: 850px">
+      <v-card>
         <v-card-title>
           <span class="headline">Kalender</span>
         </v-card-title>
-        <v-card style="height: 10px"></v-card>
+        <v-card style="height: 1%"></v-card>
         <v-row class="fill-height">
           <v-col>
             <v-sheet height="64">
@@ -97,7 +97,6 @@
                 >
                   <v-card
                     color="grey lighten-4"
-                    min-width="350px"
                     flat
                   >
                     <v-toolbar
@@ -266,8 +265,8 @@ export default {
 .containerFieldKalender {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 79px;
-  width: 1850px;
+  margin-top: 4.1%;
+  width: 96.4%;
 }
 .calendar1 {
   margin-left: auto;

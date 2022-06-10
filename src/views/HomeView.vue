@@ -6,31 +6,11 @@
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container>
-        <v-layout
-          row
-          wrap
-        >
-          <v-flex
-            v-for="n in 9"
-            :key="n"
-            xl4
-            lg6
-            md7
-            sm9
-            xs12
-          >
-            <div
-              class="item"
-              @click="eventClick(n)"
-            >
-              <v-card
-                class="cards"
-                height="400px"
-              >
-                <div
-                  class="grid-containerEvent"
-                  style="margin-top: 0px"
-                >
+        <v-layout row wrap>
+          <v-flex v-for="event in events" :key="event._id" xl4 lg6 md7 sm9 xs12>
+            <div class="item" @click="eventClick(event._id)">
+              <v-card class="cards" height="400px">
+                <div class="grid-containerEvent" style="margin-top: 0px">
                   <img
                     class="profilBildEvent"
                     src="../assets/WelcomeBackParty _2022.jpg"
@@ -38,28 +18,43 @@
                   <div class="textEvent">
                     <div>
                       <v-card class="eventVCardBeschreibung">
+                        {{ event }}
                       </v-card>
                     </div>
                   </div>
-  </div>
-  </v-card>
-  </div>
-  </v-flex>
-  </v-layout>
-  </v-container>
-  </v-card>
+                </div>
+              </v-card>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-card>
   </div>
 </template>
 
 <script>
 import router from "@/router";
-
+import Event from "@/services/event.service";
 export default {
   name: "HomeView",
+  data() {
+    return {
+      events: [],
+    };
+  },
   methods: {
     eventClick(event) {
       router.push({ path: "/event/" + event }).catch(() => {});
     },
+    getEvents() {
+      Event.getAllEvents().then((response) => {
+        this.events = response.data;
+        console.log(response.data);
+      });
+    },
+  },
+  mounted() {
+    this.getEvents();
   },
 };
 </script>

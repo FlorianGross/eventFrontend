@@ -22,11 +22,6 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  },
-  {
     path: '/calendar',
     name: 'calendar',
     component: CalendarView

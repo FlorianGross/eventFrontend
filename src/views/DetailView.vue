@@ -13,33 +13,18 @@
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
           v-if="isAdmin"
           @click="openAdminView()"
-        >Event Bearbeiten</v-btn>
+          >Event Bearbeiten</v-btn
+        >
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container>
-        <v-layout
-          row
-          wrap
-        >
-          <div
-            class="item"
-            @click="eventClick(n)"
-          >
-            <v-card
-              class="cards"
-              min-height="400px"
-            >
-              <div
-                class="grid-containerDetails"
-                style="margin-top: 0px"
-              >
-                <div id="app">
+        <v-layout row wrap>
+          <div class="item">
+            <v-card class="cards" min-height="400px">
+              <div class="grid-containerDetails" style="margin-top: 0px">
+                <div id="app" style="width: 400px">
                   <v-app id="inspire">
-                    <v-card
-                      max-width="375"
-                      height="1100px"
-                      class="mx-auto"
-                    >
+                    <v-card max-width="375" height="1100px" class="mx-auto">
                       <v-img
                         class="profilBildEvent"
                         src="../assets/WelcomeBackParty _2022.jpg"
@@ -47,93 +32,97 @@
                         weight="auto"
                         dark
                       >
-                        </v-img>
-                        <v-divider style="margin-top: 30px;"></v-divider>
-                        <v-card-title style="margin-top: 10px;">
-                          <span>Kontakt</span>
-                        </v-card-title>
-
-                        <v-data-table
-                          :headers="headers"
-                          :items="organizer"
-                          class="detailsInhalt-1"
-                          style="margin-top: -40px;"
-                        >
-                          </v-data-table>
-    </v-card>
-    </v-app>
-    </div>
-    <div class="textDetails">
-      <v-card-title>
-        <span>Details</span>
-      </v-card-title>
-      <div>
-        <v-app id="inspire">
-          <v-card class="detailsVCardBeschreibung">
-          </v-card>
-          <v-data-table
-            :headers="headers"
-            :items="details"
-            class="detailsInhalt-1"
-          >
-            </v-data-table>
-        </v-app>
-      </div>
-    </div>
-    <div class="textDetails">
-      <v-card-title>
-        <span>Buchung</span>
-      </v-card-title>
-      <div>
-        <v-app id="inspire">
-          <v-data-table
-            :headers="headers"
-            :items="buchung"
-            class="detailsInhalt-1"
-          >
-            </v-data-table>
-            <div class="detailsInhalt-2">
-              <v-card class="detailsVCardBuchung">
-                <v-alert
-                  v-if="showAlert"
-                  :type="error ? 'error' : 'success'"
-                  :color="error ? 'red' : 'green'"
-                >
-                  {{notification}}
-                  </v-alert>
-                  <div class="grid-buchungDetails">
-                    <v-btn
-                      class="mx-1"
-                      fab
-                      dark
-                      large
-                      @click="
-                              isLoading = true;
-                              angemeldet = false;
-                              showAlert = false;
-                              "
-                      :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
-                    >
-                      <v-icon
-                        dark
-                        v-if="!isLoading"
-                      >
-                        mdi-check
-                        </v-icon>
-                        <v-progress-circular
-                          v-if="isLoading"
-                          color="white"
-                          indeterminate
-                        ></v-progress-circular>
-                          </v-btn>
-                          <v-btn
-                            class="mx-1"
-                            fab
-                            dark
-                            large
-                            color="blue"
+                      </v-img>
+                      <v-divider style="margin-top: 30px"></v-divider>
+                      <v-card-title style="margin-top: 10px">
+                        <span>Kontakt</span>
+                      </v-card-title>
+                      <v-card-text>
+                        <v-simple-table class="detailsInhalt-1">
+                          <tbody>
+                            <v-divider></v-divider>
+                            <tr v-for="item in organizer" :key="item.name">
+                              <td>{{ item.name }}</td>
+                              <td>{{ item.werte }}</td>
+                            </tr>
+                            <v-divider></v-divider>
+                          </tbody>
+                        </v-simple-table>
+                      </v-card-text>
+                    </v-card>
+                  </v-app>
+                </div>
+                <div class="textDetails" style="width: 500px">
+                  <v-card-title>
+                    <span>Details</span>
+                  </v-card-title>
+                  <div>
+                    <v-app id="inspire">
+                      <v-card class="detailsVCardBeschreibung"> </v-card>
+                      <v-simple-table class="detailsInhalt-1">
+                        <tbody>
+                          <v-divider></v-divider>
+                          <tr v-for="item in details" :key="item.name">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.werte }}</td>
+                          </tr>
+                          <v-divider></v-divider>
+                        </tbody>
+                      </v-simple-table>
+                    </v-app>
+                  </div>
+                </div>
+                <div class="textDetails" style="width: 600px">
+                  <v-card-title>
+                    <span>Buchung</span>
+                  </v-card-title>
+                  <div>
+                    <v-app id="inspire">
+                      <v-simple-table class="detailsInhalt-1">
+                        <tbody>
+                          <v-divider></v-divider>
+                          <tr v-for="item in buchung" :key="item.name">
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.werte }}</td>
+                          </tr>
+                          <v-divider></v-divider>
+                        </tbody>
+                      </v-simple-table>
+                      <div class="detailsInhalt-2">
+                        <v-card class="detailsVCardBuchung">
+                          <v-alert
+                            v-if="showAlert"
+                            :type="error ? 'error' : 'success'"
+                            :color="error ? 'red' : 'green'"
                           >
-                            <v-icon dark> mdi-calendar </v-icon>
+                            {{ notification }}
+                          </v-alert>
+                          <div class="grid-buchungDetails">
+                            <v-btn
+                              class="mx-1"
+                              fab
+                              dark
+                              large
+                              @click="
+                                isLoading = true;
+                                angemeldet = false;
+                                showAlert = false;
+                              "
+                              :color="
+                                angemeldet ? 'green' : error ? 'red' : 'blue'
+                              "
+                            >
+                              <v-icon dark v-if="!isLoading">
+                                mdi-check
+                              </v-icon>
+                              <v-progress-circular
+                                v-if="isLoading"
+                                color="white"
+                                indeterminate
+                              ></v-progress-circular>
+                            </v-btn>
+                            <v-btn class="mx-1" fab dark large color="blue">
+                              <v-icon dark> mdi-calendar </v-icon>
                             </v-btn>
                             <div style="margin-left: -20px">
                               <v-card-title>
@@ -145,25 +134,30 @@
                                 <span>Vormerken</span>
                               </v-card-title>
                             </div>
+                          </div>
+                        </v-card>
+                        <v-btn @click="sendGoodAlert('Erfolgreich angemeldet')"
+                          >Test1</v-btn
+                        >
+                        <v-btn @click="sendBadAlert('Erfolglos angemeldet')"
+                          >Test2</v-btn
+                        >
+                      </div>
+                    </v-app>
                   </div>
-              </v-card>
-              <v-btn @click="sendGoodAlert('Erfolgreich angemeldet')">Test1</v-btn>
-              <v-btn @click="sendBadAlert('Erfolglos angemeldet')">Test2</v-btn>
-            </div>
-        </v-app>
-      </div>
-    </div>
-  </div>
-  </v-card>
-  </div>
-  </v-layout>
-  </v-container>
-  </v-card>
+                </div>
+              </div>
+            </v-card>
+          </div>
+        </v-layout>
+      </v-container>
+    </v-card>
   </div>
 </template>
 
 <script>
 import authService from "@/services/auth.service";
+import Event from "../services/event.service";
 export default {
   name: "DetailView",
   data() {
@@ -174,6 +168,23 @@ export default {
       showAlert: false,
       error: false,
       notification: "",
+      event: {
+        name: "",
+        description: "",
+        image: "",
+        location: "",
+        start: null,
+        end: null,
+        maxParticipants: "",
+        preSale: "",
+        preSaleInfo: "",
+        cost: "",
+        eventSpecials: "",
+        contactPerson: "",
+        contactEmail: "",
+        contactPhoneNumber: "",
+        published: "",
+      },
       headers: [
         {
           text: "",
@@ -183,7 +194,24 @@ export default {
         },
         { text: "", value: "werte" },
       ],
-      details: [
+      details: [],
+      buchung: [],
+      organizer: [],
+    };
+  },
+  methods: {
+    getEvent() {
+      Event.getEvent(this.id).then((response) => {
+        console.log(response);
+        this.event = response.data;
+        console.log(this.event);
+      });
+      this.addOrganizer();
+      this.addDetails();
+      this.addBuchung();
+    },
+    addDetails() {
+      this.details.push(
         {
           name: "Name",
           werte: "Welcome Back Party",
@@ -194,15 +222,15 @@ export default {
         },
         {
           name: "Ort",
-          werte: "RWU ; C-Gebäude",
+          werte: this.event.location,
         },
         {
           name: "Einlass",
-          werte: "16:00 Uhr",
+          werte: this.event.start + " Uhr",
         },
         {
           name: "Eintritt",
-          werte: "7 €",
+          werte: this.event.cost + " €",
         },
         {
           name: "Specials",
@@ -226,36 +254,36 @@ export default {
         },
         {
           name: "Eintritt",
-          werte: "7 €",
+          werte: this.event.cost + " €",
+        }
+      );
+    },
+    addBuchung() {
+      this.buchung.push(
+        {
+          name: "Maximale Anzahl Teilnehmer",
+          werte: this.event.maxParticipants,
         },
-      ],
-      buchung: [
         {
           name: "Zusagen",
-          werte: 700,
+          werte: 0,
         },
         {
           name: "Vorgemerkt",
-          werte: 100,
-        },
-      ],
-      organizer: [
+          werte: 0,
+        }
+      );
+    },
+    addOrganizer() {
+      this.organizer.push(
         {
           name: "Kontaktperson",
-          werte: "Max Muster",
+          werte: this.event.contactPerson,
         },
-        {
-          name: "Telefonnummer",
-          werte: "0123 / 45678902",
-        },
-        {
-          name: "E-Mail",
-          werte: "max.muster@gmy.de",
-        },
-      ],
-    };
-  },
-  methods: {
+        { name: "Telefonnummer", werte: this.event.contactPhoneNumber },
+        { name: "Email", werte: this.event.contactEmail }
+      );
+    },
     sendGoodAlert(message) {
       this.showAlert = true;
       this.angemeldet = true;
@@ -281,9 +309,12 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
-    authService.getIsAdmin(this.currentUser.username).then(response => {
+    authService.getIsAdmin(this.currentUser.username).then((response) => {
       this.isAdmin = response.data;
     });
+  },
+  mounted() {
+    this.getEvent();
   },
 };
 </script>

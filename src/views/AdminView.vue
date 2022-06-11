@@ -11,6 +11,19 @@
             min-width: 191px; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin-left: 2%;
+            "
+          @click="testDate()"
+        >
+          Test</v-btn
+        >
+        <v-btn
+          color="#000080"
+          style="
+            color:white; 
+            min-width: 191px; 
+            text-transform: none; 
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             margin-right: 2%;
             "
           @click="deleteEvent()"
@@ -103,12 +116,21 @@
                   </v-text-field>
                   <v-text-field label="Besonderheiten" v-model="event.Specials">
                   </v-text-field>
-                  <v-text-field
+                  <v-checkbox
                     label="Vorverkauf"
                     v-model="event.preSale"
+                  ></v-checkbox>
+                  <v-text-field
+                    v-if="event.preSale"
+                    label="Vorverkauf"
+                    v-model="event.preSaleInfo"
                   ></v-text-field>
                   <v-file-input label="Bild"> </v-file-input>
-                  <v-textarea label="Beschreibung" style="margin-top: 6%">
+                  <v-textarea
+                    label="Beschreibung"
+                    style="margin-top: 6%"
+                    v-model="event.description"
+                  >
                   </v-textarea>
                   <v-row style="margin-top: 6%; margin-left: 0.5%">
                     Beginn:
@@ -266,6 +288,7 @@
                 ></v-text-field>
                 <participants-management-part-vue
                   style="margin-top: 2%"
+                  :eventid="this.$route.params.id"
                 ></participants-management-part-vue>
               </div>
             </div>
@@ -305,7 +328,7 @@ export default {
         start: null,
         end: null,
         maxParticipants: "",
-        preSale: "",
+        preSale: null,
         preSaleInfo: "",
         cost: "",
         eventSpecials: "",
@@ -317,32 +340,45 @@ export default {
     };
   },
   methods: {
+    testDate() {
+      console.log(this.beginDate + ": " + this.beginTime);
+      const result = new Date(
+        this.beginDate + "T" + this.beginTime + ":00.000Z"
+      );
+      console.log(result);
+    },
     getEvent() {
       Event.getEvent(this.$route.params.id).then((response) => {
         this.event = response.data;
       });
-      if (this.startDate) this.startDate = this.event.start.substr(0, 10);
-      if (this.startTime) this.startTime = this.event.start.substr(11, 5);
-      if (this.endDate) this.endDate = this.event.end.substr(0, 10);
-      if (this.endTime) this.endTime = this.event.end.substr(11, 5);
-    },
-    getDate(date, time) {
-      if (date && time) {
-        return new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          time.getHours(),
-          time.getMinutes()
-        );
-      } else return null;
+      this.event.id = this.$route.params.id;
+      if (this.event.start) this.startDate = this.event.start.substr(0, 10);
+      if (this.event.start) this.startTime = this.event.start.substr(11, 5);
+      if (this.event.end) this.endDate = this.event.end.substr(0, 10);
+      if (this.event.end) this.endTime = this.event.end.substr(11, 5);
     },
     getTime() {
-      this.event.start = getDate(startDate, startTime);
-      this.event.end = getDate(endDate, endTime);
+      this.event.start = new Date(
+        this.beginDate + "T" + this.beginTime + ":00.000Z"
+      );
+      this.event.end = new Date(this.endDate + "T" + this.endTime + ":00.000Z");
     },
     saveEvent() {
-      //this.getTime();
+      if (this.beginDate && this.beginTime && this.endDate && this.endTime) {
+        this.getTime();
+      } else {
+        console.log(
+          "Dates not set: " +
+            this.beginDate +
+            " " +
+            this.beginTime +
+            " " +
+            this.endDate +
+            " " +
+            this.endTime
+        );
+      }
+      this.event.id = this.$route.params.id;
       Event.updateEvent(this.event).then((response) => {
         console.log(response);
       });
@@ -368,6 +404,9 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
+  },
+  mounted() {
+    this.getEvent();
   },
 };
 </script>

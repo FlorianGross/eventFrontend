@@ -158,6 +158,7 @@ export default {
               color: "blue",
               start: start.getTime(),
               end: end.getTime(),
+              timed: true,
             });
           }
         }

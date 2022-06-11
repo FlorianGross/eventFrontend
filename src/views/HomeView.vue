@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <v-card   width="96.4%">
+    <v-card width="96.4%">
       <v-card-title>
         <span class="headline">Events</span>
       </v-card-title>
@@ -18,7 +18,7 @@
                   <div class="textEvent">
                     <div>
                       <v-card class="eventVCardBeschreibung">
-                        <div class="eventText">{{ event }}</div>
+                        <div class="eventText">{{ event.description }}</div>
                       </v-card>
                     </div>
                   </div>
@@ -91,7 +91,7 @@ export default {
 .eventVCardBeschreibung {
   min-height: 350px;
   min-width: 100%;
-  overflow:auto;
+  overflow: auto;
 }
 .eventText {
   margin-top: 5%;

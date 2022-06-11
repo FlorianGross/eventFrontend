@@ -76,9 +76,6 @@
               >
                 <v-card color="grey lighten-4" flat>
                   <v-toolbar :color="selectedEvent.color" dark>
-                    <v-btn icon>
-                      <v-icon>mdi-pencil</v-icon>
-                    </v-btn>
                     <v-toolbar-title
                       v-html="selectedEvent.name"
                     ></v-toolbar-title>
@@ -159,6 +156,7 @@ export default {
               start: start.getTime(),
               end: end.getTime(),
               timed: true,
+              details: this.eventPre[i],
             });
           }
         }

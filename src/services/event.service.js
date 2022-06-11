@@ -53,7 +53,7 @@ class UserService {
   }
 
   deleteEvent(id) {
-    return axios.post(API_URL + 'delete', id, { headers: authHeader() })
+    return axios.post(API_URL + 'delete', { id }, { headers: authHeader() })
   }
 
   participateEvent(id, user) {
@@ -64,12 +64,28 @@ class UserService {
     return axios.post(API_URL + 'unparticipate', { id, user }, { headers: authHeader() })
   }
 
-  preOrder(id, user) {
-    return axios.post(API_URL + 'preorder', { id, user }, { headers: authHeader() })
+  getParticipants(id) {
+    return axios.post(API_URL + 'getParticipants', { id }, { headers: authHeader() })
+  }
+
+  getParticipantsAmount(id) {
+    return axios.post(API_URL + 'getParticipantsAmount', { id }, { headers: authHeader() })
   }
 
   unPreOrder(id, user) {
     return axios.post(API_URL + 'unpreorder', { id, user }, { headers: authHeader() })
+  }
+
+  getPreOrderAmount(id) {
+    return axios.post(API_URL + 'getPreOrderAmount', { id }, { headers: authHeader() })
+  }
+
+  getPreOrder(id) {
+    return axios.post(API_URL + 'getPreOrder', { id }, { headers: authHeader() })
+  }
+
+  preOrder(id, user) {
+    return axios.post(API_URL + 'preorder', { id, user }, { headers: authHeader() })
   }
 }
 export default new UserService()

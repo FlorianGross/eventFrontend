@@ -2,7 +2,7 @@
   <div class="bodyDetails">
     <div class="containerFieldDetails">
       <v-card style="height: 100%">
-      <v-card-title>
+        <v-card-title>
           <span class="headline">Events</span>
           <v-btn
             color="#000080"
@@ -11,16 +11,14 @@
             min-width: 10%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
-             v-if="isAdmin"
-              @click="openAdminView()"
-          >Event Bearbeiten</v-btn>
+            v-if="isAdmin"
+            @click="openAdminView()"
+            >Event Bearbeiten</v-btn
+          >
         </v-card-title>
         <v-card style="height: 1px"></v-card>
         <v-container>
-          <v-layout
-            row
-            wrap
-          >
+          <v-layout row wrap>
             <div class="grid-containerDetails">
               <v-card class="mx-auto">
                 <v-img
@@ -30,26 +28,23 @@
                   width="350"
                   dark
                 >
-                  </v-img>
-                  <v-divider></v-divider>
-                  <v-card-title>
-                    <span>Kontakt</span>
-                  </v-card-title>
-                  <v-card-text>
-                    <v-simple-table class="detailsInhalt-1">
-                      <tbody>
-                        <v-divider></v-divider>
-                        <tr
-                          v-for="item in organizer"
-                          :key="item.name"
-                        >
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.werte }}</td>
-                          </tr>
-                          <v-divider></v-divider>
-                      </tbody>
-                    </v-simple-table>
-                  </v-card-text>
+                </v-img>
+                <v-divider></v-divider>
+                <v-card-title>
+                  <span>Kontakt</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-simple-table class="detailsInhalt-1">
+                    <tbody>
+                      <v-divider></v-divider>
+                      <tr v-for="item in organizer" :key="item.id">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.werte }}</td>
+                      </tr>
+                      <v-divider></v-divider>
+                    </tbody>
+                  </v-simple-table>
+                </v-card-text>
               </v-card>
               <div class="textDetails1">
                 <v-card-title>
@@ -60,14 +55,11 @@
                     <v-simple-table class="detailsInhalt-2">
                       <tbody>
                         <v-divider></v-divider>
-                        <tr
-                          v-for="item in details"
-                          :key="item.name"
-                        >
+                        <tr v-for="item in details" :key="item.id">
                           <td>{{ item.name }}</td>
                           <td>{{ item.werte }}</td>
-                          </tr>
-                          <v-divider></v-divider>
+                        </tr>
+                        <v-divider></v-divider>
                       </tbody>
                     </v-simple-table>
                   </v-card>
@@ -82,14 +74,11 @@
                     <v-simple-table class="detailsInhalt-2">
                       <tbody>
                         <v-divider></v-divider>
-                        <tr
-                          v-for="item in buchung"
-                          :key="item.name"
-                        >
+                        <tr v-for="item in buchung" :key="item.id">
                           <td>{{ item.name }}</td>
                           <td>{{ item.werte }}</td>
-                          </tr>
-                          <v-divider></v-divider>
+                        </tr>
+                        <v-divider></v-divider>
                       </tbody>
                     </v-simple-table>
                   </v-card>
@@ -101,63 +90,53 @@
                         :color="error ? 'red' : 'green'"
                       >
                         {{ notification }}
-                        </v-alert>
-                        <div class="grid-buchungDetails">
-                          <v-btn
-                            class="mx-1"
-                            fab
-                            dark
-                            large
-                            @click="
-                                isLoading = true;
-                                angemeldet = false;
-                                showAlert = false;
-                              "
-                            :color="
-                                angemeldet ? 'green' : error ? 'red' : 'blue'
-                              "
-                          >
-                            <v-icon
-                              dark
-                              v-if="!isLoading"
-                            >
-                              mdi-check
-                              </v-icon>
-                              <v-progress-circular
-                                v-if="isLoading"
-                                color="white"
-                                indeterminate
-                              ></v-progress-circular>
-                                </v-btn>
-                                <v-btn
-                                  class="mx-1"
-                                  fab
-                                  dark
-                                  large
-                                  color="blue"
-                                >
-                                  <v-icon dark> mdi-calendar </v-icon>
-                                  </v-btn>
-                                  <div>
-                                    <v-card-title style="margin-left: -10%">
-                                      <span>Anmelden</span>
-                                    </v-card-title>
-                                  </div>
-                                  <div>
-                                    <v-card-title style="margin-left: -11%">
-                                      <span>Vormerken</span>
-                                    </v-card-title>
-                                  </div>
+                      </v-alert>
+                      <div class="grid-buchungDetails">
+                        <v-btn
+                          class="mx-1"
+                          fab
+                          dark
+                          large
+                          @click="
+                            isLoading = true;
+                            angemeldet = false;
+                            showAlert = false;
+                          "
+                          :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
+                        >
+                          <v-icon dark v-if="!isLoading"> mdi-check </v-icon>
+                          <v-progress-circular
+                            v-if="isLoading"
+                            color="white"
+                            indeterminate
+                          ></v-progress-circular>
+                        </v-btn>
+                        <v-btn class="mx-1" fab dark large color="blue">
+                          <v-icon dark> mdi-calendar </v-icon>
+                        </v-btn>
+                        <div>
+                          <v-card-title style="margin-left: -10%">
+                            <span>Anmelden</span>
+                          </v-card-title>
                         </div>
+                        <div>
+                          <v-card-title style="margin-left: -11%">
+                            <span>Vormerken</span>
+                          </v-card-title>
+                        </div>
+                      </div>
                     </v-card>
-                    <v-btn @click="sendGoodAlert('Erfolgreich angemeldet')">Test1</v-btn>
-                    <v-btn @click="sendBadAlert('Erfolglos angemeldet')">Test2</v-btn>
+                    <v-btn @click="sendGoodAlert('Erfolgreich angemeldet')"
+                      >Test1</v-btn
+                    >
+                    <v-btn @click="sendBadAlert('Erfolglos angemeldet')"
+                      >Test2</v-btn
+                    >
                   </div>
                 </div>
               </div>
             </div>
-
-            </v-layout>
+          </v-layout>
         </v-container>
       </v-card>
     </div>
@@ -177,6 +156,8 @@ export default {
       showAlert: false,
       error: false,
       notification: "",
+      preorder: 0,
+      participants: 0,
       event: {
         name: "",
         description: "",
@@ -196,12 +177,13 @@ export default {
       },
       headers: [
         {
+          id: "",
           text: "",
           align: "start",
           sortable: false,
           value: "name",
         },
-        { text: "", value: "werte" },
+        { id: "", text: "", value: "werte" },
       ],
       details: [],
       buchung: [],
@@ -210,58 +192,75 @@ export default {
   },
   methods: {
     getEvent() {
-      Event.getEvent(this.id).then(response => {
+      Event.getEvent(this.id).then((response) => {
         console.log(response);
         this.event = response.data;
         console.log(this.event);
+        this.event.start = new Date(this.event.start);
+        this.event.end = new Date(this.event.end);
+        this.addOrganizer();
+        this.addDetails();
+        this.addBuchung();
       });
-      this.addOrganizer();
-      this.addDetails();
-      this.addBuchung();
+      Event.getParticipantsAmount(this.id).then((response) => {
+        this.participants = response.data;
+      });
+      Event.getPreOrderAmount(this.id).then((response) => {
+        this.preorder = response.data;
+      });
     },
     addDetails() {
       this.details.push(
         {
+          id: 1,
           name: "Name",
           werte: "Welcome Back Party",
         },
         {
+          id: 2,
           name: "Datum",
-          werte: "22.05 - 23.05.2022",
+          werte:
+            this.event.start.toLocaleString() +
+            " - " +
+            this.event.end.toLocaleString(),
         },
         {
+          id: 3,
           name: "Ort",
           werte: this.event.location,
         },
         {
+          id: 4,
           name: "Einlass",
-          werte: this.event.start + " Uhr",
+          werte: this.event.start.toLocaleString("de-DE") + " Uhr",
         },
         {
+          id: 5,
           name: "Eintritt",
           werte: this.event.cost + " €",
         },
         {
+          id: 6,
           name: "Specials",
           werte: "Bierpong ; Glücksrad",
         },
         {
+          id: 7,
           name: "---------",
           werte: "---------",
         },
         {
+          id: 8,
           name: "Vorverkauf",
-          werte: "ja",
+          werte: this.event.preSale,
         },
         {
+          id: 9,
           name: "Datum",
-          werte: "11.05. & 16.05.2022",
+          werte: this.event.preSaleInfo,
         },
         {
-          name: "Ort",
-          werte: "RWU ; B-Gebäude & NZ",
-        },
-        {
+          id: 10,
           name: "Eintritt",
           werte: this.event.cost + " €",
         }
@@ -270,27 +269,31 @@ export default {
     addBuchung() {
       this.buchung.push(
         {
+          id: 1,
           name: "Maximale Anzahl Teilnehmer",
           werte: this.event.maxParticipants,
         },
         {
+          id: 2,
           name: "Zusagen",
-          werte: 0,
+          werte: this.participants,
         },
         {
+          id: 3,
           name: "Vorgemerkt",
-          werte: 0,
+          werte: this.preorder,
         }
       );
     },
     addOrganizer() {
       this.organizer.push(
         {
+          id: 1,
           name: "Kontaktperson",
           werte: this.event.contactPerson,
         },
-        { name: "Telefonnummer", werte: this.event.contactPhoneNumber },
-        { name: "Email", werte: this.event.contactEmail }
+        { id: 2, name: "Telefonnummer", werte: this.event.contactPhoneNumber },
+        { id: 3, name: "Email", werte: this.event.contactEmail }
       );
     },
     sendGoodAlert(message) {
@@ -318,7 +321,7 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
-    authService.getIsAdmin(this.currentUser.username).then(response => {
+    authService.getIsAdmin(this.currentUser.username).then((response) => {
       this.isAdmin = response.data;
     });
   },

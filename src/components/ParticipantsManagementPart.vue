@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import user from "../services/user.service";
+import Event from "../services/event.service";
 export default {
   data() {
     return {
@@ -45,16 +45,26 @@ export default {
   },
   props: ["eventid"],
   methods: {
-    getUsers() {
-      user.getAllUsers().then((response) => {
+    getParticipants() {
+      Event.getParticipants(this.eventid).then((response) => {
         this.users = response.data;
+        console.log(this.users);
       });
     },
-    getParticipants() {},
-    getPreOrders() {},
+    getPreOrders() {
+      Event.getPreOrder(this.eventid).then((response) => {
+        this.preOrders = response.data;
+        console.log(this.preOrders);
+      });
+    },
+    getUsers() {
+      this.getParticipants();
+      this.getPreOrders();
+    },
   },
   mounted() {
-    this.getUsers();
+    this.getParticipants();
+    this.getPreOrders();
   },
 };
 </script>

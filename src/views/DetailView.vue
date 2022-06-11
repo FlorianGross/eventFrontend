@@ -71,7 +71,10 @@
                 </v-card-title>
                 <div>
                   <v-card class="detailsVCardBeschreibung">
-                    <v-simple-table class="detailsInhalt-2">
+                    <v-simple-table
+                      class="detailsInhalt-2"
+                      :v-model="angemeldet"
+                    >
                       <tbody>
                         <v-divider></v-divider>
                         <tr v-for="item in buchung" :key="item.id">
@@ -98,21 +101,40 @@
                           dark
                           large
                           @click="
-                            isLoading = true;
-                            angemeldet = false;
+                            isLoadingParticipate = true;
                             showAlert = false;
+                            participate();
                           "
                           :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
                         >
-                          <v-icon dark v-if="!isLoading"> mdi-check </v-icon>
+                          <v-icon dark v-if="!isLoadingParticipate">
+                            mdi-check
+                          </v-icon>
                           <v-progress-circular
-                            v-if="isLoading"
+                            v-if="isLoadingParticipate"
                             color="white"
                             indeterminate
                           ></v-progress-circular>
                         </v-btn>
-                        <v-btn class="mx-1" fab dark large color="blue">
-                          <v-icon dark> mdi-calendar </v-icon>
+                        <v-btn
+                          class="mx-1"
+                          fab
+                          dark
+                          large
+                          :color="vorgemerkt ? 'green' : error ? 'red' : 'blue'"
+                          @click="
+                            preOrder();
+                            isLoadingPreorder = true;
+                          "
+                        >
+                          <v-icon v-if="!isLoadingPreorder" dark>
+                            mdi-calendar
+                          </v-icon>
+                          <v-progress-circular
+                            v-if="isLoadingPreorder"
+                            color="white"
+                            indeterminate
+                          ></v-progress-circular>
                         </v-btn>
                         <div>
                           <v-card-title style="margin-left: -10%">
@@ -126,12 +148,6 @@
                         </div>
                       </div>
                     </v-card>
-                    <v-btn @click="sendGoodAlert('Erfolgreich angemeldet')"
-                      >Test1</v-btn
-                    >
-                    <v-btn @click="sendBadAlert('Erfolglos angemeldet')"
-                      >Test2</v-btn
-                    >
                   </div>
                 </div>
               </div>
@@ -152,7 +168,9 @@ export default {
     return {
       isAdmin: false,
       angemeldet: false,
-      isLoading: false,
+      vorgemerkt: false,
+      isLoadingParticipate: false,
+      isLoadingPreorder: false,
       showAlert: false,
       error: false,
       notification: "",
@@ -198,16 +216,58 @@ export default {
         console.log(this.event);
         this.event.start = new Date(this.event.start);
         this.event.end = new Date(this.event.end);
+        if (response.data.participants.includes(this.currentUser.id)) {
+          this.angemeldet = true;
+        } else {
+          this.angemeldet = false;
+        }
+        this.participants = response.data.participants.length;
+        this.preorder = response.data.preorder.length;
         this.addOrganizer();
         this.addDetails();
         this.addBuchung();
+        console.log(this.angemeldet);
       });
-      Event.getParticipantsAmount(this.id).then((response) => {
-        this.participants = response.data;
+    },
+    preOrder() {
+      Event.preOrder(this.id, this.currentUser.id).then((response) => {
+        console.log(response.data);
       });
-      Event.getPreOrderAmount(this.id).then((response) => {
-        this.preorder = response.data;
-      });
+    },
+    participate() {
+      if (!this.angemeldet) {
+        Event.participateEvent(this.id, this.currentUser.id).then(
+          (response) => {
+            console.log(response.data);
+            this.event = response.data;
+            this.participants = response.data.participants.length;
+            this.preorder = response.data.preorder.length;
+            if (response.data.participants.includes(this.currentUser.id)) {
+              this.angemeldet = true;
+              this.sendGoodAlert("Erfolgreich angemeldet");
+            } else {
+              this.angemeldet = false;
+              this.sendBadAlert("Fehler bei der Anmeldung");
+            }
+            this.isLoadingParticipate = false;
+          }
+        );
+      } else {
+        Event.unParticipateEvent(this.id, this.currentUser.id).then(
+          (response) => {
+            console.log(response.data);
+            this.event = response.data;
+            if (!response.data.participants.includes(this.currentUser.id)) {
+              this.angemeldet = true;
+              this.sendGoodAlert("Erfolgreich abgemeldet");
+            } else {
+              this.angemeldet = false;
+              this.sendBadAlert("Fehler bei der Abmeldung");
+            }
+            this.isLoading = false;
+          }
+        );
+      }
     },
     addDetails() {
       this.details.push(
@@ -298,16 +358,14 @@ export default {
     },
     sendGoodAlert(message) {
       this.showAlert = true;
-      this.angemeldet = true;
       this.error = false;
-      this.isLoading = false;
+      this.isLoadingParticipate = false;
       this.notification = message;
     },
     sendBadAlert(message) {
       this.showAlert = true;
-      this.angemeldet = false;
       this.error = true;
-      this.isLoading = false;
+      this.isLoadingParticipate = false;
       this.notification = message;
     },
     openAdminView() {

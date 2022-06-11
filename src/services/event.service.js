@@ -85,7 +85,7 @@ class UserService {
   }
 
   preOrder(id, user) {
-    return axios.post(API_URL + 'preorder', { id, user }, { headers: authHeader() })
+    return axios.post(API_URL + 'preOrder', { id, user }, { headers: authHeader() })
   }
 }
 export default new UserService()

@@ -1,100 +1,112 @@
 <template>
-  <div class="bodyDetails">
-    <div class="containerFieldDetails">
-      <v-card style="height: 100%">
-        <v-card-title>
-          <span class="headline">Events</span>
-          <v-btn
-            color="#000080"
-            style="
+  <div class="body">
+    <v-card width="96.4%">
+      <v-card-title>
+        <span class="headline">Events</span>
+        <v-spacer></v-spacer>
+        <v-btn
+          color="#000080"
+          style="
             color:white; 
             min-width: 10%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
-            v-if="isAdmin"
-            @click="openAdminView()"
-            >Event Bearbeiten</v-btn
-          >
-        </v-card-title>
-        <v-card style="height: 1px"></v-card>
-        <v-container>
-          <v-layout row wrap>
-            <div class="grid-containerDetails">
-              <v-card class="mx-auto">
+          v-if="isAdmin"
+          @click="openAdminView()"
+          >Event Bearbeiten</v-btn
+        >
+      </v-card-title>
+      <v-card style="height: 1px"></v-card>
+      <v-container>
+        <v-row justify="space-between" xs1 md3>
+          <v-flex style="padding-right: 2%">
+            <v-card>
+              <v-card-title>
                 <v-img
-                  class="profilBildEvent"
+                  class="justify-content"
                   src="../assets/WelcomeBackParty _2022.jpg"
                   height="auto"
-                  width="350"
+                  width="350px"
                   dark
                 >
                 </v-img>
-                <v-divider></v-divider>
-                <v-card-title>
-                  <span>Kontakt</span>
-                </v-card-title>
-                <v-card-text>
-                  <v-simple-table class="detailsInhalt-1">
+              </v-card-title>
+              <v-divider></v-divider>
+            </v-card>
+          </v-flex>
+          <v-flex style="padding-right: 2%">
+            <v-card>
+              <v-card-title>
+                <span>Details</span>
+              </v-card-title>
+              <div>
+                <v-card class="detailsVCardBeschreibung">
+                  <v-simple-table class="detailsInhalt-2">
                     <tbody>
                       <v-divider></v-divider>
-                      <tr v-for="item in organizer" :key="item.id">
+                      <tr v-for="item in details" :key="item.id">
                         <td>{{ item.name }}</td>
                         <td>{{ item.werte }}</td>
                       </tr>
                       <v-divider></v-divider>
                     </tbody>
                   </v-simple-table>
-                </v-card-text>
-              </v-card>
-              <div class="textDetails1">
-                <v-card-title>
-                  <span>Details</span>
-                </v-card-title>
-                <div>
-                  <v-card class="detailsVCardBeschreibung">
-                    <v-simple-table class="detailsInhalt-2">
-                      <tbody>
-                        <v-divider></v-divider>
-                        <tr v-for="item in details" :key="item.id">
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.werte }}</td>
-                        </tr>
-                        <v-divider></v-divider>
-                      </tbody>
-                    </v-simple-table>
-                  </v-card>
-                </div>
+                </v-card>
               </div>
-              <div class="textDetails2">
-                <v-card-title>
-                  <span>Buchung</span>
-                </v-card-title>
+            </v-card>
+          </v-flex>
+          <v-flex>
+            <v-card>
+              <v-card-title>
+                <span>Kontakt</span>
+              </v-card-title>
+              <v-card-text>
+                <v-simple-table>
+                  <tbody>
+                    <v-divider></v-divider>
+                    <tr v-for="item in organizer" :key="item.id">
+                      <td>{{ item.name }}</td>
+                      <td>{{ item.werte }}</td>
+                    </tr>
+                    <v-divider></v-divider>
+                  </tbody>
+                </v-simple-table>
+              </v-card-text>
+              <v-divider></v-divider>
+              <v-card-title>
+                <span>Buchung</span>
+              </v-card-title>
+              <div>
+                <v-card>
+                  <v-list>
+                    <v-list-item>
+                      <v-list-item-content>
+                        Maximale anmeldezahl: {{ event.maxParticipants }}
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content>
+                        Anmeldezahl: {{ participants }}
+                      </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item>
+                      <v-list-item-content>
+                        Vorgemerkte: {{ preorder }}
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list>
+                </v-card>
                 <div>
-                  <v-card class="detailsVCardBeschreibung">
-                    <v-simple-table
-                      class="detailsInhalt-2"
-                      :v-model="angemeldet"
+                  <v-card>
+                    <v-alert
+                      v-if="showAlert"
+                      :type="error ? 'error' : 'success'"
+                      :color="error ? 'red' : 'green'"
                     >
-                      <tbody>
-                        <v-divider></v-divider>
-                        <tr v-for="item in buchung" :key="item.id">
-                          <td>{{ item.name }}</td>
-                          <td>{{ item.werte }}</td>
-                        </tr>
-                        <v-divider></v-divider>
-                      </tbody>
-                    </v-simple-table>
-                  </v-card>
-                  <div>
-                    <v-card class="detailsVCardBuchung">
-                      <v-alert
-                        v-if="showAlert"
-                        :type="error ? 'error' : 'success'"
-                        :color="error ? 'red' : 'green'"
-                      >
-                        {{ notification }}
-                      </v-alert>
-                      <div class="grid-buchungDetails">
+                      {{ notification }}
+                    </v-alert>
+                    <v-container style="width: 70%">
+                      <v-row justify="space-around">
                         <v-btn
                           class="mx-1"
                           fab
@@ -136,26 +148,20 @@
                             indeterminate
                           ></v-progress-circular>
                         </v-btn>
-                        <div>
-                          <v-card-title style="margin-left: -10%">
-                            <span>Anmelden</span>
-                          </v-card-title>
-                        </div>
-                        <div>
-                          <v-card-title style="margin-left: -11%">
-                            <span>Vormerken</span>
-                          </v-card-title>
-                        </div>
-                      </div>
-                    </v-card>
-                  </div>
+                      </v-row>
+                      <v-row justify="space-around">
+                        <v-card-title> Anmelden </v-card-title>
+                        <v-card-title> Vormerken </v-card-title>
+                      </v-row>
+                    </v-container>
+                  </v-card>
                 </div>
               </div>
-            </div>
-          </v-layout>
-        </v-container>
-      </v-card>
-    </div>
+            </v-card>
+          </v-flex>
+        </v-row>
+      </v-container>
+    </v-card>
   </div>
 </template>
 
@@ -204,7 +210,6 @@ export default {
         { id: "", text: "", value: "werte" },
       ],
       details: [],
-      buchung: [],
       organizer: [],
     };
   },
@@ -225,14 +230,39 @@ export default {
         this.preorder = response.data.preorder.length;
         this.addOrganizer();
         this.addDetails();
-        this.addBuchung();
         console.log(this.angemeldet);
       });
     },
     preOrder() {
-      Event.preOrder(this.id, this.currentUser.id).then((response) => {
-        console.log(response.data);
-      });
+      if (!this.vorgemerkt) {
+        Event.preOrder(this.id, this.currentUser.id).then((response) => {
+          console.log(response.data);
+          this.event = response.data;
+          if (response.data.preorder.includes(this.currentUser.id)) {
+            this.vorgemerkt = true;
+            this.sendGoodAlert("Erfolgreich vorgemerkt");
+          } else {
+            this.vorgemerkt = false;
+            this.sendBadAlert("Fehler beim Vormerken");
+          }
+          this.preorder = response.data.preorder.length;
+          this.isLoadingPreorder = false;
+        });
+      } else {
+        Event.unPreOrder(this.id, this.currentUser.id).then((response) => {
+          console.log(response.data);
+          this.event = response.data;
+          if (!response.data.preorder.includes(this.currentUser.id)) {
+            this.vorgemerkt = true;
+            this.sendGoodAlert("Erfolgreich Abgemeldet");
+          } else {
+            this.vorgemerkt = false;
+            this.sendBadAlert("Fehler beim Abmelden");
+          }
+          this.preorder = response.data.preorder.length;
+          this.isLoadingPreorder = false;
+        });
+      }
     },
     participate() {
       if (!this.angemeldet) {
@@ -240,8 +270,6 @@ export default {
           (response) => {
             console.log(response.data);
             this.event = response.data;
-            this.participants = response.data.participants.length;
-            this.preorder = response.data.preorder.length;
             if (response.data.participants.includes(this.currentUser.id)) {
               this.angemeldet = true;
               this.sendGoodAlert("Erfolgreich angemeldet");
@@ -249,6 +277,7 @@ export default {
               this.angemeldet = false;
               this.sendBadAlert("Fehler bei der Anmeldung");
             }
+            this.participants = response.data.participants.length;
             this.isLoadingParticipate = false;
           }
         );
@@ -264,6 +293,7 @@ export default {
               this.angemeldet = false;
               this.sendBadAlert("Fehler bei der Abmeldung");
             }
+            this.participants = response.data.participants.length;
             this.isLoading = false;
           }
         );
@@ -326,25 +356,6 @@ export default {
         }
       );
     },
-    addBuchung() {
-      this.buchung.push(
-        {
-          id: 1,
-          name: "Maximale Anzahl Teilnehmer",
-          werte: this.event.maxParticipants,
-        },
-        {
-          id: 2,
-          name: "Zusagen",
-          werte: this.participants,
-        },
-        {
-          id: 3,
-          name: "Vorgemerkt",
-          werte: this.preorder,
-        }
-      );
-    },
     addOrganizer() {
       this.organizer.push(
         {
@@ -390,59 +401,15 @@ export default {
 </script>
 
 <style>
-.bodyDetails {
-  position: fixed;
-  background-color: #123456;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  padding: 0;
-  margin: 0;
-  background-image: url("../assets/WebProg4.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  overflow: auto;
-}
-.headline {
+.body {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0.8%;
 }
-.containerFieldDetails {
-  top: 15%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 4.1%;
-  width: 96.4%;
-  height: 100%;
-}
-.grid-containerDetails {
-  margin-top: 1%;
-  display: grid;
-  padding: 0;
-  grid-template-columns: 35% 75% 75%;
-}
-.grid-buchungDetails {
-  display: grid;
-  margin-top: 30%;
-  margin-left: 25%;
-  grid-template-columns: 50% 50%;
-}
-.textDetails1 {
-  margin-left: 10%;
-  margin-right: 10%;
-}
-.textDetails1 {
-  margin-left: 10%;
-  margin-right: 10%;
-}
-.detailsVCardBeschreibung {
-  margin-top: 2%;
-  margin-bottom: 10%;
-  min-height: 20%;
-  min-width: 100%;
-  overflow: auto;
+.profilBildEvent {
 }
 </style>

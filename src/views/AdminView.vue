@@ -58,7 +58,7 @@
               </v-card-title> </v-card
           ></v-flex>
           <v-flex style="padding-right: 2%"
-            ><v-card>
+            ><v-card style="margin-bottom: 3%">
               <v-card-title>
                 <span>Details</span>
               </v-card-title>
@@ -96,7 +96,6 @@
                 </v-file-input>
                 <v-textarea
                   label="Beschreibung"
-                  style="margin-top: 6%"
                   v-model="event.description"
                   class="textFieldStyle"
                 >
@@ -121,7 +120,6 @@
                           readonly
                           v-bind="attrs"
                           v-on="on"
-                          class="textFieldStyle"
                         ></v-text-field>
                       </template>
                       <v-date-picker v-model="beginDate" no-title scrollable>
@@ -159,7 +157,6 @@
                           readonly
                           v-bind="attrs"
                           v-on="on"
-                          class="textFieldStyle"
                         ></v-text-field>
                       </template>
                       <v-time-picker
@@ -192,7 +189,6 @@
                           readonly
                           v-bind="attrs"
                           v-on="on"
-                          class="textFieldStyle"
                         ></v-text-field>
                       </template>
                       <v-date-picker v-model="endDate" no-title scrollable>
@@ -230,7 +226,6 @@
                           readonly
                           v-bind="attrs"
                           v-on="on"
-                          class="textFieldStyle"
                         ></v-text-field>
                       </template>
                       <v-time-picker

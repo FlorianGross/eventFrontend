@@ -1,107 +1,105 @@
 <template>
-  <div class="body-kalender">
-    <div class="containerFieldKalender">
-      <v-card>
-        <v-card-title>
-          <span class="headline">Kalender</span>
-        </v-card-title>
-        <v-card style="height: 1%"></v-card>
-        <v-row class="fill-height">
-          <v-col>
-            <v-sheet height="64">
-              <v-toolbar flat>
-                <v-btn
-                  outlined
-                  class="mr-4"
-                  color="grey darken-2"
-                  @click="setToday"
-                >
-                  Today
-                </v-btn>
-                <v-btn fab text small color="grey darken-2" @click="prev">
-                  <v-icon small> mdi-chevron-left </v-icon>
-                </v-btn>
-                <v-btn fab text small color="grey darken-2" @click="next">
-                  <v-icon small> mdi-chevron-right </v-icon>
-                </v-btn>
-                <v-toolbar-title v-if="$refs.calendar">
-                  {{ $refs.calendar.title }}
-                </v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-menu bottom right>
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      outlined
-                      color="grey darken-2"
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      <span>{{ typeToLabel[type] }}</span>
-                      <v-icon right> mdi-menu-down </v-icon>
-                    </v-btn>
-                  </template>
-                  <v-list>
-                    <v-list-item @click="type = 'day'">
-                      <v-list-item-title>Day</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item @click="type = 'week'">
-                      <v-list-item-title>Week</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item @click="type = 'month'">
-                      <v-list-item-title>Month</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item @click="type = '4day'">
-                      <v-list-item-title>4 days</v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </v-toolbar>
-            </v-sheet>
-            <v-sheet class="calendar1" height="600" width="98%">
-              <v-calendar
-                ref="calendar"
-                v-model="focus"
-                color="primary"
-                :events="events"
-                :type="type"
-                @click:event="showEvent"
-                @click:more="viewDay"
-                @click:date="viewDay"
-              ></v-calendar>
-              <v-menu
-                v-model="selectedOpen"
-                :close-on-content-click="false"
-                :activator="selectedElement"
-                offset-x
+  <div class="body">
+    <v-card width="96.4%">
+      <v-card-title>
+        <span class="headline">Kalender</span>
+      </v-card-title>
+      <v-card style="height: 1%"></v-card>
+      <v-row class="fill-height">
+        <v-col>
+          <v-sheet height="64">
+            <v-toolbar flat>
+              <v-btn
+                outlined
+                class="mr-4"
+                color="grey darken-2"
+                @click="setToday"
               >
-                <v-card color="grey lighten-4" flat>
-                  <v-toolbar :color="selectedEvent.color" dark>
-                    <v-toolbar-title
-                      v-html="selectedEvent.name"
-                    ></v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-btn icon>
-                      <v-icon>mdi-heart</v-icon>
-                    </v-btn>
-                    <v-btn icon>
-                      <v-icon>mdi-dots-vertical</v-icon>
-                    </v-btn>
-                  </v-toolbar>
-                  <v-card-text>
-                    <span v-html="selectedEvent.details"></span>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-btn text color="secondary" @click="selectedOpen = false"
-                      >Cancel</v-btn
-                    >
-                  </v-card-actions>
-                </v-card>
+                Today
+              </v-btn>
+              <v-btn fab text small color="grey darken-2" @click="prev">
+                <v-icon small> mdi-chevron-left </v-icon>
+              </v-btn>
+              <v-btn fab text small color="grey darken-2" @click="next">
+                <v-icon small> mdi-chevron-right </v-icon>
+              </v-btn>
+              <v-toolbar-title v-if="$refs.calendar">
+                {{ $refs.calendar.title }}
+              </v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-menu bottom right>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                    outlined
+                    color="grey darken-2"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    <span>{{ typeToLabel[type] }}</span>
+                    <v-icon right> mdi-menu-down </v-icon>
+                  </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item @click="type = 'day'">
+                    <v-list-item-title>Day</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'week'">
+                    <v-list-item-title>Week</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = 'month'">
+                    <v-list-item-title>Month</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="type = '4day'">
+                    <v-list-item-title>4 days</v-list-item-title>
+                  </v-list-item>
+                </v-list>
               </v-menu>
-            </v-sheet>
-          </v-col>
-        </v-row>
-      </v-card>
-    </div>
+            </v-toolbar>
+          </v-sheet>
+          <v-sheet class="calendar1" height="600" width="98%">
+            <v-calendar
+              ref="calendar"
+              v-model="focus"
+              color="primary"
+              :events="events"
+              :type="type"
+              @click:event="showEvent"
+              @click:more="viewDay"
+              @click:date="viewDay"
+            ></v-calendar>
+            <v-menu
+              v-model="selectedOpen"
+              :close-on-content-click="false"
+              :activator="selectedElement"
+              offset-x
+            >
+              <v-card color="grey lighten-4" flat>
+                <v-toolbar :color="selectedEvent.color" dark>
+                  <v-toolbar-title
+                    v-html="selectedEvent.name"
+                  ></v-toolbar-title>
+                  <v-spacer></v-spacer>
+                  <v-btn icon>
+                    <v-icon>mdi-heart</v-icon>
+                  </v-btn>
+                  <v-btn icon>
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </v-toolbar>
+                <v-card-text>
+                  <span v-html="selectedEvent.details"></span>
+                </v-card-text>
+                <v-card-actions>
+                  <v-btn text color="secondary" @click="selectedOpen = false"
+                    >Cancel</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </v-menu>
+          </v-sheet>
+        </v-col>
+      </v-row>
+    </v-card>
   </div>
 </template>
 
@@ -185,21 +183,15 @@ export default {
 </script>
 
 <style>
-.body-kalender {
-  position: fixed;
-  background-color: #123456;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  padding: 0;
-  margin: 0;
-  background-image: url("../assets/WebProg4.jpg");
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+.body {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.8%;
+  margin-bottom: 0.8%;
 }
 .containerFieldKalender {
   margin-left: auto;

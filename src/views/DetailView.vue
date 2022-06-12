@@ -2,36 +2,42 @@
   <div class="body">
     <v-card width="96.4%">
       <v-card-title>
-        <span class="headline" style="margin-left: 50%">Events</span>
-        <v-spacer></v-spacer>
-        <v-btn
-          color="#000080"
-          style="
+        <span
+          class="headline"
+          style="margin-left: 50%"
+        >Events</span>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="#000080"
+            style="
             color:white; 
-            min-width: 10%; 
+            width: 10%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
-          v-if="isAdmin"
-          @click="openAdminView()"
-          >Event Bearbeiten</v-btn
-        >
+            v-if="isAdmin"
+            @click="openAdminView()"
+          >Event Bearbeiten</v-btn>
       </v-card-title>
       <v-card style="height: 1px"></v-card>
-      <v-container>
-        <v-row justify="space-between" xs1 md3>
+      <v-container class="containerDetailView">
+        <v-row
+          justify="space-between"
+          xs1
+          md3
+        >
           <v-flex style="padding-right: 2%">
-            <v-card>
-              <v-card-title>
-                <v-img
-                  class="justify-content"
-                  src="../assets/WelcomeBackParty _2022.jpg"
-                  height="auto"
-                  width="350px"
-                  dark
-                >
+            <v-card style="width: 100%;">
+              <v-img
+                class="justify-content"
+                src="../assets/WelcomeBackParty _2022.jpg"
+                height="auto"
+                width="350px"
+                dark
+              >
                 </v-img>
-              </v-card-title>
-              <v-divider></v-divider>
+
+                <v-divider></v-divider>
+                <div class="beschreibung" style="margin-left: 3%; margin-top: 3%; max-width: 90%; min-height: 150px; margin-bottom: 2%;">sadljhfdiiiiiiiiiiiiiiiiiiiiiiisdsassssssssss uiozhkihkjhjkjkjuddddddj</div>
             </v-card>
           </v-flex>
           <v-flex style="padding-right: 2%">
@@ -44,11 +50,14 @@
                   <v-simple-table class="detailsInhalt-2">
                     <tbody>
                       <v-divider></v-divider>
-                      <tr v-for="item in details" :key="item.id">
+                      <tr
+                        v-for="item in details"
+                        :key="item.id"
+                      >
                         <td>{{ item.name }}</td>
                         <td>{{ item.werte }}</td>
-                      </tr>
-                      <v-divider></v-divider>
+                        </tr>
+                        <v-divider></v-divider>
                     </tbody>
                   </v-simple-table>
                 </v-card>
@@ -64,11 +73,14 @@
                 <v-simple-table>
                   <tbody>
                     <v-divider></v-divider>
-                    <tr v-for="item in organizer" :key="item.id">
+                    <tr
+                      v-for="item in organizer"
+                      :key="item.id"
+                    >
                       <td>{{ item.name }}</td>
                       <td>{{ item.werte }}</td>
-                    </tr>
-                    <v-divider></v-divider>
+                      </tr>
+                      <v-divider></v-divider>
                   </tbody>
                 </v-simple-table>
               </v-card-text>
@@ -104,62 +116,68 @@
                       :color="error ? 'red' : 'green'"
                     >
                       {{ notification }}
-                    </v-alert>
-                    <v-container style="width: 70%">
-                      <v-row justify="space-around">
-                        <v-btn
-                          class="mx-1"
-                          fab
-                          dark
-                          large
-                          @click="
+                      </v-alert>
+                      <v-container style="width: 70%">
+                        <v-row justify="space-around">
+                          <v-btn
+                            class="mx-1"
+                            fab
+                            dark
+                            large
+                            @click="
                             isLoadingParticipate = true;
                             showAlert = false;
                             participate();
                           "
-                          :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
-                        >
-                          <v-icon dark v-if="!isLoadingParticipate">
-                            mdi-check
-                          </v-icon>
-                          <v-progress-circular
-                            v-if="isLoadingParticipate"
-                            color="white"
-                            indeterminate
-                          ></v-progress-circular>
-                        </v-btn>
-                        <v-btn
-                          class="mx-1"
-                          fab
-                          dark
-                          large
-                          :color="vorgemerkt ? 'green' : error ? 'red' : 'blue'"
-                          @click="
+                            :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
+                          >
+                            <v-icon
+                              dark
+                              v-if="!isLoadingParticipate"
+                            >
+                              mdi-check
+                              </v-icon>
+                              <v-progress-circular
+                                v-if="isLoadingParticipate"
+                                color="white"
+                                indeterminate
+                              ></v-progress-circular>
+                                </v-btn>
+                                <v-btn
+                                  class="mx-1"
+                                  fab
+                                  dark
+                                  large
+                                  :color="vorgemerkt ? 'green' : error ? 'red' : 'blue'"
+                                  @click="
                             preOrder();
                             isLoadingPreorder = true;
                           "
-                        >
-                          <v-icon v-if="!isLoadingPreorder" dark>
-                            mdi-calendar
-                          </v-icon>
-                          <v-progress-circular
-                            v-if="isLoadingPreorder"
-                            color="white"
-                            indeterminate
-                          ></v-progress-circular>
-                        </v-btn>
-                      </v-row>
-                      <v-row justify="space-around">
-                        <v-card-title> Anmelden </v-card-title>
-                        <v-card-title> Vormerken </v-card-title>
-                      </v-row>
-                    </v-container>
+                                >
+                                  <v-icon
+                                    v-if="!isLoadingPreorder"
+                                    dark
+                                  >
+                                    mdi-calendar
+                                    </v-icon>
+                                    <v-progress-circular
+                                      v-if="isLoadingPreorder"
+                                      color="white"
+                                      indeterminate
+                                    ></v-progress-circular>
+                                      </v-btn>
+                        </v-row>
+                        <v-row justify="space-around">
+                          <v-card-title> Anmelden </v-card-title>
+                          <v-card-title> Vormerken </v-card-title>
+                        </v-row>
+                      </v-container>
                   </v-card>
                 </div>
               </div>
             </v-card>
           </v-flex>
-        </v-row>
+          </v-row>
       </v-container>
     </v-card>
   </div>
@@ -215,7 +233,7 @@ export default {
   },
   methods: {
     getEvent() {
-      Event.getEvent(this.id).then((response) => {
+      Event.getEvent(this.id).then(response => {
         console.log(response);
         this.event = response.data;
         console.log(this.event);
@@ -235,7 +253,7 @@ export default {
     },
     preOrder() {
       if (!this.vorgemerkt) {
-        Event.preOrder(this.id, this.currentUser.id).then((response) => {
+        Event.preOrder(this.id, this.currentUser.id).then(response => {
           console.log(response.data);
           this.event = response.data;
           if (response.data.preorder.includes(this.currentUser.id)) {
@@ -249,7 +267,7 @@ export default {
           this.isLoadingPreorder = false;
         });
       } else {
-        Event.unPreOrder(this.id, this.currentUser.id).then((response) => {
+        Event.unPreOrder(this.id, this.currentUser.id).then(response => {
           console.log(response.data);
           this.event = response.data;
           if (!response.data.preorder.includes(this.currentUser.id)) {
@@ -266,24 +284,22 @@ export default {
     },
     participate() {
       if (!this.angemeldet) {
-        Event.participateEvent(this.id, this.currentUser.id).then(
-          (response) => {
-            console.log(response.data);
-            this.event = response.data;
-            if (response.data.participants.includes(this.currentUser.id)) {
-              this.angemeldet = true;
-              this.sendGoodAlert("Erfolgreich angemeldet");
-            } else {
-              this.angemeldet = false;
-              this.sendBadAlert("Fehler bei der Anmeldung");
-            }
-            this.participants = response.data.participants.length;
-            this.isLoadingParticipate = false;
+        Event.participateEvent(this.id, this.currentUser.id).then(response => {
+          console.log(response.data);
+          this.event = response.data;
+          if (response.data.participants.includes(this.currentUser.id)) {
+            this.angemeldet = true;
+            this.sendGoodAlert("Erfolgreich angemeldet");
+          } else {
+            this.angemeldet = false;
+            this.sendBadAlert("Fehler bei der Anmeldung");
           }
-        );
+          this.participants = response.data.participants.length;
+          this.isLoadingParticipate = false;
+        });
       } else {
         Event.unParticipateEvent(this.id, this.currentUser.id).then(
-          (response) => {
+          response => {
             console.log(response.data);
             this.event = response.data;
             if (!response.data.participants.includes(this.currentUser.id)) {
@@ -390,7 +406,7 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
-    authService.getIsAdmin(this.currentUser.username).then((response) => {
+    authService.getIsAdmin(this.currentUser.username).then(response => {
       this.isAdmin = response.data;
     });
   },
@@ -415,5 +431,12 @@ export default {
   color: black;
   margin-left: auto;
   margin-right: auto;
+}
+.containerDetailView {
+  margin-top: 1.5%;
+  margin-left: 3%;
+}
+.beschreibung {
+  
 }
 </style>

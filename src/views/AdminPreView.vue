@@ -79,4 +79,9 @@ export default {
   margin-right: auto;
   margin-top: 0.8%;
 }
+.headline {
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>

@@ -2,7 +2,7 @@
   <div class="body">
     <v-card width="96.4%">
       <v-card-title>
-        <span>Kalender</span>
+        <span class="headline">Kalender</span>
       </v-card-title>
       <v-card style="height: 1%"></v-card>
       <v-container>
@@ -197,5 +197,10 @@ export default {
   margin-left: auto;
   margin-right: auto;
   height: auto;
+}
+.headline {
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

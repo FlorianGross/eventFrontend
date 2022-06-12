@@ -2,7 +2,7 @@
   <div class="body">
     <v-card width="96.4%">
       <v-card-title>
-        <span>Events</span>
+        <span class="headline">Events</span>
         <v-spacer></v-spacer>
         <v-btn
           color="#000080"
@@ -420,5 +420,10 @@ export default {
   max-width: 90%;
   padding-left: 4.5%;
   margin-top: 3%;
+}
+.headline {
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

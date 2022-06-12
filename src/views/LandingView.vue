@@ -29,11 +29,10 @@
             :disabled="isLoading"
             style="
           color: white;
-          min-width: 140px;
+          width: 30%;
           text-transform: none;
           font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-          margin-bottom: 10px;
-          font-size: 14px;
+          margin-bottom: 1%;
         "
             @click="performLogin"
             >Login</v-btn
@@ -43,10 +42,10 @@
             :disabled="isLoading"
             style="
           color: white;
-          min-width: 140px;
+          min-width: 30%;
           text-transform: none;
           font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-          margin-bottom: 10px;
+          margin-bottom: 1%;
         "
             @click="register"
             >Register</v-btn
@@ -89,24 +88,23 @@
             :disabled="isLoading"
             style="
           color: white;
-          min-width: 140px;
+          width: 30%;
           text-transform: none;
           font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-          font-size: 14px;
-          margin-bottom: 10px;
+          margin-bottom: 1%;
         "
             @click="performRegister"
-            >Register</v-btn
+            >Registrieren</v-btn
           >
           <v-btn
             color="#000080"
             :disabled="isLoading"
             style="
           color: white;
-          min-width: 140px;
+          width: 30%;
           text-transform: none;
           font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-          margin-bottom: 10px;
+          margin-bottom: 1%;
         "
             @click="login"
             >Login</v-btn
@@ -128,7 +126,7 @@
             color="#000080"
             style="
             color:white; 
-            min-width: 30%; 
+            width: 30%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             "
@@ -139,7 +137,7 @@
             color="#000080"
             style="
             color:white; 
-            min-width: 30%;  
+            width: 30%;  
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           "

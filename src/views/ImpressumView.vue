@@ -176,4 +176,9 @@ h4 {
   display: grid;
   grid-template-columns: 9% 20% 60%;
 }
+.headline {
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>

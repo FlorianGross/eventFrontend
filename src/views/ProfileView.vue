@@ -1,14 +1,14 @@
 <template>
-  <div class="body">
+  <div class="bodyProfil">
     <v-card width="96.4%">
       <v-card-title>
-        Profildaten
+        <span class="headline" style="margin-left: 50%">Profildaten</span> 
         <v-spacer></v-spacer>
         <v-btn
           color="#000080"
           style="
             color:white; 
-            min-width: 10%; 
+            width: 10%; 
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
           @click="getUserData()"
@@ -16,27 +16,23 @@
         >
       </v-card-title>
       <v-card style="height: 1px"></v-card>
-      <v-container>
+      <v-container class="container1">
         <v-row justify="space-between" xs1 md3>
-          <v-flex style="padding-right: 2%">
-            <v-card>
+          <v-flex style="padding-right: 2%; width: 50%; margin-top: -1.6%;">
               <v-card-title>
                 <img
                   class="justify-content"
-                  src="../assets/bild3.jpg"
-                  height="auto"
-                  width="350px"
+                  src="../assets/bild3.jpg" style="width:30%;height:60%;" 
                   dark
                 />
               </v-card-title>
-            </v-card>
           </v-flex>
-          <v-flex style="padding-right: 2%">
+          <v-flex style="padding-right: 2%; margin-left: -46%; margin-top: -0.7%;">
             <v-card style="padding-right: 2%">
               <v-card-title>
                 <span class="headline2">Anrede</span>
               </v-card-title>
-              <div style="margin-bottom: 1%">
+              <div class="anredeAdresse" style="margin-bottom: 1%;">
                 <v-text-field
                   clear-icon="mdi-close-circle"
                   :append-icon="edit.firstName ? 'mdi-check' : 'mdi-pen'"
@@ -228,7 +224,7 @@
                         </v-menu>
                       </v-toolbar>
                     </v-sheet>
-                    <v-sheet height="667">
+                    <v-sheet height="auto">
                       <v-calendar
                         ref="calendar"
                         v-model="focus"
@@ -424,7 +420,7 @@ export default {
 </script>
 
 <style>
-.body {
+.bodyProfil {
   align-content: center;
   align-items: center;
   display: flex;
@@ -438,5 +434,19 @@ export default {
   max-width: 90%;
   padding-left: 4.5%;
   margin-top: 3%;
+}
+.justify-content {
+  max-width: 30%;
+}
+.container1 {
+  margin-top: 2%;
+}
+.anredeAdresse {
+  margin-top: 0%
+}
+.headline {
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

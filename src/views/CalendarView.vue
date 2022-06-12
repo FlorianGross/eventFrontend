@@ -2,10 +2,10 @@
   <div class="body">
     <v-card width="96.4%">
       <v-card-title>
-        <span class="headline">Kalender</span>
+        <span>Kalender</span>
       </v-card-title>
       <v-card style="height: 1%"></v-card>
-      <v-row class="fill-height">
+      <v-container>
         <v-col>
           <v-sheet height="64">
             <v-toolbar flat>
@@ -56,7 +56,7 @@
               </v-menu>
             </v-toolbar>
           </v-sheet>
-          <v-sheet class="calendar1" height="600" width="98%">
+          <v-sheet class="calendar1" height="655">
             <v-calendar
               ref="calendar"
               v-model="focus"
@@ -98,7 +98,7 @@
             </v-menu>
           </v-sheet>
         </v-col>
-      </v-row>
+      </v-container>
     </v-card>
   </div>
 </template>
@@ -193,14 +193,9 @@ export default {
   margin-top: 0.8%;
   margin-bottom: 0.8%;
 }
-.containerFieldKalender {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 4.1%;
-  width: 96.4%;
-}
 .calendar1 {
   margin-left: auto;
   margin-right: auto;
+  height: auto;
 }
 </style>

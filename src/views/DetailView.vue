@@ -2,7 +2,7 @@
   <div class="body">
     <v-card width="96.4%">
       <v-card-title>
-        <span class="headline">Events</span>
+        <span>Events</span>
         <v-spacer></v-spacer>
         <v-btn
           color="#000080"
@@ -409,7 +409,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: 0.8%;
-}
-.profilBildEvent {
+  margin-bottom: 0.8%;
 }
 </style>

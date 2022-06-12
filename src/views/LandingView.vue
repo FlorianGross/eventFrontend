@@ -1,17 +1,127 @@
 <template>
   <div class="body-of-landingpage">
     <div class="loginField">
-      <login-part v-if="isLogin"></login-part>
-      <register-part v-if="isRegister"></register-part>
-      <v-card
-        v-if="!isLogin && !isRegister"
-        style="height: 50%"
-      >
+      <v-card v-if="isLogin">
+        <v-card-title>
+          <span>Login</span>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="form">
+            <v-text-field
+              v-model="username"
+              :rules="usernameRules"
+              label="Username"
+              type="username"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="password"
+              :rules="passwordRules"
+              label="Password"
+              type="password"
+              required
+            ></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="loginButtons">
+          <v-btn
+            color="#000080"
+            :disabled="isLoading"
+            style="
+          color: white;
+          min-width: 140px;
+          text-transform: none;
+          font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          margin-bottom: 10px;
+          font-size: 14px;
+        "
+            @click="performLogin"
+            >Login</v-btn
+          >
+          <v-btn
+            color="#000080"
+            :disabled="isLoading"
+            style="
+          color: white;
+          min-width: 140px;
+          text-transform: none;
+          font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          margin-bottom: 10px;
+        "
+            @click="register"
+            >Register</v-btn
+          >
+        </v-card-actions>
+      </v-card>
+      <v-card v-if="isRegister">
+        <v-card-title>
+          <span>Register</span>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="form">
+            <v-text-field
+              v-model="username"
+              :rules="usernameRules"
+              label="Username"
+              type="text"
+              required
+            >
+            </v-text-field>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="Email"
+              type="email"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="password"
+              :rules="passwordRules"
+              label="Password"
+              type="password"
+              required
+            ></v-text-field>
+          </v-form>
+        </v-card-text>
+        <v-card-actions class="loginButtons">
+          <v-btn
+            color="#000080"
+            :disabled="isLoading"
+            style="
+          color: white;
+          min-width: 140px;
+          text-transform: none;
+          font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 14px;
+          margin-bottom: 10px;
+        "
+            @click="performRegister"
+            >Register</v-btn
+          >
+          <v-btn
+            color="#000080"
+            :disabled="isLoading"
+            style="
+          color: white;
+          min-width: 140px;
+          text-transform: none;
+          font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          margin-bottom: 10px;
+        "
+            @click="login"
+            >Login</v-btn
+          >
+        </v-card-actions>
+      </v-card>
+      <v-card v-if="!isLogin && !isRegister" style="height: 50%">
         <v-card-title>
           <span class="headline">Willkommen</span>
         </v-card-title>
         <v-card-text id="wilkommen_txt">
-          Willkommen bei VuetEvent. Hier können Sie alle anstehenden Events in Ihrem persönlichen Kalender organisieren und verwalten. Die Nostalgiker unter euch können auch die vergangenen Events einsehen und in Erinnerungen schwelgen.
+          Willkommen bei VuetEvent. Hier können Sie alle anstehenden Events in
+          Ihrem persönlichen Kalender organisieren und verwalten. Die
+          Nostalgiker unter euch können auch die vergangenen Events einsehen und
+          in Erinnerungen schwelgen.
         </v-card-text>
         <v-card-actions class="loginButtons">
           <v-btn
@@ -23,34 +133,48 @@
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             "
             @click="login"
-          >Login</v-btn>
-            <v-btn
-              color="#000080"
-              style="
+            >Login</v-btn
+          >
+          <v-btn
+            color="#000080"
+            style="
             color:white; 
             min-width: 30%;  
             text-transform: none; 
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
           "
-              @click="register"
-            >Registrieren</v-btn>
+            @click="register"
+            >Registrieren</v-btn
+          >
         </v-card-actions>
-        </v-card>
+      </v-card>
     </div>
   </div>
 </template>
 
 <script>
-import LoginPart from "../components/LoginPart.vue";
-import RegisterPart from "../components/RegisterPart.vue";
 export default {
-  components: { LoginPart, RegisterPart },
   name: "LandingView",
   data() {
     return {
       isLoading: false,
       isLogin: false,
       isRegister: false,
+      username: "",
+      email: "",
+      password: "",
+      usernameRules: [
+        (v) => !!v || "Username is required",
+        (v) => v.length >= 3 || "Username must be at least 3 characters",
+      ],
+      emailRules: [
+        (v) => !!v || "Email is required",
+        (v) => /.+@.+\..+/.test(v) || "Email must be valid",
+      ],
+      passwordRules: [
+        (v) => !!v || "Password is required",
+        (v) => v.length >= 6 || "Password must be at least 6 characters",
+      ],
     };
   },
   methods: {
@@ -58,9 +182,51 @@ export default {
       this.isLogin = true;
       this.isRegister = false;
     },
+    performLogin() {
+      this.isLoading = true;
+      if (this.$refs.form.validate()) {
+        this.$store
+          .dispatch("auth/login", {
+            username: this.username,
+            password: this.password,
+          })
+          .then(() => {
+            this.$router.push("/profile");
+          })
+          .catch(() => {
+            this.isLoading = false;
+            this.$refs.form.validate();
+          });
+      }
+    },
     register() {
       this.isLogin = false;
       this.isRegister = true;
+    },
+    performRegister() {
+      this.isLoading = true;
+      if (this.$refs.form.validate()) {
+        this.$store
+          .dispatch("auth/register", {
+            username: this.username,
+            email: this.email,
+            password: this.password,
+          })
+          .then(() => {
+            this.$store
+              .dispatch("auth/login", {
+                username: this.username,
+                password: this.password,
+              })
+              .then(() => {
+                this.$router.push("/profile");
+              });
+          })
+          .catch(() => {
+            this.$refs.form.validate();
+            this.isLoading = false;
+          });
+      }
     },
   },
   created() {
@@ -99,13 +265,14 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  overflow: hidden;
 }
 .loginField {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 28%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
 }

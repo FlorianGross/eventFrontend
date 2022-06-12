@@ -1,25 +1,26 @@
 <template>
   <v-app id="app">
+    <v-app-bar v-if="this.$vuetify.breakpoint.name == 'xs'"></v-app-bar>
     <div v-if="loggedIn">
       <v-app-bar app color="#000000" dark>
         <div class="d-flex align-center">
           <div class="d-flex align-center" @click="openHome">
-          <v-img
-            alt="Vuetify Logo"
-            class="shrink mr-2"
-            contain
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-            transition="scale-transition"
-            width="40"
-          />
-          <v-img
-            alt="Vuetify Name"
-            class="shrink mt-1 hidden-sm-and-down"
-            contain
-            min-width="100"
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-            width="100"
-          />
+            <v-img
+              alt="Vuetify Logo"
+              class="shrink mr-2"
+              contain
+              src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+              transition="scale-transition"
+              width="40"
+            />
+            <v-img
+              alt="Vuetify Name"
+              class="shrink mt-1 hidden-sm-and-down"
+              contain
+              min-width="100"
+              src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+              width="100"
+            />
           </div>
           <v-btn @click="openEvents" text>
             <span class="mr-2">Events</span>
@@ -84,7 +85,7 @@
 </template>
 
 <script>
-import authService from '@/services/auth.service';
+import authService from "@/services/auth.service";
 const loggedIn = localStorage.getItem("user");
 export default {
   name: "App",
@@ -129,7 +130,7 @@ export default {
       this.$router.push("/impressum").catch(() => {});
     },
     openHome() {
-      if(this.loggedIn) {
+      if (this.loggedIn) {
         this.$router.push("/home").catch(() => {});
       } else {
         this.$router.push("/").catch(() => {});
@@ -141,7 +142,7 @@ export default {
 
 <style>
 #app {
-  background: url('./assets/WebProg4.jpg');
+  background: url("./assets/WebProg4.jpg");
   background-size: cover;
   background-size: 100%;
   background-repeat: no-repeat;

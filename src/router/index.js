@@ -18,7 +18,7 @@ const routes = [
   },
   {
     path: '/events',
-    name: 'home',
+    name: 'events',
     component: HomeView
   },
   {
@@ -53,7 +53,7 @@ const routes = [
   },
   {
     path: '/admin/:id',
-    name: 'admin',
+    name: 'admin/id',
     component: () => import('../views/AdminView.vue')
   },
   {

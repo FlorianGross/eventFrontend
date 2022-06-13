@@ -10,7 +10,7 @@
           <v-btn @click="createEvent()">Event erstellen</v-btn></v-card-title
         >
         <v-expansion-panels>
-          <v-expansion-panel v-for="event in events" :key="event.name">
+          <v-expansion-panel v-for="event in events" :key="event.id">
             <v-expansion-panel-header>
               {{ event.name }}
             </v-expansion-panel-header>

@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>User</v-card-title>
       <v-expansion-panels>
-        <v-expansion-panel v-for="user in users" :key="user.username">
+        <v-expansion-panel v-for="user in users" :key="user.id">
           <v-expansion-panel-header>
             {{ user.username }} {{ user.email }} {{ user.role }}
           </v-expansion-panel-header>
@@ -15,7 +15,7 @@
             ></v-select>
             <v-spacer></v-spacer>
             <v-btn color="blue" @click="updateUser(user, roles)">Update</v-btn>
-            <v-btn color="red">Delete</v-btn>
+            <v-btn color="red" @click="deleteUser(user.id)">Delete</v-btn>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -44,8 +44,14 @@ export default {
       });
     },
     updateUser(item) {
-      user.updateUser(item, this.rolesSelected);
-      console.log(item);
+      user.updateUser(item, this.rolesSelected).then((response) => {
+        this.getUsers();
+      });
+    },
+    deleteUser(id) {
+      user.deleteUser(id).then((response) => {
+        this.getUsers();
+      });
     },
   },
   mounted() {

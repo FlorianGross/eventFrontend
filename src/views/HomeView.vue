@@ -18,7 +18,11 @@
                   <div class="textEvent">
                     <div>
                       <v-card class="eventVCardBeschreibung">
-                        <div class="eventText">{{ event.description }}</div>
+                        <div class="eventText">
+                          {{event.name}}
+                          <v-divider></v-divider>
+                          {{ event.description }}
+                          </div>
                       </v-card>
                     </div>
                   </div>

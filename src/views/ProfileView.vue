@@ -351,7 +351,6 @@ export default {
   methods: {
     selectImage(image){
       this.image = image;
-      console.log(image)
     },
     saveImage() {
       console.log(this.image)
@@ -361,7 +360,8 @@ export default {
       Upload.upload(this.image).then((response) => {
         console.log(response);
         this.user.image = "https://webprogevent.herokuapp.com/api/download/" + response.data.file;
-      });
+        this.updateUser(); 
+    });
     },
     getUserData() {
       User.getUser(this.currentUser.username).then((response) => {

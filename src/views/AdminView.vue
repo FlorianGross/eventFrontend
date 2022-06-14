@@ -49,7 +49,7 @@
               <v-card-title>
                 <v-img
                   class="justify-content"
-                  src="../assets/WelcomeBackParty _2022.jpg"
+                  :src="event.image"
                   height="auto"
                   width="350px"
                   dark
@@ -92,7 +92,7 @@
                   v-model="event.preSaleInfo"
                   class="textFieldStyle"
                 ></v-text-field>
-                <v-file-input label="Bild" class="textFieldStyle">
+                <v-file-input label="Bild" class="textFieldStyle" append-icon="mdi-send" @change="selectImage" @click:append="saveImage()" v-model="image">
                 </v-file-input>
                 <v-textarea
                   label="Beschreibung"
@@ -295,6 +295,7 @@
 
 <script>
 import Event from "../services/event.service.js";
+import Upload from "../services/upload.service.js";
 import ParticipantsManagementPartVue from "@/components/ParticipantsManagementPart.vue";
 export default {
   components: { ParticipantsManagementPartVue },
@@ -313,6 +314,7 @@ export default {
       menu2: false,
       menu3: false,
       menu4: false,
+      image: undefined,
       event: {
         id: "",
         name: "",
@@ -334,6 +336,20 @@ export default {
     };
   },
   methods: {
+    selectImage(image){
+      this.image = image;
+    },
+    saveImage() {
+      console.log(this.image)
+      if(this.image === undefined){
+        return;
+      }
+      Upload.upload(this.image).then((response) => {
+        console.log(response);
+        this.event.image = "https://webprogevent.herokuapp.com/api/download/" + response.data.file;
+        this.saveEvent(); 
+    });
+    },
     testDate() {
       console.log(this.beginDate + ": " + this.beginTime);
       const result = new Date(

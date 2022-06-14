@@ -13,7 +13,7 @@
                 <div class="grid-containerEvent">
                   <img
                     class="profilBildEvent"
-                    src="../assets/WelcomeBackParty _2022.jpg"
+                    :src="event.image"
                   />
                   <div class="textEvent">
                     <div>

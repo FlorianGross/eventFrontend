@@ -24,7 +24,7 @@
               <v-card-title>
                 <v-img
                   class="justify-content"
-                  src="../assets/WelcomeBackParty _2022.jpg"
+                  :src="event.image"
                   height="auto"
                   width="150px"
                   max-width="100%"

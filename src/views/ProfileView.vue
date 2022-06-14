@@ -22,10 +22,14 @@
               <v-card-title>
                 <img
                   class="justify-content"
-                  src="../assets/bild3.jpg" style="width:30%;height:60%;" 
+                  :src="user.image" style="width:30%;height:60%;" 
                   dark
                 />
               </v-card-title>
+              <v-card-text>
+                <v-file-input append-icon="mdi-send" @change="selectImage" @click:append="saveImage()" v-model="image" style="width: 20%;">
+                </v-file-input>
+              </v-card-text>
           </v-flex>
           <v-flex style="padding-right: 2%; margin-left: -46%; margin-top: -0.7%;">
             <v-card style="padding-right: 2%">
@@ -286,6 +290,7 @@
 
 <script>
 import User from "../services/user.service.js";
+import Upload from "../services/upload.service.js";
 export default {
   name: "ProfileView",
   computed: {
@@ -300,7 +305,7 @@ export default {
     this.getUserData();
   },
   data: () => ({
-    image: null,
+    image: undefined,
     user: {
       username: "",
       password: "",
@@ -344,6 +349,20 @@ export default {
     events: [],
   }),
   methods: {
+    selectImage(image){
+      this.image = image;
+      console.log(image)
+    },
+    saveImage() {
+      console.log(this.image)
+      if(this.image === undefined){
+        return;
+      }
+      Upload.upload(this.image).then((response) => {
+        console.log(response);
+        this.user.image = "https://webprogevent.herokuapp.com/api/download/" + response.data.file;
+      });
+    },
     getUserData() {
       User.getUser(this.currentUser.username).then((response) => {
         console.log(response);
@@ -359,11 +378,6 @@ export default {
         this.user.city = response.data.city;
         this.user.country = response.data.country;
         this.user.image = response.data.image;
-      });
-    },
-    saveImage() {
-      User.saveImage(this.currentUser.username, this.image).then((response) => {
-        console.log(response);
       });
     },
     updateUser() {

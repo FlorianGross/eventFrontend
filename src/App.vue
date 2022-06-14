@@ -13,14 +13,6 @@
               transition="scale-transition"
               width="40"
             />
-            <v-img
-              alt="Vuetify Name"
-              class="shrink mt-1 hidden-sm-and-down"
-              contain
-              min-width="100"
-              src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-              width="100"
-            />
           </div>
           <v-btn @click="openEvents" text>
             <span class="mr-2">Events</span>
@@ -57,14 +49,6 @@
             src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
             transition="scale-transition"
             width="40"
-          />
-          <v-img
-            alt="Vuetify Name"
-            class="shrink mt-1 hidden-sm-and-down"
-            contain
-            min-width="100"
-            src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-            width="100"
           />
         </div>
         <v-spacer></v-spacer>

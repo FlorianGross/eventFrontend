@@ -306,7 +306,7 @@ export default {
         {
           id: 1,
           name: "Name",
-          werte: "Welcome Back Party",
+          werte: this.event.name,
         },
         {
           id: 2,
@@ -334,7 +334,7 @@ export default {
         {
           id: 6,
           name: "Specials",
-          werte: "Bierpong ; Glücksrad",
+          werte: this.event.eventSpecials,
         },
         {
           id: 7,

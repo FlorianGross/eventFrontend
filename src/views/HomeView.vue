@@ -19,9 +19,9 @@
                     <div>
                       <v-card class="eventVCardBeschreibung">
                         <div class="eventText">
-                          {{event.name}}
+                          <b>{{event.name}}</b>
                           <v-divider></v-divider>
-                          {{ event.description }}
+                          {{getEventDescription(event)}}
                           </div>
                       </v-card>
                     </div>
@@ -47,6 +47,12 @@ export default {
     };
   },
   methods: {
+    getEventDescription(event) {
+      if (event.description.length > 300) {
+        return event.description.substring(0, 300) + "...";
+      } else {
+        return event.description;
+      }},
     eventClick(event) {
       router.push({ path: "/event/" + event }).catch(() => {});
     },

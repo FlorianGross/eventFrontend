@@ -42,6 +42,7 @@
         >
       </v-card-title>
       <v-card style="height: 1px"></v-card>
+        <v-alert v-if="alert" :color="success ? 'green' : 'red'" dismissible :type="success ? 'success' : 'error'">{{message}}</v-alert>
       <v-container>
         <v-row justify="space-between" xs1 md3>
           <v-flex style="padding-right: 2%">
@@ -302,6 +303,9 @@ export default {
   name: "AdminView",
   data() {
     return {
+      alert: false,
+      message: "",
+      success: false,
       beginTime: null,
       beginDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
         .toISOString()
@@ -348,14 +352,15 @@ export default {
         console.log(response);
         this.event.image = "https://webprogevent.herokuapp.com/api/download/" + response.data.file;
         this.saveEvent(); 
+        this.success = true;
+        this.message = "Successfully uploaded image";
+        this.alert = true;
+    }).catch((error) => {
+      console.log(error);
+      this.message = "Error while saving Image"
+      this.alert = true;
+      this.success = false;
     });
-    },
-    testDate() {
-      console.log(this.beginDate + ": " + this.beginTime);
-      const result = new Date(
-        this.beginDate + "T" + this.beginTime + ":00.000Z"
-      );
-      console.log(result);
     },
     getEvent() {
       Event.getEvent(this.$route.params.id).then((response) => {
@@ -391,6 +396,14 @@ export default {
       this.event.id = this.$route.params.id;
       Event.updateEvent(this.event).then((response) => {
         console.log(response);
+        this.success = true;
+        this.message = "Successfully updated event";
+        this.alert = true;
+      }).catch((error) => {
+        console.log(error);
+        this.message = "Error while saving event"
+        this.alert = true;
+        this.success = false;
       });
     },
     publishEvent() {
@@ -398,18 +411,43 @@ export default {
       this.event.published = true;
       Event.updateEvent(this.event).then((response) => {
         console.log(response);
+        this.success = true;
+        this.message = "Successfully published event";
+        this.alert = true;
+      }).catch((error) => {
+        console.log(error);
+        this.message = "Error while publishing event"
+        this.alert = true;
+        this.success = false;
       });
     },
     updateEvent() {
       this.getTime();
       Event.updateEvent(this.event).then((response) => {
         console.log(response);
+        this.success = true;
+        this.message = "Successfully updated event";
+        this.alert = true;
+      }).catch((error) => {
+        console.log(error);
+        this.message = "Error while saving event"
+        this.alert = true;
+        this.success = false;
       });
     },
     deleteEvent() {
       Event.deleteEvent(this.event.id).then((response) => {
         console.log(response);
+        this.success = true;
+        this.message = "Successfully deleted event";
+        this.alert = true;
+      }).catch((error) => {
+        console.log(error);
+        this.message = "Error while deleting event"
+        this.alert = true;
+        this.success = false;
       });
+
     },
   },
   created() {

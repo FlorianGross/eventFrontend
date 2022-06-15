@@ -16,6 +16,7 @@
         >
       </v-card-title>
       <v-card style="height: 1px"></v-card>
+      <v-alert v-if="alert" :color="success ? 'green' : 'red'" dismissible :type="success ? 'success' : 'error'">{{message}}</v-alert>
       <v-container class="container1">
         <v-row justify="space-between" xs1 md3>
           <v-flex style="padding-right: 2%; width: 50%; margin-top: -1.6%;">
@@ -306,6 +307,9 @@ export default {
   },
   data: () => ({
     image: undefined,
+    alert: false,
+      message: "",
+      success: false,
     user: {
       username: "",
       password: "",
@@ -383,6 +387,14 @@ export default {
     updateUser() {
       User.setUser(this.user).then((response) => {
         console.log(response);
+        this.success = true;
+        this.message = "User updated";
+        this.alert = true;
+      }).catch((error) => {
+        console.log(error);
+        this.alert = true;
+        this.message = "Error while updating user";
+        this.success = false;
       });
       edit.firstName = false;
       edit.lastName = false;

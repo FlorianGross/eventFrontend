@@ -1,6 +1,7 @@
 <template>
   <div class="body-of-landingpage">
     <div class="loginField">
+      <v-alert v-if="alert" :color="success ? 'green' : (isLoading ? 'blue' : 'red')" :type="success ? 'success' : (isLoading ? 'info' : 'error')">{{message}}</v-alert>
       <v-card v-if="isLogin">
         <v-card-title>
           <span>Login</span>
@@ -155,6 +156,9 @@ export default {
   name: "LandingView",
   data() {
     return {
+      alert: false,
+      message: "",
+      success: false,
       isLoading: false,
       isLogin: false,
       isRegister: false,
@@ -189,11 +193,18 @@ export default {
             password: this.password,
           })
           .then(() => {
+            this.isLoading = false;
+            this.success = true;
+            this.message = "Login successful";
+            this.alert = true;
             this.$router.push("/profile");
           })
           .catch(() => {
             this.isLoading = false;
             this.$refs.form.validate();
+            this.message = "Login failed";
+            this.success = false;
+            this.alert = true;
           });
       }
     },
@@ -217,12 +228,19 @@ export default {
                 password: this.password,
               })
               .then(() => {
+                this.success = true;
+                this.message = "Registration successful. You can now login.";
+                this.isLoading = false;
+                this.alert = true;
                 this.$router.push("/profile");
               });
           })
-          .catch(() => {
+          .catch((e) => {
             this.$refs.form.validate();
             this.isLoading = false;
+            this.message = "Registration failed";
+            this.success = false;
+            this.alert = true;
           });
       }
     },

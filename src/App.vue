@@ -81,7 +81,11 @@ export default {
   },
   computed: {
     currentUser() {
-      return this.$store.state.auth.user;
+      var user = this.$store.state.auth.user;
+      if (user == null){
+        return "";
+      }
+      else return user;
     },
   },
   watch: {
@@ -90,9 +94,11 @@ export default {
     },
   },
   mounted() {
+    if(this.loggedIn){
     authService.getIsAdmin(this.currentUser.username).then((response) => {
       this.isAdmin = response.data;
     });
+    }
   },
   methods: {
     openEvents() {

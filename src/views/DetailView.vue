@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <v-card width="96.4%">
+    <v-card width="96.4%" style="padding-bottom: 1%;">
       <v-card-title>
         <span class="headline" style="margin-left: 50%">Events</span>
         <v-spacer></v-spacer>

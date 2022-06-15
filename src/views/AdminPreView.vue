@@ -1,10 +1,10 @@
 <template>
   <div class="bodyDetails">
-    <v-card width= 96.4%>
+    <v-card width= 96.4% style="padding-bottom: 1%;">
       <v-card-title>
         <span class="headline">Admin </span>
       </v-card-title>
-      <v-card>
+      <v-card style="padding-left: 1%; padding-right: 1%;">
         <v-card-title
           >Events <v-spacer></v-spacer>
           <v-btn @click="createEvent()">Event erstellen</v-btn></v-card-title

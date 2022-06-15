@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card>
+    <v-card style="padding-left: 1%; padding-right: 1%;">
       <v-card-title>User</v-card-title>
       <v-expansion-panels>
         <v-expansion-panel v-for="user in users" :key="user.id">

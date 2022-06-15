@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <v-card width="96.4%">
+    <v-card width="96.4%" style="padding-bottom: 1%;">
       <v-card-title>
         <span class="headline">Kalender</span>
       </v-card-title>
@@ -80,14 +80,11 @@
                   ></v-toolbar-title>
                   <v-spacer></v-spacer>
                   <v-btn icon>
-                    <v-icon>mdi-heart</v-icon>
-                  </v-btn>
-                  <v-btn icon>
-                    <v-icon>mdi-dots-vertical</v-icon>
+                    <v-icon @click="openEvent(selectedEvent.details)">mdi-heart</v-icon>
                   </v-btn>
                 </v-toolbar>
                 <v-card-text>
-                  <span v-html="selectedEvent.details"></span>
+                  <span> {{selectedEvent.description}}</span>
                 </v-card-text>
                 <v-card-actions>
                   <v-btn text color="secondary" @click="selectedOpen = false"
@@ -149,6 +146,8 @@ export default {
             const start = new Date(this.eventPre[i].start);
             const end = new Date(this.eventPre[i].end);
             this.events.push({
+              id: this.eventPre[i]._id,
+              description: this.eventPre[i].description,
               name: this.eventPre[i].name,
               color: "blue",
               start: start.getTime(),
@@ -159,6 +158,9 @@ export default {
           }
         }
       });
+    },
+    openEvent(event){
+      this.$router.push("/event/" + event._id);
     },
     showEvent({ nativeEvent, event }) {
       const open = () => {
@@ -191,7 +193,6 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top: 0.8%;
-  margin-bottom: 0.8%;
 }
 .calendar1 {
   margin-left: auto;

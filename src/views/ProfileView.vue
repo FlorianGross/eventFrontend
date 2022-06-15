@@ -1,6 +1,6 @@
 <template>
   <div class="bodyProfil">
-    <v-card width="96.4%">
+    <v-card width="96.4%" style="padding-bottom: 1%;">
       <v-card-title>
         <span class="headline" style="margin-left: 50%">Profildaten</span> 
         <v-spacer></v-spacer>

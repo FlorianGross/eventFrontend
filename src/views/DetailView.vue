@@ -420,8 +420,5 @@ export default {
 }
 .containerDetailView {
   margin-top: 1.5%;
-  margin-left: 3%;
-}
-.beschreibung {
 }
 </style>

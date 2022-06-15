@@ -43,7 +43,7 @@
       </v-card-title>
       <v-card style="height: 1px"></v-card>
         <v-alert v-if="alert" :color="success ? 'green' : 'red'" dismissible :type="success ? 'success' : 'error'">{{message}}</v-alert>
-      <v-container>
+      <v-container style="padding-top: 2%;">
         <v-row justify="space-between" xs1 md3>
           <v-flex style="padding-right: 2%">
             <v-card>

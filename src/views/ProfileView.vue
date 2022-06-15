@@ -292,6 +292,7 @@
 <script>
 import User from "../services/user.service.js";
 import Upload from "../services/upload.service.js";
+import Event from "../services/event.service.js";
 export default {
   name: "ProfileView",
   computed: {
@@ -308,8 +309,8 @@ export default {
   data: () => ({
     image: undefined,
     alert: false,
-      message: "",
-      success: false,
+    message: "",
+    success: false,
     user: {
       username: "",
       password: "",
@@ -351,8 +352,32 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [],
+    eventPre: [],
   }),
   methods: {
+    getEvents(){
+      Event.getEventsFromUser(this.currentUser.id).then((response) => {
+        this.eventPre = response.data;
+        console.log(response.data);
+        for (let i = 0; i < this.eventPre.length; i++) {
+          if (this.eventPre[i].start == null) {
+          } else {
+            const start = new Date(this.eventPre[i].start);
+            const end = new Date(this.eventPre[i].end);
+            this.events.push({
+              id: this.eventPre[i]._id,
+              description: this.eventPre[i].description,
+              name: this.eventPre[i].name,
+              color: "blue",
+              start: start.getTime(),
+              end: end.getTime(),
+              timed: true,
+              details: this.eventPre[i],
+            });
+          }
+        }
+      });
+    },
     selectImage(image){
       this.image = image;
     },
@@ -383,6 +408,7 @@ export default {
         this.user.country = response.data.country;
         this.user.image = response.data.image;
       });
+      this.getEvents();
     },
     updateUser() {
       User.setUser(this.user).then((response) => {
@@ -422,6 +448,9 @@ export default {
     },
     next() {
       this.$refs.calendar.next();
+    },
+    openEvent(event){
+      this.$router.push("/event/" + event._id);
     },
     showEvent({ nativeEvent, event }) {
       const open = () => {

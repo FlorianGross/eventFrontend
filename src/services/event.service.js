@@ -87,5 +87,11 @@ class UserService {
   preOrder(id, user) {
     return axios.post(API_URL + 'preOrder', { id, user }, { headers: authHeader() })
   }
+  
+  getEventsFromUser(id) {
+    return axios.post(API_URL + 'getUserInvolvedInEvent', {
+      user: id
+    }, { headers: authHeader() });
+  }
 }
 export default new UserService()

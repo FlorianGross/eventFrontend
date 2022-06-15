@@ -11,18 +11,15 @@
             <div class="item" @click="eventClick(event._id)">
               <v-card class="cards" height="400px">
                 <div class="grid-containerEvent">
-                  <img
-                    class="profilBildEvent"
-                    :src="event.image"
-                  />
+                  <img class="profilBildEvent" :src="event.image" />
                   <div class="textEvent">
                     <div>
                       <v-card class="eventVCardBeschreibung">
                         <div class="eventText">
-                          <b>{{event.name}}</b>
+                          <b>{{ event.name }}</b>
                           <v-divider></v-divider>
-                          {{getEventDescription(event)}}
-                          </div>
+                          {{ getEventDescription(event) }}
+                        </div>
                       </v-card>
                     </div>
                   </div>
@@ -52,7 +49,8 @@ export default {
         return event.description.substring(0, 300) + "...";
       } else {
         return event.description;
-      }},
+      }
+    },
     eventClick(event) {
       router.push({ path: "/event/" + event }).catch(() => {});
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <v-card width="96.4%" style="padding-bottom: 1%;">
+    <v-card width="96.4%" style="padding-bottom: 1%">
       <v-card-title>
         <span class="headline" style="margin-left: 50%">Events</span>
         <v-spacer></v-spacer>
@@ -19,7 +19,7 @@
       <v-card style="height: 1px"></v-card>
       <v-container class="containerDetailView">
         <v-row justify="space-between" xs1 md3>
-          <v-flex style="padding-right: 2%; padding-bottom: 1%;">
+          <v-flex style="padding-right: 2%; padding-bottom: 1%">
             <v-card>
               <v-card-title>
                 <v-img
@@ -34,7 +34,7 @@
               </v-card-title>
             </v-card>
           </v-flex>
-          <v-flex style="padding-right: 2%; padding-bottom: 1%;">
+          <v-flex style="padding-right: 2%; padding-bottom: 1%">
             <v-card>
               <v-card-title>Beschreibung</v-card-title>
               <v-card-text>{{ event.description }}</v-card-text>
@@ -57,7 +57,7 @@
               </div>
             </v-card>
           </v-flex>
-          <v-flex style="padding-bottom: 1%;">
+          <v-flex style="padding-bottom: 1%">
             <v-card>
               <v-card-title>
                 <span>Kontakt</span>

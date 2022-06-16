@@ -100,11 +100,14 @@ export default {
   min-height: 350px;
   min-width: 100%;
   overflow: auto;
+  font-size: clamp(0.7rem, 0.9vw, 1.0rem);
 }
 .eventText {
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 2%;
+  font-size: clamp(0.7rem, 0.9vw, 1.0rem);
+  
 }
 .headline {
   color: black;

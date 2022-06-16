@@ -1,13 +1,13 @@
 <template>
   <div class="body-of-impressum">
     <div class="impressumField">
-      <v-card style="height: 100%; margin-top: 9.4%;">
+      <v-card style="height: 100%;">
         <v-card-title>
           <span class="headline">Impressum</span>
         </v-card-title>
         <v-card>
     <v-card-text class="impressumText"></v-card-text>
-    <h4>Florian Groß</h4>
+    <h4 style="font-size: clamp(0.9rem, 1vw, 1.3rem);">Florian Groß</h4>
     <div
       class="grid-containerPersonen"
       style="margin-left: 2%; margin-bottom: 2%"
@@ -18,14 +18,14 @@
       >
         <div
           class="text"
-          style="margin-left: 45%; margin-bottom: 5%"
+          style="margin-left: 45%; margin-bottom: 5%; font-size: clamp(0.7rem, 0.9vw, 0.9rem);"
         >
           <div>Vorname:</div>
           <div>Nachname:</div>
           <div>E-Mail:</div>
           <div>Semester:</div>
           </div>
-          <div class="text">
+          <div class="text" style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);">
             <div>Florian</div>
             <div>Groß</div>
             <div>florian.gross@hs-weingarten.de</div>
@@ -35,7 +35,7 @@
   </v-card>
   <v-card>
     <v-card-text class="impressumText"></v-card-text>
-    <h4>Sven Herz</h4>
+    <h4 style="font-size: clamp(0.9rem, 1vw, 1.3rem);">Sven Herz</h4>
     <div
       class="grid-containerPersonen"
       style="margin-top: 2%; margin-bottom: 2%"
@@ -46,14 +46,14 @@
       >
         <div
           class="text"
-          style="margin-left: 45%; margin-bottom: 5%"
+          style="margin-left: 45%; margin-bottom: 5%; font-size: clamp(0.7rem, 0.9vw, 0.9rem);"
         >
           <div>Vorname:</div>
           <div>Nachname:</div>
           <div>E-Mail:</div>
           <div>Semester:</div>
           </div>
-          <div class="text">
+          <div class="text" style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);">
             <div>Sven</div>
             <div>Herz</div>
             <div>sven.herz@hs-weingarten.de</div>
@@ -61,13 +61,13 @@
           </div>
           </div>
   </v-card>
-        <v-card style="height: 1%">
+        <v-card style="height: 1%; margin-bottom: 5%;">
           <v-card-text class="impressumText"></v-card-text>
-          <h3>Hochschule Ravensburg-Weingarten</h3>
-          <h3>University of Applied Sciences</h3>
+          <h3 style="font-size: clamp(0.9rem, 1vw, 1.3rem);">Hochschule Ravensburg-Weingarten</h3>
+          <h3 style="font-size: clamp(0.9rem, 1vw, 1.3rem);">University of Applied Sciences</h3>
           <div
             class="grid-containerRwu"
-            style="margin-top: 2%; margin-bottom: 2%"
+            style="margin-top: 2%; margin-bottom: 2%;"
           >
             <img
               class="rwu"
@@ -75,7 +75,7 @@
             >
               <div
                 class="text"
-                style="margin-left: 45%; margin-bottom: 5%"
+                style="margin-left: 45%; margin-bottom: 5%; font-size: clamp(0.7rem, 0.9vw, 0.9rem);"
               >
                 <div>Doggenriedstraße</div>
                 <div>88250 Weingarten</div>
@@ -84,13 +84,13 @@
                 <div>Telefax: +49 (0) 751/501-9876</div>
                 <div>E-Mail: info@rwu.de</div>
     </div>
-    <div class="text">
+    <div class="text" style="margin-left: 55%; font-size: clamp(0.7rem, 0.9vw, 0.9rem);">
       <div>Prüfungsfach:</div>
       <div>Dozentin:</div>
       <div>Semester:</div>
       <div>Gruppe:</div>
     </div>
-    <div class="text">
+    <div class="text" style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);">
       <div>Web-Programmierung</div>
       <div>Bianca-Maria Braun</div>
       <div>SoSe 2022</div>
@@ -156,9 +156,9 @@ h4 {
 }
 .impressumField {
   position: absolute;
-  top: 50%;
+  top: 9%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, 0%);
   width: 96.4%;
   margin-left: auto;
   margin-right: auto;
@@ -168,7 +168,7 @@ h4 {
   margin-top: 2%;
   margin-left: 2%;
   display: grid;
-  grid-template-columns: 9% 40% 10% 100%;
+  grid-template-columns: 9% 20% 20% 100%;
 }
 .grid-containerPersonen {
   margin-top: 2%;

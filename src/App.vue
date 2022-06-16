@@ -14,28 +14,43 @@
               width="40"
             />
           </div>
-          <v-btn @click="openEvents" text>
+          <v-btn 
+          class="mr-2" 
+          style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);"
+          @click="openEvents" text>
             <span class="mr-2">Events</span>
-            <v-icon>mdi-balloon</v-icon>
+            <v-icon style="font-size: clamp(1.3rem, 1.5vw, 1.6rem);">mdi-balloon</v-icon>
           </v-btn>
-          <v-btn @click="openCalendar" text>
-            <span class="mr-2">Kalender</span>
-            <v-icon>mdi-account</v-icon>
+          <v-btn 
+          class="mr-2" 
+          style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);" 
+          @click="openCalendar" text>
+            Kalender
+            <v-icon style="margin-left: 4%; font-size: clamp(1.3rem, 1.5vw, 1.6rem);">mdi-account</v-icon>
           </v-btn>
-          <v-btn v-if="isAdmin" @click="openAdmin" text>
-            <span class="mr-2">Admin</span>
-            <v-icon>mdi-shield-crown-outline</v-icon>
+          <v-btn 
+          class="mr-2" v-if="isAdmin"
+          style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);" 
+          @click="openAdmin" text>
+            Admin
+            <v-icon style="margin-left: 4%; font-size: clamp(1.3rem, 1.5vw, 1.6rem);">mdi-shield-crown-outline</v-icon>
           </v-btn>
         </div>
 
         <v-spacer></v-spacer>
-        <v-btn href="/logout" text>
-          <span class="mr-2">Logout</span>
-          <v-icon>mdi-logout</v-icon>
+        <v-btn 
+        class="mr-2" 
+        style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);" 
+        href="/logout" text>
+          Logout
+          <v-icon style="margin-left: 4%; font-size: clamp(1.3rem, 1.5vw, 1.6rem);">mdi-logout</v-icon>
         </v-btn>
-        <v-btn @click="openProfile" text>
-          <span class="mr-2">Profil</span>
-          <v-icon>mdi-account</v-icon>
+        <v-btn 
+        class="mr-2"
+        style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);" 
+        @click="openProfile" text>
+          Profil
+          <v-icon style="margin-left: 4%; font-size: clamp(1.3rem, 1.5vw, 1.6rem);">mdi-account</v-icon>
         </v-btn>
       </v-app-bar>
     </div>
@@ -52,13 +67,19 @@
           />
         </div>
         <v-spacer></v-spacer>
-        <v-btn @click="openDatenschutz" text>
-          <span class="mr-2">Datenschutz</span>
-          <v-icon>mdi-account-lock</v-icon>
+        <v-btn 
+        class="mr-2" 
+        style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);" 
+        @click="openDatenschutz" text>
+          Datenschutz
+          <v-icon style="margin-left: 4%; font-size: clamp(1.3rem, 1.5vw, 1.6rem);">mdi-account-lock</v-icon>
         </v-btn>
-        <v-btn @click="openImpressum" text>
-          <span class="mr-2">Impressum</span>
-          <v-icon>mdi-security</v-icon>
+        <v-btn 
+        class="mr-2" 
+        style="font-size: clamp(0.7rem, 0.9vw, 0.9rem);"
+        @click="openImpressum" text>
+          Impressum
+          <v-icon style="margin-left: 4%; font-size: clamp(1.3rem, 1.5vw, 1.6rem);">mdi-security</v-icon>
         </v-btn>
       </v-app-bar>
     </div>

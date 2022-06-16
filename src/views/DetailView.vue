@@ -1,25 +1,38 @@
 <template>
   <div class="body">
-    <v-card width="96.4%" style="padding-bottom: 1%">
+    <v-card
+      width="96.4%"
+      style="padding-bottom: 1%"
+    >
       <v-card-title>
-        <span class="headline" style="margin-left: 50%">Events</span>
-        <v-spacer></v-spacer>
-        <v-btn
-          color="#000080"
-          style="
+        <span
+          class="headline"
+          style="margin-left: 50%"
+        >Events</span>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="#000080"
+            style="
             color:white; 
             width: 10%; 
             text-transform: none; 
+            font-size: clamp(0.6rem, 0.8vw, 0.9rem)
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
-          v-if="isAdmin"
-          @click="openAdminView()"
-          >Event Bearbeiten</v-btn
-        >
+            v-if="isAdmin"
+            @click="openAdminView()"
+          >Bearbeiten</v-btn>
       </v-card-title>
       <v-card style="height: 1px"></v-card>
       <v-container class="containerDetailView">
-        <v-row justify="space-between" xs1 md3>
-          <v-flex style="padding-right: 2%; padding-bottom: 1%" md4>
+        <v-row
+          justify="space-between"
+          xs1
+          md3
+        >
+          <v-flex
+            style="padding-right: 2%; padding-bottom: 1%"
+            md4
+          >
             <v-card>
               <v-card-title>
                 <v-img
@@ -30,140 +43,157 @@
                   max-width="100%"
                   dark
                 >
-                </v-img>
+                  </v-img>
               </v-card-title>
             </v-card>
-          </v-flex>
-          <v-flex style="padding-right: 2%; padding-bottom: 1%" md4>
-            <v-card width="auto">
-              <v-card-title>Beschreibung</v-card-title>
-              <v-card-text>{{ event.description }}</v-card-text>
-              <v-card-title>
-                <span>Details</span>
-              </v-card-title>
-              <div>
-                <v-card class="detailsVCardBeschreibung">
-                  <v-simple-table class="detailsInhalt-2">
-                    <tbody>
-                      <v-divider></v-divider>
-                      <tr v-for="item in details" :key="item.id">
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.werte }}</td>
-                      </tr>
-                      <v-divider></v-divider>
-                    </tbody>
-                  </v-simple-table>
-                </v-card>
-              </div>
-            </v-card>
-          </v-flex>
-          <v-flex style="padding-bottom: 1%" md4>
-            <v-card>
-              <v-card-title>
-                <span>Kontakt</span>
-              </v-card-title>
-              <v-card-text>
-                <v-simple-table>
-                  <tbody>
-                    <v-divider></v-divider>
-                    <tr v-for="item in organizer" :key="item.id">
-                      <td>{{ item.name }}</td>
-                      <td>{{ item.werte }}</td>
-                    </tr>
-                    <v-divider></v-divider>
-                  </tbody>
-                </v-simple-table>
-              </v-card-text>
-              <v-divider></v-divider>
-              <v-card-title>
-                <span>Buchung</span>
-              </v-card-title>
-              <div>
-                <v-card>
-                  <v-list>
-                    <v-list-item>
-                      <v-list-item-content>
-                        Maximale anmeldezahl: {{ event.maxParticipants }}
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                      <v-list-item-content>
-                        Anmeldezahl: {{ participants }}
-                      </v-list-item-content>
-                    </v-list-item>
-                    <v-list-item>
-                      <v-list-item-content>
-                        Vorgemerkte: {{ preorder }}
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
-                </v-card>
+            </v-flex>
+            <v-flex
+              style="padding-right: 2%; padding-bottom: 1%"
+              md4
+            >
+              <v-card width="auto">
+                <v-card-title class="ueberschriften">Beschreibung</v-card-title>
+                <v-card-text style="font-size: clamp(0.7rem, 0.9vw, 1.0rem)">{{ event.description }}</v-card-text>
+                <v-card-title class="ueberschriften">Details</v-card-title>
                 <div>
-                  <v-card>
-                    <v-alert
-                      v-if="showAlert"
-                      :type="error ? 'error' : 'success'"
-                      :color="error ? 'red' : 'green'"
-                    >
-                      {{ notification }}
-                    </v-alert>
-                    <v-container style="width: 70%">
-                      <v-row justify="space-around">
-                        <v-btn
-                          class="mx-1"
-                          fab
-                          dark
-                          large
-                          @click="
+                  <v-card class="detailsVCardBeschreibung">
+                    <v-simple-table class="detailsInhalt-2">
+                      <tbody>
+                        <v-divider></v-divider>
+                        <tr
+                          v-for="item in details"
+                          :key="item.id"
+                        >
+                          <td style="font-size: clamp(0.7rem, 0.9vw, 1.0rem)">{{ item.name }}</td>
+                          <td style="font-size: clamp(0.7rem, 0.9vw, 1.0rem)">{{ item.werte }}</td>
+                          </tr>
+                          <v-divider></v-divider>
+                      </tbody>
+                    </v-simple-table>
+                  </v-card>
+                </div>
+              </v-card>
+              </v-flex>
+              <v-flex
+                style="padding-bottom: 1%"
+                md4
+              >
+                <v-card>
+                  <v-card-title class="ueberschriften">Kontakt</v-card-title>
+                  <v-card-text>
+                    <v-simple-table>
+                      <tbody>
+                        <v-divider></v-divider>
+                        <tr
+                          v-for="item in organizer"
+                          :key="item.id"
+                        >
+                          <td style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);">{{ item.name }}</td>
+                          <td style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);">{{ item.werte }}</td>
+                          </tr>
+                          <v-divider></v-divider>
+                      </tbody>
+                    </v-simple-table>
+                  </v-card-text>
+                  <v-divider></v-divider>
+                  <v-card-title class="ueberschriften">Buchung</v-card-title>
+                  <div>
+                    <v-card>
+                      <v-list>
+                        <v-list-item>
+                          <v-list-item-content class="schriftgroessen">
+                            Maximale Anmeldezahl: {{ event.maxParticipants }}
+                          </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item>
+                          <v-list-item-content class="schriftgroessen">
+                            Anmeldezahl: {{ participants }}
+                          </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item>
+                          <v-list-item-content class="schriftgroessen">
+                            Vorgemerkte: {{ preorder }}
+                          </v-list-item-content>
+                        </v-list-item>
+                      </v-list>
+                    </v-card>
+                    <div>
+                      <v-card>
+                        <v-alert
+                          v-if="showAlert"
+                          class="schriftgroessen"
+                          :type="error ? 'error' : 'success'"
+                          :color="error ? 'red' : 'green'"
+                        >
+                          {{ notification }}
+                          </v-alert>
+                          <v-container style="width: 70%">
+                            <v-row justify="space-around">
+                              <v-btn
+                                class="mx-1"
+                                fab
+                                dark
+                                large
+                                @click="
                             isLoadingParticipate = true;
                             showAlert = false;
                             participate();
                           "
-                          :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
-                        >
-                          <v-icon dark v-if="!isLoadingParticipate">
-                            mdi-check
-                          </v-icon>
-                          <v-progress-circular
-                            v-if="isLoadingParticipate"
-                            color="white"
-                            indeterminate
-                          ></v-progress-circular>
-                        </v-btn>
-                        <v-btn
-                          class="mx-1"
-                          fab
-                          dark
-                          large
-                          :color="vorgemerkt ? 'green' : error ? 'red' : 'blue'"
-                          @click="
+                                :color="angemeldet ? 'green' : error ? 'red' : 'blue'"
+                              >
+                                <v-icon
+                                  dark
+                                  v-if="!isLoadingParticipate"
+                                >
+                                  mdi-check
+                                  </v-icon>
+                                  <v-progress-circular
+                                    v-if="isLoadingParticipate"
+                                    color="white"
+                                    indeterminate
+                                  ></v-progress-circular>
+                                    </v-btn>
+                                    <v-btn
+                                      fab
+                                      dark
+                                      large
+                                      :color="vorgemerkt ? 'green' : error ? 'red' : 'blue'"
+                                      @click="
                             preOrder();
-                            isLoadingPreorder = true;
-                          "
-                        >
-                          <v-icon v-if="!isLoadingPreorder" dark>
-                            mdi-calendar
-                          </v-icon>
-                          <v-progress-circular
-                            v-if="isLoadingPreorder"
-                            color="white"
-                            indeterminate
-                          ></v-progress-circular>
-                        </v-btn>
-                      </v-row>
-                      <v-row justify="space-around">
-                        <v-card-title> Anmelden </v-card-title>
-                        <v-card-title> Vormerken </v-card-title>
-                      </v-row>
-                    </v-container>
-                  </v-card>
-                </div>
-              </div>
-            </v-card>
-          </v-flex>
-        </v-row>
+                            isLoadingPreorder = true;"
+                                    >
+                                      <v-icon
+                                        v-if="!isLoadingPreorder"
+                                        dark
+                                      >
+                                        mdi-calendar
+                                        </v-icon>
+                                        <v-progress-circular
+                                          v-if="isLoadingPreorder"
+                                          color="white"
+                                          indeterminate
+                                        ></v-progress-circular>
+                                          </v-btn>
+                            </v-row>
+                            <v-row justify="space-around">
+                              <v-card-title
+                                class="ueberschriften"
+                                style="margin-left: 3.0%;"
+                              > Anmelden </v-card-title>
+                                <v-card-title
+                                  class="ueberschriften"
+                                  style="margin-left: 3.0%;"
+                                > Vormerken </v-card-title>
+                            </v-row>
+                          </v-container>
+                      </v-card>
+                    </div>
+                  </div>
+                </v-card>
+                </v-flex>
+                </v-row>
       </v-container>
-    </v-card>
+      </v-card>
   </div>
 </template>
 
@@ -217,7 +247,7 @@ export default {
   },
   methods: {
     getEvent() {
-      Event.getEvent(this.id).then((response) => {
+      Event.getEvent(this.id).then(response => {
         console.log(response);
         this.event = response.data;
         console.log(this.event);
@@ -237,7 +267,7 @@ export default {
     },
     preOrder() {
       if (!this.vorgemerkt) {
-        Event.preOrder(this.id, this.currentUser.id).then((response) => {
+        Event.preOrder(this.id, this.currentUser.id).then(response => {
           console.log(response.data);
           this.event = response.data;
           if (response.data.preorder.includes(this.currentUser.id)) {
@@ -251,7 +281,7 @@ export default {
           this.isLoadingPreorder = false;
         });
       } else {
-        Event.unPreOrder(this.id, this.currentUser.id).then((response) => {
+        Event.unPreOrder(this.id, this.currentUser.id).then(response => {
           console.log(response.data);
           this.event = response.data;
           if (!response.data.preorder.includes(this.currentUser.id)) {
@@ -268,24 +298,22 @@ export default {
     },
     participate() {
       if (!this.angemeldet) {
-        Event.participateEvent(this.id, this.currentUser.id).then(
-          (response) => {
-            console.log(response.data);
-            this.event = response.data;
-            if (response.data.participants.includes(this.currentUser.id)) {
-              this.angemeldet = true;
-              this.sendGoodAlert("Erfolgreich angemeldet");
-            } else {
-              this.angemeldet = false;
-              this.sendBadAlert("Fehler bei der Anmeldung");
-            }
-            this.participants = response.data.participants.length;
-            this.isLoadingParticipate = false;
+        Event.participateEvent(this.id, this.currentUser.id).then(response => {
+          console.log(response.data);
+          this.event = response.data;
+          if (response.data.participants.includes(this.currentUser.id)) {
+            this.angemeldet = true;
+            this.sendGoodAlert("Erfolgreich angemeldet");
+          } else {
+            this.angemeldet = false;
+            this.sendBadAlert("Fehler bei der Anmeldung");
           }
-        );
+          this.participants = response.data.participants.length;
+          this.isLoadingParticipate = false;
+        });
       } else {
         Event.unParticipateEvent(this.id, this.currentUser.id).then(
-          (response) => {
+          response => {
             console.log(response.data);
             this.event = response.data;
             if (!response.data.participants.includes(this.currentUser.id)) {
@@ -392,7 +420,7 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
-    authService.getIsAdmin(this.currentUser.username).then((response) => {
+    authService.getIsAdmin(this.currentUser.username).then(response => {
       this.isAdmin = response.data;
     });
   },
@@ -420,5 +448,11 @@ export default {
 }
 .containerDetailView {
   margin-top: 1.5%;
+}
+.schriftgroessen {
+  font-size: clamp(0.7rem, 0.9vw, 1.0rem);
+}
+.ueberschriften {
+  font-size: clamp(0.9rem, 1vw, 1.3rem);
 }
 </style>

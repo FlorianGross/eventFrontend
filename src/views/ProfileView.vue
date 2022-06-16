@@ -2,7 +2,7 @@
   <div class="bodyProfil">
     <v-card width="96.4%" style="padding-bottom: 1%;">
       <v-card-title>
-        <span class="headline" style="margin-left: 50%">Profildaten</span> 
+        <span class="headline" style="margin-left: 50%;">Profildaten</span> 
         <v-spacer></v-spacer>
         <v-btn
           color="#000080"
@@ -10,6 +10,7 @@
             color:white; 
             width: 10%; 
             text-transform: none; 
+            font-size: clamp(0.6rem, 0.8vw, 0.9rem)
             font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
           @click="getUserData()"
           >Reload</v-btn
@@ -34,12 +35,11 @@
           </v-flex>
           <v-flex style="padding-right: 2%; margin-left: -46%; margin-top: -0.7%;">
             <v-card style="padding-right: 2%">
-              <v-card-title>
-                <span class="headline2">Anrede</span>
-              </v-card-title>
+              <v-card-title class="headline2" style="  font-size: clamp(0.9rem, 1vw, 1.3rem);">Anrede</v-card-title>
               <div class="anredeAdresse" style="margin-bottom: 1%;">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.firstName ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.firstName"
                   :clearable="edit.firstName"
@@ -56,6 +56,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.lastName ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.lastName"
                   :clearable="edit.lastName"
@@ -72,6 +73,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.email ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.email"
                   :clearable="edit.email"
@@ -86,6 +88,7 @@
               <div style="padding-bottom: 2%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.phoneNumber ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.phoneNumber"
                   :clearable="edit.phoneNumber"
@@ -101,12 +104,11 @@
               </div>
             </v-card>
             <v-card style="margin-top: 5%; padding-right: 2%">
-              <v-card-title>
-                <span class="headline2">Adresse</span>
-              </v-card-title>
+              <v-card-title class="headline2" style="  font-size: clamp(0.9rem, 1vw, 1.3rem);">Adresse</v-card-title>
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.street ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.street"
                   :clearable="edit.street"
@@ -121,6 +123,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.streetNumber ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.streetNumber"
                   :clearable="edit.streetNumber"
@@ -137,6 +140,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.city ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.city"
                   :clearable="edit.city"
@@ -151,6 +155,7 @@
               <div style="margin-bottom: 2%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
                   :append-icon="edit.zip ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.zip"
                   :clearable="edit.zip"
@@ -164,7 +169,7 @@
               </div> </v-card
           ></v-flex>
           <v-flex style="padding-right: 2%; padding-bottom: 2%">
-            <div class="calendar">
+            <div class="calendar" >
               <v-card>
                 <v-row class="fill-height">
                   <v-col>
@@ -216,7 +221,7 @@
                             <v-list-item @click="type = 'day'">
                               <v-list-item-title>Day</v-list-item-title>
                             </v-list-item>
-                            <v-list-item @click="type = 'week'">
+                            <v-list-item  @click="type = 'week'">
                               <v-list-item-title>Week</v-list-item-title>
                             </v-list-item>
                             <v-list-item @click="type = 'month'">

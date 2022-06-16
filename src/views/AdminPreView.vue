@@ -4,21 +4,40 @@
       <v-card-title>
         <span class="headline">Admin </span>
       </v-card-title>
-      <v-card style="padding-left: 1%; padding-right: 1%;">
-        <v-card-title
-          >Events <v-spacer></v-spacer>
-          <v-btn @click="createEvent()">Event erstellen</v-btn></v-card-title
+      <v-card style="padding-left: 1%; padding-right: 1%; margin-bottom: 3%;">
+        <v-card-title class="ueberschriften">Events <v-spacer></v-spacer>
+          <v-btn
+          color="#000080"
+            style="
+            color:white; 
+            width: 10%; 
+            text-transform: none; 
+            font-size: clamp(0.6rem, 0.8vw, 0.9rem)
+            font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" 
+          @click="createEvent()">Event erstellen</v-btn></v-card-title
         >
         <v-expansion-panels>
           <v-expansion-panel v-for="event in events" :key="event.id">
-            <v-expansion-panel-header>
+            <v-expansion-panel-header class="schriftgroessen">
               {{ event.name }}
             </v-expansion-panel-header>
             <v-expansion-panel-content>
-              <v-btn color="blue" @click="editEvent(event._id)"
-                >Bearbeiten</v-btn
+              <v-btn 
+              color="blue"
+                  style="
+                  width: 6%; 
+                  font-size: clamp(0.6rem, 0.8vw, 0.9rem); 
+                  font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+              @click="editEvent(event._id)"
+                >Update</v-btn
               >
-              <v-btn color="red">Delete</v-btn>
+              <v-btn
+              color="red" 
+                  style="
+                  width: 6%; 
+                  font-size: clamp(0.6rem, 0.8vw, 0.9rem); 
+                  font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
+              >Delete</v-btn>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -83,5 +102,11 @@ export default {
   color: black;
   margin-left: auto;
   margin-right: auto;
+}
+.schriftgroessen {
+  font-size: clamp(0.7rem, 0.9vw, 1.0rem);
+}
+.ueberschriften {
+  font-size: clamp(0.9rem, 1vw, 1.3rem);
 }
 </style>

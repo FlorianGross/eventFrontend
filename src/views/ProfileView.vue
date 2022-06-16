@@ -1,8 +1,8 @@
 <template>
   <div class="bodyProfil">
-    <v-card width="96.4%" style="padding-bottom: 1%;">
+    <v-card width="96.4%" style="padding-bottom: 1%">
       <v-card-title>
-        <span class="headline" style="margin-left: 50%;">Profildaten</span> 
+        <span class="headline" style="margin-left: 50%">Profildaten</span>
         <v-spacer></v-spacer>
         <v-btn
           color="#000080"
@@ -17,29 +17,48 @@
         >
       </v-card-title>
       <v-card style="height: 1px"></v-card>
-      <v-alert v-if="alert" :color="success ? 'green' : 'red'" dismissible :type="success ? 'success' : 'error'">{{message}}</v-alert>
+      <v-alert
+        v-if="alert"
+        :color="success ? 'green' : 'red'"
+        dismissible
+        :type="success ? 'success' : 'error'"
+        >{{ message }}</v-alert
+      >
       <v-container class="container1">
         <v-row justify="space-between" xs1 md3>
-          <v-flex style="padding-right: 2%; width: 50%; margin-top: -1.6%;">
-              <v-card-title>
-                <img
-                  class="justify-content"
-                  :src="user.image" style="width:30%;height:60%;" 
-                  dark
-                />
-              </v-card-title>
-              <v-card-text>
-                <v-file-input append-icon="mdi-send" @change="selectImage" @click:append="saveImage()" v-model="image" style="width: 20%;">
-                </v-file-input>
-              </v-card-text>
+          <v-flex style="padding-right: 2%; width: 60%; margin-top: -1.6%">
+            <v-card-title>
+              <img
+                class="justify-content"
+                :src="user.image"
+                style="width: 30%; height: 60%"
+                dark
+              />
+            </v-card-title>
+            <v-card-text>
+              <v-file-input
+                append-icon="mdi-send"
+                @change="selectImage"
+                @click:append="saveImage()"
+                v-model="image"
+                style="width: 20%"
+              >
+              </v-file-input>
+            </v-card-text>
           </v-flex>
-          <v-flex style="padding-right: 2%; margin-left: -46%; margin-top: -0.7%;">
+          <v-flex
+            style="padding-right: 2%; margin-left: -46%; margin-top: -0.7%"
+          >
             <v-card style="padding-right: 2%">
-              <v-card-title class="headline2" style="  font-size: clamp(0.9rem, 1vw, 1.3rem);">Anrede</v-card-title>
-              <div class="anredeAdresse" style="margin-bottom: 1%;">
+              <v-card-title
+                class="headline2"
+                style="font-size: clamp(0.9rem, 1vw, 1.3rem)"
+                >Anrede</v-card-title
+              >
+              <div class="anredeAdresse" style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.firstName ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.firstName"
                   :clearable="edit.firstName"
@@ -56,7 +75,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.lastName ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.lastName"
                   :clearable="edit.lastName"
@@ -73,7 +92,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.email ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.email"
                   :clearable="edit.email"
@@ -88,7 +107,7 @@
               <div style="padding-bottom: 2%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.phoneNumber ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.phoneNumber"
                   :clearable="edit.phoneNumber"
@@ -104,11 +123,15 @@
               </div>
             </v-card>
             <v-card style="margin-top: 5%; padding-right: 2%">
-              <v-card-title class="headline2" style="  font-size: clamp(0.9rem, 1vw, 1.3rem);">Adresse</v-card-title>
+              <v-card-title
+                class="headline2"
+                style="font-size: clamp(0.9rem, 1vw, 1.3rem)"
+                >Adresse</v-card-title
+              >
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.street ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.street"
                   :clearable="edit.street"
@@ -123,7 +146,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.streetNumber ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.streetNumber"
                   :clearable="edit.streetNumber"
@@ -140,7 +163,7 @@
               <div style="margin-bottom: 1%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.city ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.city"
                   :clearable="edit.city"
@@ -155,7 +178,7 @@
               <div style="margin-bottom: 2%">
                 <v-text-field
                   clear-icon="mdi-close-circle"
-                  style="font-size: clamp(0.7rem, 0.9vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.9vw, 1rem)"
                   :append-icon="edit.zip ? 'mdi-check' : 'mdi-pen'"
                   :readonly="!edit.zip"
                   :clearable="edit.zip"
@@ -169,7 +192,7 @@
               </div> </v-card
           ></v-flex>
           <v-flex style="padding-right: 2%; padding-bottom: 2%">
-            <div class="calendar" >
+            <div class="calendar">
               <v-card>
                 <v-row class="fill-height">
                   <v-col>
@@ -221,7 +244,7 @@
                             <v-list-item @click="type = 'day'">
                               <v-list-item-title>Day</v-list-item-title>
                             </v-list-item>
-                            <v-list-item  @click="type = 'week'">
+                            <v-list-item @click="type = 'week'">
                               <v-list-item-title>Week</v-list-item-title>
                             </v-list-item>
                             <v-list-item @click="type = 'month'">
@@ -254,31 +277,26 @@
                       >
                         <v-card color="grey lighten-4" flat>
                           <v-toolbar :color="selectedEvent.color" dark>
-                            <v-btn icon>
-                              <v-icon>mdi-pencil</v-icon>
-                            </v-btn>
                             <v-toolbar-title
                               v-html="selectedEvent.name"
                             ></v-toolbar-title>
                             <v-spacer></v-spacer>
                             <v-btn icon>
-                              <v-icon>mdi-heart</v-icon>
-                            </v-btn>
-                            <v-btn icon>
-                              <v-icon>mdi-dots-vertical</v-icon>
+                              <v-icon @click="openEvent(selectedEvent.details)"
+                                >mdi-heart</v-icon
+                              >
                             </v-btn>
                           </v-toolbar>
                           <v-card-text>
-                            <span v-html="selectedEvent.details"></span>
+                            <span> {{ selectedEvent.description }}</span>
                           </v-card-text>
                           <v-card-actions>
                             <v-btn
                               text
                               color="secondary"
                               @click="selectedOpen = false"
+                              >Cancel</v-btn
                             >
-                              Cancel
-                            </v-btn>
                           </v-card-actions>
                         </v-card>
                       </v-menu>
@@ -360,7 +378,7 @@ export default {
     eventPre: [],
   }),
   methods: {
-    getEvents(){
+    getEvents() {
       Event.getEventsFromUser(this.currentUser.id).then((response) => {
         this.eventPre = response.data;
         console.log(response.data);
@@ -383,19 +401,21 @@ export default {
         }
       });
     },
-    selectImage(image){
+    selectImage(image) {
       this.image = image;
     },
     saveImage() {
-      console.log(this.image)
-      if(this.image === undefined){
+      console.log(this.image);
+      if (this.image === undefined) {
         return;
       }
       Upload.upload(this.image).then((response) => {
         console.log(response);
-        this.user.image = "https://webprogevent.herokuapp.com/api/download/" + response.data.file;
-        this.updateUser(); 
-    });
+        this.user.image =
+          "https://webprogevent.herokuapp.com/api/download/" +
+          response.data.file;
+        this.updateUser();
+      });
     },
     getUserData() {
       User.getUser(this.currentUser.username).then((response) => {
@@ -416,17 +436,19 @@ export default {
       this.getEvents();
     },
     updateUser() {
-      User.setUser(this.user).then((response) => {
-        console.log(response);
-        this.success = true;
-        this.message = "User updated";
-        this.alert = true;
-      }).catch((error) => {
-        console.log(error);
-        this.alert = true;
-        this.message = "Error while updating user";
-        this.success = false;
-      });
+      User.setUser(this.user)
+        .then((response) => {
+          console.log(response);
+          this.success = true;
+          this.message = "User updated";
+          this.alert = true;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.alert = true;
+          this.message = "Error while updating user";
+          this.success = false;
+        });
       edit.firstName = false;
       edit.lastName = false;
       edit.email = false;
@@ -454,7 +476,7 @@ export default {
     next() {
       this.$refs.calendar.next();
     },
-    openEvent(event){
+    openEvent(event) {
       this.$router.push("/event/" + event._id);
     },
     showEvent({ nativeEvent, event }) {
@@ -502,7 +524,7 @@ export default {
   margin-top: 2%;
 }
 .anredeAdresse {
-  margin-top: 0%
+  margin-top: 0%;
 }
 .headline {
   color: black;

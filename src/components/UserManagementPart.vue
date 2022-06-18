@@ -1,12 +1,9 @@
 <template>
   <div>
-    <v-card style="padding-left: 1%; padding-right: 1%; margin-bottom: 3%;">
+    <v-card style="padding-left: 1%; padding-right: 1%; margin-bottom: 3%">
       <v-card-title class="ueberschriften">User</v-card-title>
       <v-expansion-panels>
-        <v-expansion-panel
-          v-for="user in users"
-          :key="user.id"
-        >
+        <v-expansion-panel v-for="user in users" :key="user.id">
           <v-expansion-panel-header class="schriftgroessen">
             {{ user.username }} {{ user.email }} {{ user.role }}
           </v-expansion-panel-header>
@@ -17,25 +14,27 @@
               v-model="rolesSelected"
               hint="Rollen"
             ></v-select>
-              <v-spacer></v-spacer>
-              <v-btn
-                color="blue"
-                style="
+            <v-spacer></v-spacer>
+            <v-btn
+              color="blue"
+              style="
                   width: 6%; 
                   font-size: clamp(0.6rem, 0.8vw, 0.9rem); 
                   font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
-                @click="updateUser(user, roles)"
-              >Update</v-btn>
-                <v-btn
-                  color="red" 
-                  style="
+              @click="updateUser(user, roles)"
+              >Update</v-btn
+            >
+            <v-btn
+              color="red"
+              style="
                   width: 6%; 
                   font-size: clamp(0.6rem, 0.8vw, 0.9rem); 
                   font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
-                  @click="deleteUser(user.id)"
-                >Delete</v-btn>
+              @click="deleteUser(user.id)"
+              >Delete</v-btn
+            >
           </v-expansion-panel-content>
-          </v-expansion-panel>
+        </v-expansion-panel>
       </v-expansion-panels>
       <v-card-actions>
         <v-btn
@@ -48,14 +47,15 @@
           text-transform: none; 
           font-family: Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"
           @click="getUsers"
-        >Reload</v-btn>
+          >Reload</v-btn
+        >
       </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
-import user from "../services/user.service";
+import User from "../services/user.service";
 export default {
   data() {
     return {
@@ -66,20 +66,26 @@ export default {
   },
   methods: {
     getUsers() {
-      user.getAllUsers().then(response => {
+      User.getAllUsers().then((response) => {
         this.users = response.data;
         console.log(response.data);
       });
     },
     updateUser(item) {
-      user.updateUser(item, this.rolesSelected).then(response => {
+      User.updateUser(item, this.rolesSelected).then((response) => {
         this.getUsers();
       });
     },
-    deleteUser(id) {
-      user.deleteUser(id).then(response => {
-        this.getUsers();
-      });
+    deleteUser() {
+      User.deleteUser(this.currentUser.id)
+        .then((response) => {
+          console.log(response);
+          this.$store.dispatch("logout");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   mounted() {

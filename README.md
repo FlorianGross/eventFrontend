@@ -10,6 +10,7 @@ Florian Groß, 34184
 https://zingy-bombolone-073b5a.netlify.app/
 
 # Fremde Codebestandteile
+
 Style-Framework: Vuetify und alle in deren Dokumentation gestellten Codebestandteile.
 Authentication: https://www.bezkoder.com/vue-3-authentication-jwt/ und https://www.bezkoder.com/node-js-mongodb-auth-jwt/ in abgeänderter Form.
 User-Management: https://www.bezkoder.com/vue-3-authentication-jwt/ in abgeänderter Form.

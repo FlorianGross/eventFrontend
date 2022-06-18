@@ -335,6 +335,7 @@ export default {
     message: "",
     success: false,
     user: {
+      id: "",
       username: "",
       password: "",
       email: "",
@@ -418,7 +419,7 @@ export default {
       });
     },
     getUserData() {
-      User.getUser(this.currentUser.username).then((response) => {
+      User.getUser(this.currentUser.id).then((response) => {
         console.log(response);
         this.user.username = response.data.username;
         this.user.firstName = response.data.firstName;

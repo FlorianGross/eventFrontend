@@ -1,18 +1,18 @@
 import axios from 'axios'
 import authHeader from './auth-header'
-const API_URL = 'https://webprogevent.herokuapp.com/api/event/'
+const API_URL = 'https://webprogevent.herokuapp.com'
 class UserService {
   getEvent(id) {
-    return axios.post(API_URL, { id: id }
+    return axios.get(API_URL + "/api/event/" + id, { id: id }
       , { headers: authHeader() })
   }
 
   getAllEvents() {
-    return axios.post('https://webprogevent.herokuapp.com/api/events', {}, { headers: authHeader() })
+    return axios.get(API_URL + "/api/events", {}, { headers: authHeader() })
   }
 
   createEvent(event) {
-    return axios.post(API_URL + 'create', {
+    return axios.post(API_URL + '/api/event/', {
       name: event.name,
       description: event.description,
       image: event.image,
@@ -32,7 +32,7 @@ class UserService {
   }
 
   updateEvent(event) {
-    return axios.post(API_URL + 'change', {
+    return axios.put(API_URL + '/api/event/' + event.id, {
       id: event.id,
       name: event.name,
       description: event.description,
@@ -53,45 +53,37 @@ class UserService {
   }
 
   deleteEvent(id) {
-    return axios.post(API_URL + 'delete', { id }, { headers: authHeader() })
-  }
-
-  participateEvent(id, user) {
-    return axios.post(API_URL + 'participate', { id, user }, { headers: authHeader() })
-  }
-
-  unParticipateEvent(id, user) {
-    return axios.post(API_URL + 'unparticipate', { id, user }, { headers: authHeader() })
+    return axios.delete(API_URL + '/api/event/' + id, { id }, { headers: authHeader() })
   }
 
   getParticipants(id) {
-    return axios.post(API_URL + 'getParticipants', { id }, { headers: authHeader() })
-  }
-
-  getParticipantsAmount(id) {
-    return axios.post(API_URL + 'getParticipantsAmount', { id }, { headers: authHeader() })
-  }
-
-  unPreOrder(id, user) {
-    return axios.post(API_URL + 'unpreorder', { id, user }, { headers: authHeader() })
-  }
-
-  getPreOrderAmount(id) {
-    return axios.post(API_URL + 'getPreOrderAmount', { id }, { headers: authHeader() })
+    return axios.get(API_URL + '/api/event/participants/' + id, { id }, { headers: authHeader() })
   }
 
   getPreOrder(id) {
-    return axios.post(API_URL + 'getPreOrder', { id }, { headers: authHeader() })
+    return axios.get(API_URL + '"/api/event/preorder/' + id, { id }, { headers: authHeader() })
+  }
+
+  getEventsFromUser(id) {
+    return axios.post(API_URL + '/api/events/users/' + id, {
+      user: id
+    }, { headers: authHeader() });
+  }
+
+  participateEvent(id, user) {
+    return axios.put(API_URL + '/api/event/participants/' + id, { id, user }, { headers: authHeader() })
+  }
+
+  unParticipateEvent(id, user) {
+    return axios.put(API_URL + '/api/event/participants/' + id, { id, user }, { headers: authHeader() })
+  }
+
+  unPreOrder(id, user) {
+    return axios.put(API_URL + '/api/event/preOrder/' + id, { id, user }, { headers: authHeader() })
   }
 
   preOrder(id, user) {
-    return axios.post(API_URL + 'preOrder', { id, user }, { headers: authHeader() })
-  }
-  
-  getEventsFromUser(id) {
-    return axios.post(API_URL + 'getUserInvolvedInEvent', {
-      user: id
-    }, { headers: authHeader() });
+    return axios.put(API_URL + '/api/event/preOrder/' + id, { id, user }, { headers: authHeader() })
   }
 }
 export default new UserService()

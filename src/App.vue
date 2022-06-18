@@ -146,6 +146,11 @@ export default {
   watch: {
     currentUser() {
       this.loggedIn = this.$store.state.auth.user;
+      if (this.loggedIn) {
+        authService.getIsAdmin(this.currentUser.username).then((response) => {
+          this.isAdmin = response.data;
+        });
+      }
     },
   },
   mounted() {

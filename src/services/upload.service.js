@@ -1,3 +1,5 @@
+// https://www.bezkoder.com/vue-axios-file-upload/
+
 import axios from 'axios'
 import authHeader from './auth-header'
 const API_URL = 'https://webprogevent.herokuapp.com/api/'
@@ -11,7 +13,7 @@ class UploadService {
 
     download = (file) => {
         console.log(file)
-        return axios.get(API_URL + 'download/'+file, {}, { headers: authHeader() });
+        return axios.get(API_URL + 'download/' + file, {}, { headers: authHeader() });
     }
 }
 

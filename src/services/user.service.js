@@ -1,3 +1,5 @@
+// https://www.bezkoder.com/vue-3-authentication-jwt/
+
 import axios from 'axios'
 import authHeader from './auth-header'
 const API_URL = 'https://webprogevent.herokuapp.com/api/'
@@ -28,11 +30,11 @@ class UserService {
     console.log(image)
     axios.post(API_URL + 'upload', image).then(function (response) {
       console.log(response)
-    return axios.post(API_URL + 'saveimage', {
-      username: username,
-      image: response.file
-    }, { headers: authHeader() });
-  }); 
+      return axios.post(API_URL + 'saveimage', {
+        username: username,
+        image: response.file
+      }, { headers: authHeader() });
+    });
   }
   getImage(username) {
     return axios.post(API_URL + 'getImage', {

@@ -1,3 +1,5 @@
+// https://www.bezkoder.com/vue-3-authentication-jwt/
+
 import axios from 'axios'
 const API_URL = 'https://webprogevent.herokuapp.com/api/auth/'
 class AuthService {
@@ -27,7 +29,7 @@ class AuthService {
       password: user.password
     })
   }
-  getIsAdmin(username){
+  getIsAdmin(username) {
     return axios.post(API_URL + 'getIsAdmin', {
       username: username,
     })

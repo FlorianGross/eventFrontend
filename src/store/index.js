@@ -1,3 +1,5 @@
+// https://www.bezkoder.com/vue-3-authentication-jwt/
+
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { auth } from './auth.module'

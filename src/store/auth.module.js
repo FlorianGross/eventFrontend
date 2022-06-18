@@ -1,3 +1,5 @@
+// https://www.bezkoder.com/vue-3-authentication-jwt/
+
 import AuthService from '../services/auth.service.js'
 const user = JSON.parse(localStorage.getItem('user'))
 const initialState = user
@@ -57,7 +59,7 @@ export const auth = {
     registerFailure(state) {
       state.status.loggedIn = false
     },
-    getIsAdmin(){
+    getIsAdmin() {
       return AuthService.getIsAdmin()
     }
   }

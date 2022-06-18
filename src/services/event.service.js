@@ -3,12 +3,11 @@ import authHeader from './auth-header'
 const API_URL = 'https://webprogevent.herokuapp.com'
 class UserService {
   getEvent(id) {
-    return axios.get(API_URL + "/api/event/" + id, { id: id }
-      , { headers: authHeader() })
+    return axios.get(API_URL + "/api/event/" + id, { headers: authHeader() })
   }
 
   getAllEvents() {
-    return axios.get(API_URL + "/api/events", {}, { headers: authHeader() })
+    return axios.get(API_URL + "/api/events", { headers: authHeader() })
   }
 
   createEvent(event) {
@@ -57,17 +56,15 @@ class UserService {
   }
 
   getParticipants(id) {
-    return axios.get(API_URL + '/api/event/participants/' + id, { id }, { headers: authHeader() })
+    return axios.get(API_URL + '/api/event/participants/' + id, { headers: authHeader() })
   }
 
   getPreOrder(id) {
-    return axios.get(API_URL + '"/api/event/preorder/' + id, { id }, { headers: authHeader() })
+    return axios.get(API_URL + '"/api/event/preorder/' + id, { headers: authHeader() })
   }
 
   getEventsFromUser(id) {
-    return axios.post(API_URL + '/api/events/users/' + id, {
-      user: id
-    }, { headers: authHeader() });
+    return axios.get(API_URL + '/api/events/users/' + id, { headers: authHeader() });
   }
 
   participateEvent(id, user) {

@@ -6,7 +6,7 @@ const API_URL = 'https://webprogevent.herokuapp.com'
 
 class UserService {
   getAllUsers() {
-    return axios.get(API_URL + '/api/users', { headers: authHeader() })
+    return axios.get(API_URL + '/api/users', {}, { headers: authHeader() })
   }
 
   updateUser(user, roles) {
@@ -39,7 +39,7 @@ class UserService {
   }
 
   deleteUser(id) {
-    return axios.delete(API_URL + '/api/user/' + id, {
+    return axios.delete(API_URL + '/api/user/' + id, {}, {
       headers: authHeader()
     });
   }

@@ -421,6 +421,7 @@ export default {
     getUserData() {
       User.getUser(this.currentUser.username).then((response) => {
         console.log(response);
+        this.user.id = response.data._id;
         this.user.username = response.data.username;
         this.user.firstName = response.data.firstName;
         this.user.lastName = response.data.lastName;

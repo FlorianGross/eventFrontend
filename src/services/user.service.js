@@ -26,16 +26,6 @@ class UserService {
     }, { headers: authHeader() });
   }
 
-  saveImage(username, image) {
-    axios.post(API_URL + '/api/upload', image).then(function (response) {
-      console.log(response)
-      return axios.post(API_URL + '/api/image', {
-        username: username,
-        image: response.file
-      }, { headers: authHeader() });
-    });
-  }
-
   deleteUser(id) {
     return axios.delete(API_URL + '/api/user/' + id, {}, {
       headers: authHeader()

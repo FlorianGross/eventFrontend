@@ -27,9 +27,9 @@ class UserService {
   }
 
   saveImage(username, image) {
-    axios.post(API_URL + '/api/image', image).then(function (response) {
+    axios.post(API_URL + '/api/upload', image).then(function (response) {
       console.log(response)
-      return axios.post(API_URL + 'saveimage', {
+      return axios.post(API_URL + '/api/image', {
         username: username,
         image: response.file
       }, { headers: authHeader() });

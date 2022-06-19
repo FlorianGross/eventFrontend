@@ -1,8 +1,8 @@
 <template>
   <div class="body">
-    <v-card width="96.4%" style="padding-bottom: 1%;">
+    <v-card width="96.4%" style="padding-bottom: 1%">
       <v-card-title>
-        <span class="headline" style="margin-left: 50%;">Events</span>
+        <span class="headline" style="margin-left: 50%">Events</span>
         <v-spacer></v-spacer>
         <v-btn
           color="#000080"
@@ -45,8 +45,14 @@
         >
       </v-card-title>
       <v-card style="height: 1px"></v-card>
-        <v-alert v-if="alert" :color="success ? 'green' : 'red'" dismissible :type="success ? 'success' : 'error'">{{message}}</v-alert>
-      <v-container style="padding-top: 2%;">
+      <v-alert
+        v-if="alert"
+        :color="success ? 'green' : 'red'"
+        dismissible
+        :type="success ? 'success' : 'error'"
+        >{{ message }}</v-alert
+      >
+      <v-container style="padding-top: 2%">
         <v-row justify="space-between" xs1 md3>
           <v-flex style="padding-right: 2%">
             <v-card>
@@ -69,46 +75,57 @@
                   label="Name des Events"
                   v-model="event.name"
                   class="textFieldStyle"
-                  style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
                 >
                 </v-text-field>
                 <v-text-field
                   label="Veranstaltungsort"
                   v-model="event.location"
                   class="textFieldStyle"
-                  style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
                 >
                 </v-text-field>
                 <v-text-field
                   label="Besonderheiten"
                   v-model="event.Specials"
                   class="textFieldStyle"
-                  style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
                 >
                 </v-text-field>
                 <v-checkbox
                   label="Vorverkauf"
                   v-model="event.preSale"
                   class="textFieldStyle"
-                  style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
                 ></v-checkbox>
                 <v-text-field
                   v-if="event.preSale"
                   label="Vorverkauf"
                   v-model="event.preSaleInfo"
                   class="textFieldStyle"
-                  style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
                 ></v-text-field>
-                <v-file-input label="Bild" class="textFieldStyle" style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);" append-icon="mdi-send" @change="selectImage" @click:append="saveImage()" v-model="image">
+                <v-file-input
+                  label="Bild"
+                  class="textFieldStyle"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
+                  append-icon="mdi-send"
+                  @change="selectImage"
+                  @click:append="saveImage()"
+                  v-model="image"
+                >
                 </v-file-input>
                 <v-textarea
                   label="Beschreibung"
                   v-model="event.description"
                   class="textFieldStyle"
-                  style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
                 >
                 </v-textarea>
-                <v-row class="textFieldStyle" style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);">
+                <v-row
+                  class="textFieldStyle"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
+                >
                   Beginn:
                   <v-col cols="12" sm="6" md="4">
                     <v-menu
@@ -177,7 +194,10 @@
                     </v-menu>
                   </v-col>
                 </v-row>
-                <v-row class="textFieldStyle" style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);">
+                <v-row
+                  class="textFieldStyle"
+                  style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
+                >
                   Ende:
                   <v-col cols="12" sm="6" md="4">
                     <v-menu
@@ -256,7 +276,7 @@
                 label="Kontaktperson"
                 v-model="event.contactPerson"
                 class="textFieldStyle"
-                style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
               >
               </v-text-field>
               <v-divider style="margin-top: 5px"></v-divider>
@@ -264,7 +284,7 @@
                 label="Telefonnummer"
                 v-model="event.contactPhoneNumber"
                 class="textFieldStyle"
-                style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
               >
               </v-text-field>
               <v-divider style="margin-top: 5px"></v-divider>
@@ -272,24 +292,26 @@
                 label="E-Mail"
                 v-model="event.contactEmail"
                 class="textFieldStyle"
-                style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
               >
               </v-text-field>
               <v-divider></v-divider>
-              <v-card-title class="ueberschriften">Buchungsdetails</v-card-title>
+              <v-card-title class="ueberschriften"
+                >Buchungsdetails</v-card-title
+              >
               <v-text-field
                 label="Eintrittspreis"
                 v-model="event.cost"
                 type="number"
                 class="textFieldStyle"
-                style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
               ></v-text-field>
               <v-text-field
                 label="Maximale Teilnehmeranzahl"
                 v-model="event.maxParticipants"
                 type="number"
                 class="textFieldStyle"
-                style="font-size: clamp(0.7rem, 0.8vw, 1.0rem);"
+                style="font-size: clamp(0.7rem, 0.8vw, 1rem)"
               ></v-text-field>
               <participants-management-part-vue
                 style="margin-top: 2%"
@@ -348,27 +370,29 @@ export default {
     };
   },
   methods: {
-    selectImage(image){
+    selectImage(image) {
       this.image = image;
     },
     saveImage() {
-      console.log(this.image)
-      if(this.image === undefined){
+      if (this.image === undefined) {
         return;
       }
-      Upload.upload(this.image).then((response) => {
-        console.log(response);
-        this.event.image = "https://webprogevent.herokuapp.com/api/download/" + response.data.file;
-        this.saveEvent(); 
-        this.success = true;
-        this.message = "Successfully uploaded image";
-        this.alert = true;
-    }).catch((error) => {
-      console.log(error);
-      this.message = "Error while saving Image"
-      this.alert = true;
-      this.success = false;
-    });
+      Upload.upload(this.image)
+        .then((response) => {
+          this.event.image =
+            "https://webprogevent.herokuapp.com/api/download/" +
+            response.data.file;
+          this.saveEvent();
+          this.success = true;
+          this.message = "Successfully uploaded image";
+          this.alert = true;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.message = "Error while saving Image";
+          this.alert = true;
+          this.success = false;
+        });
     },
     getEvent() {
       Event.getEvent(this.$route.params.id).then((response) => {
@@ -402,60 +426,66 @@ export default {
         );
       }
       this.event.id = this.$route.params.id;
-      Event.updateEvent(this.event).then((response) => {
-        console.log(response);
-        this.success = true;
-        this.message = "Successfully updated event";
-        this.alert = true;
-      }).catch((error) => {
-        console.log(error);
-        this.message = "Error while saving event"
-        this.alert = true;
-        this.success = false;
-      });
+      Event.updateEvent(this.event)
+        .then((response) => {
+          this.success = true;
+          this.message = "Successfully updated event";
+          this.alert = true;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.message = "Error while saving event";
+          this.alert = true;
+          this.success = false;
+        });
     },
     publishEvent() {
       this.getTime();
       this.event.published = true;
-      Event.updateEvent(this.event).then((response) => {
-        console.log(response);
-        this.success = true;
-        this.message = "Successfully published event";
-        this.alert = true;
-      }).catch((error) => {
-        console.log(error);
-        this.message = "Error while publishing event"
-        this.alert = true;
-        this.success = false;
-      });
+      Event.updateEvent(this.event)
+        .then((response) => {
+          console.log(response);
+          this.success = true;
+          this.message = "Successfully published event";
+          this.alert = true;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.message = "Error while publishing event";
+          this.alert = true;
+          this.success = false;
+        });
     },
     updateEvent() {
       this.getTime();
-      Event.updateEvent(this.event).then((response) => {
-        console.log(response);
-        this.success = true;
-        this.message = "Successfully updated event";
-        this.alert = true;
-      }).catch((error) => {
-        console.log(error);
-        this.message = "Error while saving event"
-        this.alert = true;
-        this.success = false;
-      });
+      Event.updateEvent(this.event)
+        .then((response) => {
+          console.log(response);
+          this.success = true;
+          this.message = "Successfully updated event";
+          this.alert = true;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.message = "Error while saving event";
+          this.alert = true;
+          this.success = false;
+        });
     },
     deleteEvent() {
-      Event.deleteEvent(this.event.id).then((response) => {
-        console.log(response);
-        this.success = true;
-        this.message = "Successfully deleted event";
-        this.alert = true;
-      }).catch((error) => {
-        console.log(error);
-        this.message = "Error while deleting event"
-        this.alert = true;
-        this.success = false;
-      });
-
+      Event.deleteEvent(this.event.id)
+        .then((response) => {
+          console.log(response);
+          this.success = true;
+          this.message = "Successfully deleted event";
+          this.alert = true;
+        })
+        .catch((error) => {
+          console.log(error);
+          this.message = "Error while deleting event";
+          this.alert = true;
+          this.success = false;
+        });
     },
   },
   created() {
@@ -482,7 +512,7 @@ export default {
   max-width: 90%;
   padding-left: 4.5%;
   margin-top: 3%;
-  font-size: clamp(0.7rem, 0.9vw, 1.0rem);
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
 }
 .headline {
   color: black;
@@ -490,7 +520,7 @@ export default {
   margin-right: auto;
 }
 .schriftgroessen {
-  font-size: clamp(0.7rem, 0.9vw, 1.0rem);
+  font-size: clamp(0.7rem, 0.9vw, 1rem);
 }
 .ueberschriften {
   font-size: clamp(0.9rem, 1vw, 1.3rem);

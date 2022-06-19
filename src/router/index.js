@@ -42,7 +42,7 @@ const routes = [
     component: () => import('../views/ProfileView.vue')
   },
   {
-    path: '/admin/',
+    path: '/admin',
     name: 'admin',
     component: () => import('../views/AdminPreView.vue')
   },

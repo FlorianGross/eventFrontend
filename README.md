@@ -1,13 +1,6 @@
 # EventY
 
-# Gruppe: S
-
-Sven Herz, 34190
-Florian Groß, 34184
-
-# URL
-
-https://zingy-bombolone-073b5a.netlify.app/
+VueJS Event Website Frontend
 
 # Fremde Codebestandteile
 
@@ -21,26 +14,3 @@ Upload von Bildern: https://www.bezkoder.com/vue-axios-file-upload/ in abgeände
 npm install
 
 npm run serve
-
-Enjoy!
-
-# Auf der Website:
-
-Registrieren:
-Benutzername, Email, Passwort
-Login:
-Benutzername, Passwort
-
-Admin-Account:
-
-- Benutzername: admin
-- Email: Admin@rwu.de
-- Passwort: Passwort
-
-User-Account:
-
-- Benutzername: user
-- Email: user@rwu.de
-- Passwort: Passwort
-
-Alternativ eigenen Nutzer erstellen. (Keine Admin Rechte)
